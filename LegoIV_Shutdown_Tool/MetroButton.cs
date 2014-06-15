@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LegoIV_Shutdown_Tool
+namespace LegoIV_Power_Tool
 {
-    public partial class Form1 : Form
+    public partial class MetroButton : Button
     {
-        public Form1()
+        public MetroButton()
         {
             InitializeComponent();
+        }
+
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            base.OnPaint(pe);
         }
     }
 }
