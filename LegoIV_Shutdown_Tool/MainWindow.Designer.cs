@@ -214,7 +214,7 @@
             this.lblSettingsBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblSettingsBox.Location = new System.Drawing.Point(322, 33);
             this.lblSettingsBox.Name = "lblSettingsBox";
-            this.lblSettingsBox.Size = new System.Drawing.Size(321, 149);
+            this.lblSettingsBox.Size = new System.Drawing.Size(321, 317);
             this.lblSettingsBox.TabIndex = 13;
             // 
             // btnStart

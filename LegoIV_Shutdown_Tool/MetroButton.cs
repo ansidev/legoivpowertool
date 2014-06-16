@@ -17,6 +17,11 @@ namespace LegoIV_Power_Tool
             InitializeComponent();
         }
 
+        public bool Checked
+        {
+            get;
+            set;
+        }
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);

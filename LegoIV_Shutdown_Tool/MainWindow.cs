@@ -133,6 +133,22 @@ namespace LegoIV_Power_Tool
 
         }
         #region Power Action Function
+        private void ExitWin(int _flag, int _reversed)
+        {
+            ManagementBaseObject mboShutdown = null;
+            ManagementClass mcWin32 = new ManagementClass("Win32_OperatingSystem");
+            mcWin32.Get();
+            // You can't shutdown without security privileges
+            mcWin32.Scope.Options.EnablePrivileges = true;
+            ManagementBaseObject mboShutdownParams = mcWin32.GetMethodParameters("Win32Shutdown");
+            // Flag 1 means we want to shut down the system
+            mboShutdownParams["Flags"] = _flag.ToString();
+            mboShutdownParams["Reserved"] = _reversed.ToString();
+            foreach (ManagementObject manObj in mcWin32.GetInstances())
+            {
+                mboShutdown = manObj.InvokeMethod("Win32Shutdown", mboShutdownParams, null);
+            }
+        }
         private void PowerAction(int _Action)
         {
             switch (_Action)
@@ -167,18 +183,27 @@ namespace LegoIV_Power_Tool
         }
         private void _ShutdownComputer()
         {
-            ManagementBaseObject mboShutdown = null;
-            ManagementClass mcWin32 = new ManagementClass("Win32_OperatingSystem");
-            mcWin32.Get();
-            // You can't shutdown without security privileges
-            mcWin32.Scope.Options.EnablePrivileges = true;
-            ManagementBaseObject mboShutdownParams = mcWin32.GetMethodParameters("Win32Shutdown");
-            // Flag 1 means we want to shut down the system
-            mboShutdownParams["Flags"] = "1";
-            mboShutdownParams["Reserved"] = "0";
-            foreach (ManagementObject manObj in mcWin32.GetInstances())
+            try
             {
-                mboShutdown = manObj.InvokeMethod("Win32Shutdown", mboShutdownParams, null);
+                ExitWin(8, 0);
+            }
+            catch
+            {
+                try
+                {
+                    ExitWin(1, 0);
+                }
+                catch
+                {
+                    try
+                    {
+                        ExitWin(5, 0);
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
             }
             this.Close();
         }
@@ -187,13 +212,13 @@ namespace LegoIV_Power_Tool
         {
             try
             {
-                ExitWindowsEx(2, 0);
+                ExitWin(2, 0);
             }
             catch
             {
                 try
                 {
-                    ExitWindowsEx(6, 0);
+                    ExitWin(6, 0);
                 }
                 catch (Exception ex)
                 {
