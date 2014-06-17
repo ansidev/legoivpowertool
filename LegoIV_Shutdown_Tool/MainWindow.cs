@@ -102,6 +102,11 @@ namespace LegoIV_Power_Tool
                 
             return _DelayTime;
         }
+        private string Prefix()
+        {
+            string _prefix = (this.lblSettingsBox.Text == "") ? "" : "\n";
+            return _prefix;
+        }
         private void UpdateSettings()
         {
             this.lblSettingsBox.Text = "";
@@ -111,37 +116,37 @@ namespace LegoIV_Power_Tool
             }
             if (this.btnRestart.Selected == true)
             {
-                this.lblSettingsBox.Text += "\nRestart = " + this.btnRestart.Selected.ToString();
+                this.lblSettingsBox.Text += Prefix() + "Restart = " + this.btnRestart.Selected.ToString();
             }
             if (this.btnSleep.Selected == true)
             {
-                this.lblSettingsBox.Text += "\nSleep = " + this.btnSleep.Selected.ToString();
+                this.lblSettingsBox.Text += Prefix() + "Sleep = " + this.btnSleep.Selected.ToString();
             }
             if (this.btnHibernate.Selected == true)
             {
-                this.lblSettingsBox.Text += "\nHibernate = " + this.btnHibernate.Selected.ToString();
+                this.lblSettingsBox.Text += Prefix() + "Hibernate = " + this.btnHibernate.Selected.ToString();
             }
             if (this.btnSignout.Selected == true)
             {
-                this.lblSettingsBox.Text += "\nSignout = " + this.btnSignout.Selected.ToString();
+                this.lblSettingsBox.Text += Prefix() + "Signout = " + this.btnSignout.Selected.ToString();
             }
             if (this.btnLock.Selected == true)
             {
-                this.lblSettingsBox.Text += "\nLock = " + this.btnLock.Selected.ToString();
+                this.lblSettingsBox.Text += Prefix() + "Lock = " + this.btnLock.Selected.ToString();
             }
             if (this.btnSwitch.Selected == true)
             {
-                this.lblSettingsBox.Text += "\nSwitch = " + this.btnSwitch.Selected.ToString();
+                this.lblSettingsBox.Text += Prefix() + "Switch = " + this.btnSwitch.Selected.ToString();
             }
             if (this.btnMonitorOff.Selected == true)
-            this.lblSettingsBox.Text += "\nMonitor off = " + this.btnMonitorOff.Selected.ToString();
+                this.lblSettingsBox.Text += Prefix() + "Monitor off = " + this.btnMonitorOff.Selected.ToString();
             if (DelayTime() != "0")
             {
-                this.lblSettingsBox.Text += "\nDelay time = " + DelayTime();
+                this.lblSettingsBox.Text += Prefix() + "Delay time = " + DelayTime();
             }
             else
             {
-                this.lblSettingsBox.Text += "\nNo delay time";
+                this.lblSettingsBox.Text += Prefix() + "No delay time";
             }
 
         }
