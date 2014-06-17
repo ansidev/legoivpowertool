@@ -17,10 +17,30 @@ namespace LegoIV_Power_Tool
             InitializeComponent();
         }
 
-        public bool Checked
+        [Category("Behavior")]
+        [Description("Indicates whether the control is selected.")]
+        [DefaultValue(false)]
+        public bool Selected
         {
             get;
             set;
+        }
+
+        [Category("Propperty Changed")]
+        [Description("Occurs when the control's selected state changes.")]
+        public event EventHandler SelectedChanged;
+        protected void OnSelectedChanged(EventArgs e)
+        {
+            EventHandler handler = SelectedChanged; 
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+        public delegate void SelectedChangedEventHandler(SelectedChangedEventArgs e);
+        public class SelectedChangedEventArgs : EventArgs
+        {
+            public int Selected { get; set; }
         }
         protected override void OnPaint(PaintEventArgs pe)
         {

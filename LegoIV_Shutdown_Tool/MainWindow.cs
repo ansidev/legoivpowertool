@@ -23,11 +23,13 @@ namespace LegoIV_Power_Tool
         private static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);
         [DllImport("user32.dll")]
         private static extern IntPtr GetDesktopWindow();
+        [DllImport("Powrprof.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
+
 
         const int WM_SYSCOMMAND = 0x0112;
         const int SC_MONITORPOWER = 0xF170;
         int HWND_BROADCAST = 0xffff;
-        const int EWX_POWEROFF = 0x00000008;
 
         //Action
         bool isShutdown = false;
@@ -103,15 +105,44 @@ namespace LegoIV_Power_Tool
         private void UpdateSettings()
         {
             this.lblSettingsBox.Text = "";
-            this.lblSettingsBox.Text += "Shutdown = " + isShutdown.ToString();
-            this.lblSettingsBox.Text += "\nRestart = " + isRestart.ToString();
-            this.lblSettingsBox.Text += "\nSleep = " + isSleep.ToString();
-            this.lblSettingsBox.Text += "\nHibernate = " + isHibernate.ToString();
-            this.lblSettingsBox.Text += "\nSignout = " + isSignout.ToString();
-            this.lblSettingsBox.Text += "\nLock = " + isLock.ToString();
-            this.lblSettingsBox.Text += "\nSwitch = " + isSwitch.ToString();
-            this.lblSettingsBox.Text += "\nMonitor off = " + isMonitorOff.ToString();
-            this.lblSettingsBox.Text += "\nDelay time = " + DelayTime();
+            if (this.btnShutdown.Selected == true)
+            {
+                this.lblSettingsBox.Text += "Shutdown = " + this.btnShutdown.Selected.ToString();
+            }
+            if (this.btnRestart.Selected == true)
+            {
+                this.lblSettingsBox.Text += "\nRestart = " + this.btnRestart.Selected.ToString();
+            }
+            if (this.btnSleep.Selected == true)
+            {
+                this.lblSettingsBox.Text += "\nSleep = " + this.btnSleep.Selected.ToString();
+            }
+            if (this.btnHibernate.Selected == true)
+            {
+                this.lblSettingsBox.Text += "\nHibernate = " + this.btnHibernate.Selected.ToString();
+            }
+            if (this.btnSignout.Selected == true)
+            {
+                this.lblSettingsBox.Text += "\nSignout = " + this.btnSignout.Selected.ToString();
+            }
+            if (this.btnLock.Selected == true)
+            {
+                this.lblSettingsBox.Text += "\nLock = " + this.btnLock.Selected.ToString();
+            }
+            if (this.btnSwitch.Selected == true)
+            {
+                this.lblSettingsBox.Text += "\nSwitch = " + this.btnSwitch.Selected.ToString();
+            }
+            if (this.btnMonitorOff.Selected == true)
+            this.lblSettingsBox.Text += "\nMonitor off = " + this.btnMonitorOff.Selected.ToString();
+            if (DelayTime() != "0")
+            {
+                this.lblSettingsBox.Text += "\nDelay time = " + DelayTime();
+            }
+            else
+            {
+                this.lblSettingsBox.Text += "\nNo delay time";
+            }
 
         }
         #endregion
@@ -230,11 +261,12 @@ namespace LegoIV_Power_Tool
 
         private void _SleepComputer()
         {
+            SetSuspendState(false, false, false);
             this.Close();
         }
         private void _HibernateComputer()
         {
-            Application.SetSuspendState(PowerState.Hibernate, true, true);
+            Application.SetSuspendState(PowerState.Hibernate, false, false );
             this.Close();
         }
         private void _SignoutComputer()
@@ -276,53 +308,53 @@ namespace LegoIV_Power_Tool
         #region Button Click Events
         private void btnShutdown_Click(object sender, EventArgs e)
         {
-            isShutdown = (isShutdown == false) ? true : false;
+            this.btnShutdown.Selected = (this.btnShutdown.Selected == false) ? true : false;
             ButtonStatusChangedEvent(true, false, false, false, false, false, false, true);
             UpdateSettings();
         }
 
         private void btnRestart_Click(object sender, EventArgs e)
         {
-            isRestart = (isRestart == false) ? true : false;
+            this.btnRestart.Selected = (this.btnRestart.Selected == false) ? true : false;
             ButtonStatusChangedEvent(false, true, false, false, false, false, false, true);
             UpdateSettings();
         }
 
         private void btnSleep_Click(object sender, EventArgs e)
         {
-            isSleep = (isSleep == false) ? true : false;
+            this.btnSleep.Selected = (this.btnSleep.Selected == false) ? true : false;
             ButtonStatusChangedEvent(false, false, true, false, false, false, false, true);
             UpdateSettings();
         }
 
         private void btnHibernate_Click(object sender, EventArgs e)
         {
-            isHibernate = (isHibernate == false) ? true : false;
+            this.btnHibernate.Selected = (this.btnHibernate.Selected == false) ? true : false;
             ButtonStatusChangedEvent(false, false, false, true, false, false, false, true);
             UpdateSettings();
         }
 
         private void btnSignout_Click(object sender, EventArgs e)
         {
-            isSignout = (isSignout == false) ? true : false;
+            this.btnSignout.Selected = this.btnSignout.Selected == false ? true : false;
             ButtonStatusChangedEvent(false, false, false, false, true, false, false, true);
             UpdateSettings();
         }
         private void btnLock_Click(object sender, EventArgs e)
         {
-            isLock = (isLock == false) ? true : false;
+            this.btnLock.Selected = (this.btnLock.Selected == false) ? true : false;
             ButtonStatusChangedEvent(false, false, false, false, false, true, false, true);
             UpdateSettings();
         }
         private void btnSwitch_Click(object sender, EventArgs e)
         {
-            isSwitch = (isSwitch == false) ? true : false;
+            this.btnSwitch.Selected = (this.btnSwitch.Selected == false) ? true : false;
             ButtonStatusChangedEvent(false, false, false, false, false, false, true, false);
             UpdateSettings();
         }
         private void btnMonitorOff_Click(object sender, EventArgs e)
         {
-            isMonitorOff = (isMonitorOff == false) ? true : false;
+            this.btnMonitorOff.Selected = (this.btnMonitorOff.Selected == false) ? true : false;
             UpdateSettings();
         }
         #endregion
@@ -408,18 +440,32 @@ namespace LegoIV_Power_Tool
             if (this.Enabled == true)
             {
                 btnShutdown.BackColor = Color.FromArgb(bgColorShutdown);
-            //    SetButtonStatus(btnRestart, false);
-            //    SetButtonStatus(btnSleep, false);
-            //    SetButtonStatus(btnHibernate, false);
-            //    SetButtonStatus(btnSignout, false);
-            //    SetButtonStatus(btnLock, false);
-            //    SetButtonStatus(btnSwitch, false);
+                //    SetButtonStatus(btnRestart, false);
+                //    SetButtonStatus(btnSleep, false);
+                //    SetButtonStatus(btnHibernate, false);
+                //    SetButtonStatus(btnSignout, false);
+                //    SetButtonStatus(btnLock, false);
+                //    SetButtonStatus(btnSwitch, false);
+            }
+            if (this.Enabled == false)
+            {
+                MessageBox.Show("EnabledChanged Events!");
             }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             PowerAction(1);
+        }
+
+        private void btnShutdown_SelectedChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("SelectedChanged Event!");
+        }
+
+        private void btnShutdown_BackColorChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("BackColorChanged Event!");
         }
     }
 }

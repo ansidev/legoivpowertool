@@ -364,7 +364,8 @@
             this.btnShutdown.TabIndex = 0;
             this.btnShutdown.Text = "SHUT DOWN";
             this.btnShutdown.UseVisualStyleBackColor = false;
-            this.btnShutdown.EnabledChanged += new System.EventHandler(this.btnShutdown_EnabledChanged);
+            this.btnShutdown.SelectedChanged += new System.EventHandler(this.btnShutdown_SelectedChanged);
+            this.btnShutdown.BackColorChanged += new System.EventHandler(this.btnShutdown_BackColorChanged);
             this.btnShutdown.Click += new System.EventHandler(this.btnShutdown_Click);
             this.btnShutdown.MouseLeave += new System.EventHandler(this.btnShutdown_MouseLeave);
             this.btnShutdown.MouseHover += new System.EventHandler(this.btnShutdown_MouseHover);
