@@ -34,10 +34,12 @@ namespace LegoIV_Power_Tool
             EventHandler handler = SelectedChanged; 
             if (handler != null)
             {
+                MessageBox.Show("Hello world!");
                 handler(this, e);
             }
         }
         public delegate void SelectedChangedEventHandler(SelectedChangedEventArgs e);
+        
         public class SelectedChangedEventArgs : EventArgs
         {
             public int Selected { get; set; }
