@@ -31,41 +31,16 @@ namespace LegoIV_Power_Tool
         const int SC_MONITORPOWER = 0xF170;
         int HWND_BROADCAST = 0xffff;
 
-        //Action
-        private enum ButtonArray
-        {
-            btnShutdown,
-            btnRestart,
-            btnSleep,
-            btnHibernate,
-            btnSignout,
-            btnLock,
-            btnSwitch,
-            btnMonitorOff,
-        };
+        //Button
+        Button[] ButtonArray = new Button[8];
 
         #region Other Functions
-        private void SetButtonStatus(Button _Button, bool _isEnabled)
+        private void EnableAllButton(MetroButton mtButton)
         {
-            _Button.Enabled = _isEnabled;
-            if (_isEnabled == false)
+            if (mtButton.Selected == false)
             {
-                _Button.BackColor = this.BackColor;
+                this.btnShutdown.Enabled = this.btnRestart.Enabled = this.btnSleep.Enabled = this.btnHibernate.Enabled = this.btnSignout.Enabled = this.btnLock.Enabled = this.btnSwitch.Enabled = this.btnMonitorOff.Enabled = true;
             }
-            if(_isEnabled == true)
-            {
-                _Button.FlatAppearance.BorderSize = 1;
-                _Button.FlatAppearance.BorderColor = Color.Black;
-            }
-        }
-
-        private void ButtonStatusChangedEvent(MetroButton mtButton)
-        {
-
-        }
-        private void EnableAllButton()
-        {
-            this.btnShutdown.Enabled = this.btnRestart.Enabled = this.btnSleep.Enabled = this.btnHibernate.Enabled = this.btnSignout.Enabled = this.btnLock.Enabled = this.btnSwitch.Enabled = this.btnMonitorOff.Enabled = true;
         }
         private string DelayTime()
         {
@@ -150,14 +125,15 @@ namespace LegoIV_Power_Tool
         {
             InitializeComponent();
             UpdateSettings();
-            //bgColorShutdown = this.btnShutdown.BackColor.ToArgb();
-            //bgColorRestart = this.btnRestart.BackColor.ToArgb();
-            //bgColorSleep = this.btnSleep.BackColor.ToArgb();
-            //bgColorHibernate = this.btnHibernate.BackColor.ToArgb();
-            //bgColorSignout = this.btnSignout.BackColor.ToArgb();
-            //bgColorLock = this.btnLock.BackColor.ToArgb();
-            //bgColorSwitch = this.btnSwitch.BackColor.ToArgb();
-            //bgColorMonitorOff = this.btnMonitorOff.BackColor.ToArgb();
+            //Get Button
+            ButtonArray[0] = btnShutdown;
+            ButtonArray[1] = btnRestart;
+            ButtonArray[2] = btnSleep;
+            ButtonArray[3] = btnHibernate;
+            ButtonArray[4] = btnSignout;
+            ButtonArray[5] = btnLock;
+            ButtonArray[6] = btnSwitch;
+            ButtonArray[7] = btnMonitorOff;
         }
         private void MainWindow_Load(object sender, EventArgs e)
         {
@@ -312,64 +288,75 @@ namespace LegoIV_Power_Tool
         #endregion
 
         #region Button Click Events
-        private void btnShutdown_Click(object sender, EventArgs e)
+        private void OnClick(MetroButton _mtButton)
         {
-            this.btnShutdown.Selected = (this.btnShutdown.Selected == false) ? true : false;
-            if(this.btnShutdown.Selected == true)
+            _mtButton.Selected = (_mtButton.Selected == false) ? true : false;
+            if (_mtButton.Selected == true)
             {
-                this.btnMonitorOff.Selected = true;
+                _mtButton.FlatAppearance.BorderSize = 2;
+                _mtButton.FlatAppearance.BorderColor = Color.Black;
             }
             else
             {
-                EnableAllButton();
+                _mtButton.FlatAppearance.BorderSize = 0;
             }
-            //ButtonStatusChangedEvent(true, false, false, false, false, false, false, true);
+            if(_mtButton.Selected == false)
+            {
+                foreach (MetroButton mtButton in ButtonArray)
+                {
+                    mtButton.Enabled = true;
+                    mtButton.Selected = false;
+                }
+            }
+            else
+                foreach (MetroButton mtrButton in ButtonArray)
+                {
+                    if(mtrButton != _mtButton)
+                    {
+                        mtrButton.Enabled = false;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
             UpdateSettings();
+        }
+        private void btnShutdown_Click(object sender, EventArgs e)
+        {
+            this.OnClick(this.btnShutdown);
         }
 
         private void btnRestart_Click(object sender, EventArgs e)
         {
-            this.btnRestart.Selected = (this.btnRestart.Selected == false) ? true : false;
-            //ButtonStatusChangedEvent(false, true, false, false, false, false, false, true);
-            UpdateSettings();
+            this.OnClick(this.btnRestart);
         }
 
         private void btnSleep_Click(object sender, EventArgs e)
         {
-            this.btnSleep.Selected = (this.btnSleep.Selected == false) ? true : false;
-            //ButtonStatusChangedEvent(false, false, true, false, false, false, false, true);
-            UpdateSettings();
+            this.OnClick(this.btnSleep);
         }
 
         private void btnHibernate_Click(object sender, EventArgs e)
         {
-            this.btnHibernate.Selected = (this.btnHibernate.Selected == false) ? true : false;
-            //ButtonStatusChangedEvent(false, false, false, true, false, false, false, true);
-            UpdateSettings();
+            this.OnClick(this.btnHibernate);
         }
 
         private void btnSignout_Click(object sender, EventArgs e)
         {
-            this.btnSignout.Selected = this.btnSignout.Selected == false ? true : false;
-            //ButtonStatusChangedEvent(false, false, false, false, true, false, false, true);
-            UpdateSettings();
+            this.OnClick(this.btnSignout);
         }
         private void btnLock_Click(object sender, EventArgs e)
         {
-            this.btnLock.Selected = (this.btnLock.Selected == false) ? true : false;
-            //ButtonStatusChangedEvent(false, false, false, false, false, true, false, true);
-            UpdateSettings();
+            this.OnClick(this.btnLock);
         }
         private void btnSwitch_Click(object sender, EventArgs e)
         {
-            this.btnSwitch.Selected = (this.btnSwitch.Selected == false) ? true : false;
-            //ButtonStatusChangedEvent(false, false, false, false, false, false, true, false);
-            UpdateSettings();
+            this.OnClick(this.btnSwitch);
         }
         private void btnMonitorOff_Click(object sender, EventArgs e)
         {
-            this.btnMonitorOff.Selected = (this.btnMonitorOff.Selected == false) ? true : false;
-            UpdateSettings();
+            this.OnClick(this.btnMonitorOff);
         }
         #endregion
         

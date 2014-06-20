@@ -48,18 +48,5 @@ namespace LegoIV_Power_Tool
         {
             base.OnPaint(pe);
         }
-        protected override void OnClick(EventArgs e)
-        {
-            base.OnClick(e);
-            if(this.Selected == true)
-            {
-                this.FlatAppearance.BorderSize = 2;
-                this.FlatAppearance.BorderColor = Color.Black;
-            }
-            else
-            {
-                this.FlatAppearance.BorderSize = 0;
-            }
-        }
     }
 }
