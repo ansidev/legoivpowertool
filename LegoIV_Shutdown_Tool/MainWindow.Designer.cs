@@ -172,7 +172,7 @@
             // rdbtnNow
             // 
             this.rdbtnNow.AutoSize = true;
-            this.rdbtnNow.Checked = true;
+            //this.rdbtnNow.Checked = true;
             this.rdbtnNow.Location = new System.Drawing.Point(8, 27);
             this.rdbtnNow.Name = "rdbtnNow";
             this.rdbtnNow.Size = new System.Drawing.Size(50, 19);
@@ -364,8 +364,6 @@
             this.btnShutdown.TabIndex = 0;
             this.btnShutdown.Text = "SHUT DOWN";
             this.btnShutdown.UseVisualStyleBackColor = false;
-            this.btnShutdown.SelectedChanged += new System.EventHandler(this.btnShutdown_SelectedChanged);
-            this.btnShutdown.BackColorChanged += new System.EventHandler(this.btnShutdown_BackColorChanged);
             this.btnShutdown.Click += new System.EventHandler(this.btnShutdown_Click);
             this.btnShutdown.MouseLeave += new System.EventHandler(this.btnShutdown_MouseLeave);
             this.btnShutdown.MouseHover += new System.EventHandler(this.btnShutdown_MouseHover);

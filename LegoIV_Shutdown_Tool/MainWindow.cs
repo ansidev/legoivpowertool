@@ -54,15 +54,15 @@ namespace LegoIV_Power_Tool
                 _DelayTime = "";
                 if (this.nmrcHour.Value != 0)
                 {
-                    _DelayTime += this.nmrcHour.Value.ToString() + " hour(s)";
+                    _DelayTime += this.nmrcHour.Value.ToString() + " hour(s) ";
                 }
                 if (this.nmrdMinute.Value != 0)
                 {
-                    _DelayTime += this.nmrdMinute.Value.ToString() + "minute(s)";
+                    _DelayTime += this.nmrdMinute.Value.ToString() + " minute(s) ";
                 }
                 if (this.nmrdSecond.Value != 0)
                 {
-                    _DelayTime += this.nmrdSecond.Value.ToString() + "second(s)";
+                    _DelayTime += this.nmrdSecond.Value.ToString() + " second(s)";
                 }
                 if (_DelayTime == "")
                 {
@@ -159,7 +159,38 @@ namespace LegoIV_Power_Tool
         }
         private void PowerAction()
         {
+            String warning = "";
+            int count = 0;
+            foreach (MetroButton mtButton in ButtonArray)
+            {
+                count++;
+                if (mtButton.Selected == true)
+                {
+                    if(count == 8)
+                    {
+                        warning += "You must choose an action!";
+                    }
+                    break;
+                }
+            }
+            if(this.rdbtnNow.Checked == false && this.rdbtnAfter.Checked == false)
+            {
+                warning += Prefix() + "Delay time will be set to \"Now\"";
+                MessageBox.Show(warning, "Warning!");
+                return;
+            }
+            else if(this.rdbtnNow.Checked == true)
+            {
+
+            }
+            else
+            {
+                
+            }
+            
             this.Hide();
+            //MessageBox.Show(count.ToString());
+            //PowerAction(count);
             this.Close();
         }
         private void PowerAction(int _Action)
@@ -357,6 +388,10 @@ namespace LegoIV_Power_Tool
         {
             this.OnClick(this.btnMonitorOff);
         }
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            PowerAction();
+        }
         #endregion
         
         #region Button Mouse Hover Events
@@ -435,37 +470,7 @@ namespace LegoIV_Power_Tool
             this.sttStatusBar.Text = "";
         }
         #endregion
-        private void btnShutdown_EnabledChanged(object sender, EventArgs e)
-        {
-            if (this.Enabled == true)
-            {
-                //btnShutdown.BackColor = Color.FromArgb(bgColorShutdown);
-                //    SetButtonStatus(btnRestart, false);
-                //    SetButtonStatus(btnSleep, false);
-                //    SetButtonStatus(btnHibernate, false);
-                //    SetButtonStatus(btnSignout, false);
-                //    SetButtonStatus(btnLock, false);
-                //    SetButtonStatus(btnSwitch, false);
-            }
-            if (this.Enabled == false)
-            {
-                MessageBox.Show("EnabledChanged Events!");
-            }
-        }
 
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            PowerAction();
-        }
 
-        private void btnShutdown_SelectedChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show("SelectedChanged Event!");
-        }
-
-        private void btnShutdown_BackColorChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show("BackColorChanged Event!");
-        }
     }
 }
