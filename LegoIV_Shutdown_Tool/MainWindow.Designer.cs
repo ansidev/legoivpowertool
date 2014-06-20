@@ -64,7 +64,7 @@
             // lnkAbout
             // 
             this.lnkAbout.AutoSize = true;
-            this.lnkAbout.Location = new System.Drawing.Point(267, 375);
+            this.lnkAbout.Location = new System.Drawing.Point(597, 375);
             this.lnkAbout.Name = "lnkAbout";
             this.lnkAbout.Size = new System.Drawing.Size(40, 15);
             this.lnkAbout.TabIndex = 8;

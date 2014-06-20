@@ -157,8 +157,14 @@ namespace LegoIV_Power_Tool
                 mboShutdown = manObj.InvokeMethod("Win32Shutdown", mboShutdownParams, null);
             }
         }
+        private void PowerAction()
+        {
+            this.Hide();
+            this.Close();
+        }
         private void PowerAction(int _Action)
         {
+            this.Hide();
             switch (_Action)
             {
                 case 1:
@@ -188,6 +194,7 @@ namespace LegoIV_Power_Tool
                 default:
                     break;
             }
+            this.Close();
         }
         private void _ShutdownComputer()
         {
@@ -214,7 +221,6 @@ namespace LegoIV_Power_Tool
                 }
             }
             _MonitorOff();
-            this.Close();
         }
 
         private void _RestartComputer()
@@ -235,20 +241,17 @@ namespace LegoIV_Power_Tool
                 }
             }
             _MonitorOff();
-            this.Close();
         }
 
         private void _SleepComputer()
         {
             SetSuspendState(false, false, false);
             _MonitorOff();
-            this.Close();
         }
         private void _HibernateComputer()
         {
             Application.SetSuspendState(PowerState.Hibernate, false, false );
             _MonitorOff();
-            this.Close();
         }
         private void _SignoutComputer()
         {
@@ -267,23 +270,19 @@ namespace LegoIV_Power_Tool
                     MessageBox.Show(ex.Message, "Error");
                 }
             }
-            this.Close();
         }
         private void _LockComputer()
         {
             LockWorkStation();
-            this.Close();
         }
         private void _SwitchUser()
         {
-            this.Close();
         }
         private void _MonitorOff()
         {
             // Turn off monitor
             Thread.Sleep(500);
             SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
-            this.Close();
         }
         #endregion
 
@@ -456,7 +455,7 @@ namespace LegoIV_Power_Tool
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            PowerAction(1);
+            PowerAction();
         }
 
         private void btnShutdown_SelectedChanged(object sender, EventArgs e)
