@@ -66,7 +66,7 @@ namespace LegoIV_Power_Tool
                 }
                 if (_DelayTime == "")
                 {
-                    _DelayTime = "";
+                    _DelayTime = "0";
                 }
             }
                 
@@ -161,6 +161,7 @@ namespace LegoIV_Power_Tool
         {
             String warning = "";
             int count = 0;
+            int delay = 0;
             foreach (MetroButton mtButton in ButtonArray)
             {
                 count++;
@@ -177,20 +178,26 @@ namespace LegoIV_Power_Tool
             {
                 warning += Prefix() + "Delay time will be set to \"Now\"";
                 MessageBox.Show(warning, "Warning!");
+                rdbtnNow.Checked = true;
                 return;
             }
-            else if(this.rdbtnNow.Checked == true)
+            else if(this.rdbtnAfter.Checked == true)
             {
+                delay = (Int32.Parse(nmrcHour.Value.ToString()) * 3600 + Int32.Parse(nmrdMinute.Value.ToString()) * 60 + Int32.Parse(nmrdSecond.Value.ToString()));
+                //MessageBox.Show("Run in " + delay + " second(s)", "Warning");
+                lblSettings.Text = "Log";
+                lblSettingsBox.Text += "\n";
+                //for (int i = delay; i > 0; i--)
+                //{
+                //    lblSettingsBox.Text += "\nRun in " + i + " second(s)";
+                //    Thread.Sleep(0);
+                //}
 
             }
-            else
-            {
-                
-            }
-            
             this.Hide();
+            Thread.Sleep(1000 * delay);
             //MessageBox.Show(count.ToString());
-            //PowerAction(count);
+            PowerAction(count);
             this.Close();
         }
         private void PowerAction(int _Action)
@@ -305,6 +312,7 @@ namespace LegoIV_Power_Tool
         private void _LockComputer()
         {
             LockWorkStation();
+            _MonitorOff();
         }
         private void _SwitchUser()
         {
@@ -470,6 +478,34 @@ namespace LegoIV_Power_Tool
             this.sttStatusBar.Text = "";
         }
         #endregion
+
+        private void nmrcHour_ValueChanged(object sender, EventArgs e)
+        {
+            rdbtnAfter.Checked = true;
+            UpdateSettings();
+        }
+
+        private void nmrdMinute_ValueChanged(object sender, EventArgs e)
+        {
+            rdbtnAfter.Checked = true;
+            UpdateSettings();
+        }
+
+        private void nmrdSecond_ValueChanged(object sender, EventArgs e)
+        {
+            rdbtnAfter.Checked = true;
+            UpdateSettings();
+        }
+
+        private void rdbtnNow_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateSettings();
+        }
+
+        private void rdbtnAfter_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateSettings();
+        }
 
 
     }

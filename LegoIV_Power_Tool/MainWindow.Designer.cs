@@ -64,10 +64,12 @@
             // lnkAbout
             // 
             this.lnkAbout.AutoSize = true;
+            this.lnkAbout.BackColor = System.Drawing.Color.White;
+            this.lnkAbout.ForeColor = System.Drawing.Color.Black;
             this.lnkAbout.Location = new System.Drawing.Point(597, 375);
             this.lnkAbout.Name = "lnkAbout";
             this.lnkAbout.Size = new System.Drawing.Size(40, 15);
-            this.lnkAbout.TabIndex = 8;
+            this.lnkAbout.TabIndex = 15;
             this.lnkAbout.TabStop = true;
             this.lnkAbout.Text = "About";
             // 
@@ -76,22 +78,24 @@
             this.lblAction.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAction.AutoSize = true;
+            this.lblAction.BackColor = System.Drawing.Color.White;
             this.lblAction.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAction.Location = new System.Drawing.Point(10, 12);
             this.lblAction.Name = "lblAction";
             this.lblAction.Size = new System.Drawing.Size(102, 15);
-            this.lblAction.TabIndex = 9;
+            this.lblAction.TabIndex = 0;
             this.lblAction.Text = "Choose an action:";
             // 
             // pgBar
             // 
             this.pgBar.Location = new System.Drawing.Point(10, 323);
             this.pgBar.Name = "pgBar";
-            this.pgBar.Size = new System.Drawing.Size(304, 27);
-            this.pgBar.TabIndex = 10;
+            this.pgBar.Size = new System.Drawing.Size(305, 27);
+            this.pgBar.TabIndex = 11;
             // 
             // grpbxDelayTime
             // 
+            this.grpbxDelayTime.BackColor = System.Drawing.Color.White;
             this.grpbxDelayTime.Controls.Add(this.lblSecond);
             this.grpbxDelayTime.Controls.Add(this.nmrdSecond);
             this.grpbxDelayTime.Controls.Add(this.lblMinute);
@@ -101,10 +105,11 @@
             this.grpbxDelayTime.Controls.Add(this.rdbtnAfter);
             this.grpbxDelayTime.Controls.Add(this.rdbtnNow);
             this.grpbxDelayTime.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpbxDelayTime.ForeColor = System.Drawing.Color.Black;
             this.grpbxDelayTime.Location = new System.Drawing.Point(10, 190);
             this.grpbxDelayTime.Name = "grpbxDelayTime";
             this.grpbxDelayTime.Size = new System.Drawing.Size(304, 95);
-            this.grpbxDelayTime.TabIndex = 11;
+            this.grpbxDelayTime.TabIndex = 9;
             this.grpbxDelayTime.TabStop = false;
             this.grpbxDelayTime.Text = "Delay time";
             // 
@@ -121,9 +126,15 @@
             // nmrdSecond
             // 
             this.nmrdSecond.Location = new System.Drawing.Point(217, 57);
+            this.nmrdSecond.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
             this.nmrdSecond.Name = "nmrdSecond";
             this.nmrdSecond.Size = new System.Drawing.Size(44, 23);
-            this.nmrdSecond.TabIndex = 2;
+            this.nmrdSecond.TabIndex = 4;
+            this.nmrdSecond.ValueChanged += new System.EventHandler(this.nmrdSecond_ValueChanged);
             // 
             // lblMinute
             // 
@@ -138,9 +149,15 @@
             // nmrdMinute
             // 
             this.nmrdMinute.Location = new System.Drawing.Point(143, 57);
+            this.nmrdMinute.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
             this.nmrdMinute.Name = "nmrdMinute";
             this.nmrdMinute.Size = new System.Drawing.Size(44, 23);
-            this.nmrdMinute.TabIndex = 2;
+            this.nmrdMinute.TabIndex = 3;
+            this.nmrdMinute.ValueChanged += new System.EventHandler(this.nmrdMinute_ValueChanged);
             // 
             // lblHour
             // 
@@ -155,44 +172,59 @@
             // nmrcHour
             // 
             this.nmrcHour.Location = new System.Drawing.Point(75, 57);
+            this.nmrcHour.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
             this.nmrcHour.Name = "nmrcHour";
             this.nmrcHour.Size = new System.Drawing.Size(44, 23);
             this.nmrcHour.TabIndex = 2;
+            this.nmrcHour.ValueChanged += new System.EventHandler(this.nmrcHour_ValueChanged);
             // 
             // rdbtnAfter
             // 
             this.rdbtnAfter.AutoSize = true;
+            this.rdbtnAfter.BackColor = System.Drawing.Color.White;
+            this.rdbtnAfter.ForeColor = System.Drawing.Color.Black;
             this.rdbtnAfter.Location = new System.Drawing.Point(8, 57);
             this.rdbtnAfter.Name = "rdbtnAfter";
             this.rdbtnAfter.Size = new System.Drawing.Size(51, 19);
-            this.rdbtnAfter.TabIndex = 1;
+            this.rdbtnAfter.TabIndex = 16;
             this.rdbtnAfter.Text = "After";
-            this.rdbtnAfter.UseVisualStyleBackColor = true;
+            this.rdbtnAfter.UseVisualStyleBackColor = false;
+            this.rdbtnAfter.CheckedChanged += new System.EventHandler(this.rdbtnAfter_CheckedChanged);
             // 
             // rdbtnNow
             // 
             this.rdbtnNow.AutoSize = true;
-            //this.rdbtnNow.Checked = true;
+            this.rdbtnNow.BackColor = System.Drawing.Color.White;
+            this.rdbtnNow.Checked = true;
+            this.rdbtnNow.ForeColor = System.Drawing.Color.Black;
             this.rdbtnNow.Location = new System.Drawing.Point(8, 27);
             this.rdbtnNow.Name = "rdbtnNow";
             this.rdbtnNow.Size = new System.Drawing.Size(50, 19);
             this.rdbtnNow.TabIndex = 0;
             this.rdbtnNow.TabStop = true;
             this.rdbtnNow.Text = "Now";
-            this.rdbtnNow.UseVisualStyleBackColor = true;
+            this.rdbtnNow.UseVisualStyleBackColor = false;
+            this.rdbtnNow.CheckedChanged += new System.EventHandler(this.rdbtnNow_CheckedChanged);
             // 
             // statusStrip
             // 
+            this.statusStrip.BackColor = System.Drawing.Color.White;
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sttStatusBar});
             this.statusStrip.Location = new System.Drawing.Point(0, 371);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(655, 22);
-            this.statusStrip.TabIndex = 12;
+            this.statusStrip.TabIndex = 14;
             this.statusStrip.Text = "LegoIV Power Tool";
             // 
             // sttStatusBar
             // 
+            this.sttStatusBar.BackColor = System.Drawing.Color.White;
+            this.sttStatusBar.ForeColor = System.Drawing.Color.Black;
             this.sttStatusBar.Name = "sttStatusBar";
             this.sttStatusBar.Size = new System.Drawing.Size(106, 17);
             this.sttStatusBar.Text = "LegoIV Power Tool";
@@ -202,16 +234,19 @@
             this.lblSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSettings.AutoSize = true;
+            this.lblSettings.BackColor = System.Drawing.Color.White;
             this.lblSettings.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSettings.Location = new System.Drawing.Point(318, 12);
             this.lblSettings.Name = "lblSettings";
             this.lblSettings.Size = new System.Drawing.Size(79, 15);
-            this.lblSettings.TabIndex = 9;
+            this.lblSettings.TabIndex = 12;
             this.lblSettings.Text = "Your settings:";
             // 
             // lblSettingsBox
             // 
+            this.lblSettingsBox.BackColor = System.Drawing.Color.White;
             this.lblSettingsBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblSettingsBox.ForeColor = System.Drawing.Color.Black;
             this.lblSettingsBox.Location = new System.Drawing.Point(322, 33);
             this.lblSettingsBox.Name = "lblSettingsBox";
             this.lblSettingsBox.Size = new System.Drawing.Size(321, 317);
@@ -226,7 +261,7 @@
             this.btnStart.Location = new System.Drawing.Point(10, 291);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(305, 32);
-            this.btnStart.TabIndex = 0;
+            this.btnStart.TabIndex = 10;
             this.btnStart.Text = "START";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -242,7 +277,7 @@
             this.btnMonitorOff.Margin = new System.Windows.Forms.Padding(0);
             this.btnMonitorOff.Name = "btnMonitorOff";
             this.btnMonitorOff.Size = new System.Drawing.Size(148, 32);
-            this.btnMonitorOff.TabIndex = 7;
+            this.btnMonitorOff.TabIndex = 8;
             this.btnMonitorOff.Text = "TURN OFF MONITOR";
             this.btnMonitorOff.UseVisualStyleBackColor = false;
             this.btnMonitorOff.Click += new System.EventHandler(this.btnMonitorOff_Click);
@@ -259,7 +294,7 @@
             this.btnSwitch.Location = new System.Drawing.Point(167, 111);
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(148, 32);
-            this.btnSwitch.TabIndex = 6;
+            this.btnSwitch.TabIndex = 7;
             this.btnSwitch.Text = "SWITCH USER";
             this.btnSwitch.UseVisualStyleBackColor = false;
             this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
@@ -276,7 +311,7 @@
             this.btnSignout.Location = new System.Drawing.Point(167, 33);
             this.btnSignout.Name = "btnSignout";
             this.btnSignout.Size = new System.Drawing.Size(148, 32);
-            this.btnSignout.TabIndex = 4;
+            this.btnSignout.TabIndex = 5;
             this.btnSignout.Text = "SIGN OUT";
             this.btnSignout.UseVisualStyleBackColor = false;
             this.btnSignout.Click += new System.EventHandler(this.btnSignout_Click);
@@ -293,7 +328,7 @@
             this.btnLock.Location = new System.Drawing.Point(167, 72);
             this.btnLock.Name = "btnLock";
             this.btnLock.Size = new System.Drawing.Size(148, 32);
-            this.btnLock.TabIndex = 5;
+            this.btnLock.TabIndex = 6;
             this.btnLock.Text = "LOCK SCREEN";
             this.btnLock.UseVisualStyleBackColor = false;
             this.btnLock.Click += new System.EventHandler(this.btnLock_Click);
@@ -310,7 +345,7 @@
             this.btnSleep.Location = new System.Drawing.Point(10, 111);
             this.btnSleep.Name = "btnSleep";
             this.btnSleep.Size = new System.Drawing.Size(148, 32);
-            this.btnSleep.TabIndex = 2;
+            this.btnSleep.TabIndex = 3;
             this.btnSleep.Text = "SLEEP";
             this.btnSleep.UseVisualStyleBackColor = false;
             this.btnSleep.Click += new System.EventHandler(this.btnSleep_Click);
@@ -327,7 +362,7 @@
             this.btnRestart.Location = new System.Drawing.Point(10, 72);
             this.btnRestart.Name = "btnRestart";
             this.btnRestart.Size = new System.Drawing.Size(148, 32);
-            this.btnRestart.TabIndex = 1;
+            this.btnRestart.TabIndex = 2;
             this.btnRestart.Text = "RESTART";
             this.btnRestart.UseVisualStyleBackColor = false;
             this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
@@ -344,7 +379,7 @@
             this.btnHibernate.Location = new System.Drawing.Point(10, 150);
             this.btnHibernate.Name = "btnHibernate";
             this.btnHibernate.Size = new System.Drawing.Size(148, 32);
-            this.btnHibernate.TabIndex = 3;
+            this.btnHibernate.TabIndex = 4;
             this.btnHibernate.Text = "HIBERNATE";
             this.btnHibernate.UseVisualStyleBackColor = false;
             this.btnHibernate.Click += new System.EventHandler(this.btnHibernate_Click);
@@ -361,7 +396,7 @@
             this.btnShutdown.Location = new System.Drawing.Point(10, 33);
             this.btnShutdown.Name = "btnShutdown";
             this.btnShutdown.Size = new System.Drawing.Size(148, 32);
-            this.btnShutdown.TabIndex = 0;
+            this.btnShutdown.TabIndex = 1;
             this.btnShutdown.Text = "SHUT DOWN";
             this.btnShutdown.UseVisualStyleBackColor = false;
             this.btnShutdown.Click += new System.EventHandler(this.btnShutdown_Click);
