@@ -30,7 +30,8 @@ namespace LegoIV_Power_Tool
         const int WM_SYSCOMMAND = 0x0112;
         const int SC_MONITORPOWER = 0xF170;
         int HWND_BROADCAST = 0xffff;
-
+        int _DelayTime = 0;
+        int _ActionCode = 0;
         //Button
         Button[] ButtonArray = new Button[8];
 
@@ -79,6 +80,7 @@ namespace LegoIV_Power_Tool
         }
         private void UpdateSettings()
         {
+            _DelayTime = Int32.Parse(this.nmrcHour.Value.ToString()) * 3600 + Int32.Parse(this.nmrdMinute.Value.ToString()) * 60 + Int32.Parse(this.nmrdSecond.Value.ToString()); 
             this.lblSettingsBox.Text = "";
             if (this.btnShutdown.Selected == true)
             {
@@ -118,6 +120,7 @@ namespace LegoIV_Power_Tool
             {
                 this.lblSettingsBox.Text += Prefix() + "No delay time";
             }
+            lblSettingsBox.Text += "\n=====================================\n";
 
         }
         #endregion
@@ -160,45 +163,32 @@ namespace LegoIV_Power_Tool
         private void PowerAction()
         {
             String warning = "";
-            int count = 0;
             int delay = 0;
+            bool ok = false;
             foreach (MetroButton mtButton in ButtonArray)
             {
-                count++;
+                _ActionCode++;
                 if (mtButton.Selected == true)
                 {
-                    if(count == 8)
-                    {
-                        warning += "You must choose an action!";
-                    }
+                    warning = "";
+                    ok = true;
                     break;
                 }
+                else if (_ActionCode == 8)
+                {
+                    warning += "You must choose an action!";
+                    MessageBox.Show(warning, "Warning!");
+                    _ActionCode = -1;
+                }
             }
-            if(this.rdbtnNow.Checked == false && this.rdbtnAfter.Checked == false)
-            {
-                warning += Prefix() + "Delay time will be set to \"Now\"";
-                MessageBox.Show(warning, "Warning!");
-                rdbtnNow.Checked = true;
-                return;
-            }
-            else if(this.rdbtnAfter.Checked == true)
+            if(this.rdbtnAfter.Checked == true)
             {
                 delay = (Int32.Parse(nmrcHour.Value.ToString()) * 3600 + Int32.Parse(nmrdMinute.Value.ToString()) * 60 + Int32.Parse(nmrdSecond.Value.ToString()));
-                //MessageBox.Show("Run in " + delay + " second(s)", "Warning");
-                lblSettings.Text = "Log";
-                lblSettingsBox.Text += "\n";
-                //for (int i = delay; i > 0; i--)
-                //{
-                //    lblSettingsBox.Text += "\nRun in " + i + " second(s)";
-                //    Thread.Sleep(0);
-                //}
-
             }
-            this.Hide();
-            Thread.Sleep(1000 * delay);
-            //MessageBox.Show(count.ToString());
-            PowerAction(count);
-            this.Close();
+            if (ok)
+            {
+                this.tmCountdown.Start();
+            }
         }
         private void PowerAction(int _Action)
         {
@@ -308,6 +298,7 @@ namespace LegoIV_Power_Tool
                     MessageBox.Show(ex.Message, "Error");
                 }
             }
+            _MonitorOff();
         }
         private void _LockComputer()
         {
@@ -320,7 +311,7 @@ namespace LegoIV_Power_Tool
         private void _MonitorOff()
         {
             // Turn off monitor
-            Thread.Sleep(500);
+            //Thread.Sleep(2000);
             SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
         }
         #endregion
@@ -351,7 +342,8 @@ namespace LegoIV_Power_Tool
                 {
                     if(mtrButton != _mtButton)
                     {
-                        mtrButton.Enabled = false;
+                        mtrButton.Selected = false;
+                        mtrButton.FlatAppearance.BorderSize = 0;
                     }
                     else
                     {
@@ -398,6 +390,7 @@ namespace LegoIV_Power_Tool
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
+            //this.tmCountdown.Start();
             PowerAction();
         }
         #endregion
@@ -479,6 +472,7 @@ namespace LegoIV_Power_Tool
         }
         #endregion
 
+        #region Changed
         private void nmrcHour_ValueChanged(object sender, EventArgs e)
         {
             rdbtnAfter.Checked = true;
@@ -505,6 +499,19 @@ namespace LegoIV_Power_Tool
         private void rdbtnAfter_CheckedChanged(object sender, EventArgs e)
         {
             UpdateSettings();
+        }
+        #endregion
+        private void tmCountdown_Tick(object sender, EventArgs e)
+        {
+            this.sttStatusBar.Text = "\nStart in " + _DelayTime.ToString() + " seconds";
+            _DelayTime--;
+            if (_DelayTime == -1)
+            {
+                this.tmCountdown.Stop();
+                this.Hide();
+                PowerAction(_ActionCode);
+                this.Close();
+            }
         }
 
 

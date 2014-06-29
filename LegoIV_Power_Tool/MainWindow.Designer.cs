@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.lnkAbout = new System.Windows.Forms.LinkLabel();
             this.lblAction = new System.Windows.Forms.Label();
@@ -45,6 +46,7 @@
             this.sttStatusBar = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblSettings = new System.Windows.Forms.Label();
             this.lblSettingsBox = new System.Windows.Forms.Label();
+            this.tmCountdown = new System.Windows.Forms.Timer(this.components);
             this.btnStart = new LegoIV_Power_Tool.MetroButton();
             this.btnMonitorOff = new LegoIV_Power_Tool.MetroButton();
             this.btnSwitch = new LegoIV_Power_Tool.MetroButton();
@@ -252,15 +254,20 @@
             this.lblSettingsBox.Size = new System.Drawing.Size(321, 317);
             this.lblSettingsBox.TabIndex = 13;
             // 
+            // tmCountdown
+            // 
+            this.tmCountdown.Interval = 1000;
+            this.tmCountdown.Tick += new System.EventHandler(this.tmCountdown_Tick);
+            // 
             // btnStart
             // 
             this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.ForeColor = System.Drawing.Color.White;
-            this.btnStart.Location = new System.Drawing.Point(10, 291);
+            this.btnStart.Location = new System.Drawing.Point(9, 291);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(305, 32);
+            this.btnStart.Size = new System.Drawing.Size(307, 32);
             this.btnStart.TabIndex = 10;
             this.btnStart.Text = "START";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -471,6 +478,7 @@
         private MetroButton btnStart;
         private System.Windows.Forms.Label lblSettings;
         private System.Windows.Forms.Label lblSettingsBox;
+        private System.Windows.Forms.Timer tmCountdown;
     }
 }
 
