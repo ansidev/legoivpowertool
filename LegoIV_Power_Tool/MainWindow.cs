@@ -80,7 +80,9 @@ namespace LegoIV_Power_Tool
         }
         private void UpdateSettings()
         {
-            _DelayTime = Int32.Parse(this.nmrcHour.Value.ToString()) * 3600 + Int32.Parse(this.nmrdMinute.Value.ToString()) * 60 + Int32.Parse(this.nmrdSecond.Value.ToString()); 
+            _DelayTime = Int32.Parse(this.nmrcHour.Value.ToString()) * 3600 + Int32.Parse(this.nmrdMinute.Value.ToString()) * 60 + Int32.Parse(this.nmrdSecond.Value.ToString());
+            this.pgBar.Maximum = _DelayTime + 1;
+            this.pgBar.Step = 1;
             this.lblSettingsBox.Text = "";
             if (this.btnShutdown.Selected == true)
             {
@@ -503,6 +505,7 @@ namespace LegoIV_Power_Tool
         #endregion
         private void tmCountdown_Tick(object sender, EventArgs e)
         {
+            this.pgBar.PerformStep();
             this.sttStatusBar.Text = "\nStart in " + _DelayTime.ToString() + " seconds";
             _DelayTime--;
             if (_DelayTime == -1)
@@ -513,7 +516,5 @@ namespace LegoIV_Power_Tool
                 this.Close();
             }
         }
-
-
     }
 }
