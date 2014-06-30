@@ -81,7 +81,7 @@ namespace LegoIV_Power_Tool
         private void UpdateSettings()
         {
             _DelayTime = Int32.Parse(this.nmrcHour.Value.ToString()) * 3600 + Int32.Parse(this.nmrdMinute.Value.ToString()) * 60 + Int32.Parse(this.nmrdSecond.Value.ToString());
-            this.pgBar.Maximum = _DelayTime + 1;
+            this.pgBar.Maximum = _DelayTime * 1000 + 1000;
             this.pgBar.Step = 1;
             this.lblSettingsBox.Text = "";
             if (this.btnShutdown.Selected == true)
@@ -317,7 +317,13 @@ namespace LegoIV_Power_Tool
             SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
         }
         #endregion
-
+        private void ChangeEnabledProperty(bool b)
+        {
+            foreach (MetroButton mtButton in ButtonArray)
+            {
+                mtButton.Enabled = b;
+            }
+        }
         #region Button Click Events
         private void OnClick(MetroButton _mtButton)
         {
@@ -392,8 +398,19 @@ namespace LegoIV_Power_Tool
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
-            //this.tmCountdown.Start();
-            PowerAction();
+            if (btnStart.Text == "START")
+            {
+                btnStart.Text = "STOP";
+                ChangeEnabledProperty(false);
+                PowerAction();
+            }
+            else if(btnStart.Text == "STOP")
+            {
+                this.tmCountdown.Stop();
+                btnStart.Text = "START";
+                this.sttStatusBar.Text = "Stopped!";
+                ChangeEnabledProperty(true);
+            }
         }
         #endregion
         
@@ -505,11 +522,15 @@ namespace LegoIV_Power_Tool
         #endregion
         private void tmCountdown_Tick(object sender, EventArgs e)
         {
-            this.pgBar.PerformStep();
+            for (int i = 0; i < 1000; i++)
+            {
+                this.pgBar.PerformStep();
+            }
             this.sttStatusBar.Text = "\nStart in " + _DelayTime.ToString() + " seconds";
             _DelayTime--;
             if (_DelayTime == -1)
             {
+                _DelayTime = 0;
                 this.tmCountdown.Stop();
                 this.Hide();
                 PowerAction(_ActionCode);
