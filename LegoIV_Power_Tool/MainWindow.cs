@@ -541,5 +541,13 @@ namespace LegoIV_Power_Tool
                 this.Close();
             }
         }
+
+        private void lnkAbout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Form _frmAbout = new About();
+            Point p = new Point(this.Location.X + this.Width / 2 - _frmAbout.Width / 2, this.Location.Y + this.Height / 2 - _frmAbout.Height / 2);
+            _frmAbout.Location = p;
+            _frmAbout.ShowDialog();
+        }
     }
 }

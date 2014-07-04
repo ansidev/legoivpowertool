@@ -47,6 +47,8 @@
             this.lblSettings = new System.Windows.Forms.Label();
             this.lblSettingsBox = new System.Windows.Forms.Label();
             this.tmCountdown = new System.Windows.Forms.Timer(this.components);
+            this.lblUsage = new System.Windows.Forms.Label();
+            this.lblHelpContent = new System.Windows.Forms.Label();
             this.btnStart = new LegoIV_Power_Tool.MetroButton();
             this.btnMonitorOff = new LegoIV_Power_Tool.MetroButton();
             this.btnSwitch = new LegoIV_Power_Tool.MetroButton();
@@ -74,6 +76,7 @@
             this.lnkAbout.TabIndex = 15;
             this.lnkAbout.TabStop = true;
             this.lnkAbout.Text = "About";
+            this.lnkAbout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkAbout_LinkClicked);
             // 
             // lblAction
             // 
@@ -251,13 +254,31 @@
             this.lblSettingsBox.ForeColor = System.Drawing.Color.Black;
             this.lblSettingsBox.Location = new System.Drawing.Point(322, 33);
             this.lblSettingsBox.Name = "lblSettingsBox";
-            this.lblSettingsBox.Size = new System.Drawing.Size(321, 317);
+            this.lblSettingsBox.Size = new System.Drawing.Size(321, 71);
             this.lblSettingsBox.TabIndex = 13;
             // 
             // tmCountdown
             // 
             this.tmCountdown.Interval = 1000;
             this.tmCountdown.Tick += new System.EventHandler(this.tmCountdown_Tick);
+            // 
+            // lblUsage
+            // 
+            this.lblUsage.AutoSize = true;
+            this.lblUsage.Location = new System.Drawing.Point(322, 111);
+            this.lblUsage.Name = "lblUsage";
+            this.lblUsage.Size = new System.Drawing.Size(42, 15);
+            this.lblUsage.TabIndex = 16;
+            this.lblUsage.Text = "Usage:";
+            // 
+            // lblHelpContent
+            // 
+            this.lblHelpContent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblHelpContent.Location = new System.Drawing.Point(325, 130);
+            this.lblHelpContent.Name = "lblHelpContent";
+            this.lblHelpContent.Size = new System.Drawing.Size(318, 220);
+            this.lblHelpContent.TabIndex = 17;
+            this.lblHelpContent.Text = resources.GetString("lblHelpContent.Text");
             // 
             // btnStart
             // 
@@ -416,6 +437,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(655, 393);
+            this.Controls.Add(this.lblHelpContent);
+            this.Controls.Add(this.lblUsage);
             this.Controls.Add(this.lblSettingsBox);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.grpbxDelayTime);
@@ -479,6 +502,8 @@
         private System.Windows.Forms.Label lblSettings;
         private System.Windows.Forms.Label lblSettingsBox;
         private System.Windows.Forms.Timer tmCountdown;
+        private System.Windows.Forms.Label lblUsage;
+        private System.Windows.Forms.Label lblHelpContent;
     }
 }
 
