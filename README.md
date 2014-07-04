@@ -1,7 +1,7 @@
-LegoIV Power Tool (current beta)
+LegoIV Power Tool (current Stable)
 ===============
-
-Simple tool to shutdown, restart, sleep, hibernate, sign out, lock your computer and more.
+Description: Simple tool to shutdown, restart, sleep, hibernate, sign out, lock your computer and more.
+License: GPLv3
 
 ###List of current features:
 ####1. Shutting down computer.
