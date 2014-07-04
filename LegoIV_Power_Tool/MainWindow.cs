@@ -180,12 +180,6 @@ namespace LegoIV_Power_Tool
                     ok = true;
                     break;
                 }
-                else if (_ActionCode == 8)
-                {
-                    warning += "You must choose an action!";
-                    MessageBox.Show(warning, "Warning!");
-                    _ActionCode = -1;
-                }
             }
             if(this.rdbtnAfter.Checked == true)
             {
@@ -193,7 +187,15 @@ namespace LegoIV_Power_Tool
             }
             if (ok)
             {
+                btnStart.Text = "PAUSE";
+                ChangeEnabledProperty(false);
                 this.tmCountdown.Start();
+            }
+            else
+            {
+                warning += "You must choose an action!";
+                MessageBox.Show(warning, "Warning!");
+                _ActionCode = -1;
             }
         }
         private void PowerAction(int _Action)
@@ -404,15 +406,13 @@ namespace LegoIV_Power_Tool
         {
             if (btnStart.Text == "START")
             {
-                btnStart.Text = "STOP";
-                ChangeEnabledProperty(false);
                 PowerAction();
             }
-            else if(btnStart.Text == "STOP")
+            else if(btnStart.Text == "PAUSE")
             {
                 this.tmCountdown.Stop();
                 btnStart.Text = "START";
-                this.sttStatusBar.Text = "Stopped!";
+                this.sttStatusBar.Text = "Paused!";
                 ChangeEnabledProperty(true);
             }
         }
