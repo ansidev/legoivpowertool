@@ -21,15 +21,19 @@ namespace LegoIV_Power_Tool
         public static extern bool ExitWindowsEx(uint uFlags, uint dwReason);
         [DllImport("user32.dll")]
         private static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetDesktopWindow();
+        //[DllImport("user32.dll")]
+        //private static extern IntPtr GetDesktopWindow();
         [DllImport("Powrprof.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
+        [DllImport("wtsapi32.dll", SetLastError = true)]
+        static extern bool WTSDisconnectSession(IntPtr hServer, int sessionId, bool bWait);
 
 
         const int WM_SYSCOMMAND = 0x0112;
         const int SC_MONITORPOWER = 0xF170;
         int HWND_BROADCAST = 0xffff;
+        const int WTS_CURRENT_SESSION = -1;
+        static readonly IntPtr WTS_CURRENT_SERVER_HANDLE = IntPtr.Zero;
         int _DelayTime = 0;
         int _ActionCode = 0;
         //Button
@@ -244,9 +248,9 @@ namespace LegoIV_Power_Tool
                     {
                         ExitWin(5, 0);
                     }
-                    catch(Exception ex)
+                    catch
                     {
-                        MessageBox.Show(ex.Message);
+                        throw new Win32Exception();
                     }
                 }
             }
@@ -265,9 +269,9 @@ namespace LegoIV_Power_Tool
                 {
                     ExitWin(6, 0);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    throw new Win32Exception();
                 }
             }
             _MonitorOff();
@@ -295,9 +299,9 @@ namespace LegoIV_Power_Tool
                 {
                     ExitWindowsEx(4, 0);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    throw new Win32Exception();
                 }
             }
             _MonitorOff();
@@ -309,11 +313,11 @@ namespace LegoIV_Power_Tool
         }
         private void _SwitchUser()
         {
+            WTSDisconnectSession(WTS_CURRENT_SERVER_HANDLE, WTS_CURRENT_SESSION, false);
         }
         private void _MonitorOff()
         {
             // Turn off monitor
-            //Thread.Sleep(2000);
             SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
         }
         #endregion
