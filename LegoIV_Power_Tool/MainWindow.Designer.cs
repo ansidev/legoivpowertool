@@ -49,6 +49,10 @@
             this.tmCountdown = new System.Windows.Forms.Timer(this.components);
             this.lblUsage = new System.Windows.Forms.Label();
             this.lblHelpContent = new System.Windows.Forms.Label();
+            this.ntfIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.ctmsSystemTray = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showHideWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnStart = new LegoIV_Power_Tool.MetroButton();
             this.btnMonitorOff = new LegoIV_Power_Tool.MetroButton();
             this.btnSwitch = new LegoIV_Power_Tool.MetroButton();
@@ -63,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nmrdMinute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrcHour)).BeginInit();
             this.statusStrip.SuspendLayout();
+            this.ctmsSystemTray.SuspendLayout();
             this.SuspendLayout();
             // 
             // lnkAbout
@@ -280,6 +285,38 @@
             this.lblHelpContent.TabIndex = 17;
             this.lblHelpContent.Text = resources.GetString("lblHelpContent.Text");
             // 
+            // ntfIcon
+            // 
+            this.ntfIcon.ContextMenuStrip = this.ctmsSystemTray;
+            this.ntfIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("ntfIcon.Icon")));
+            this.ntfIcon.Text = "LegoIV Power Tool";
+            this.ntfIcon.Visible = true;
+            this.ntfIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ntfIcon_MouseClick);
+            this.ntfIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ntfIcon_MouseDoubleClick);
+            // 
+            // ctmsSystemTray
+            // 
+            this.ctmsSystemTray.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showHideWindowToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.ctmsSystemTray.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
+            this.ctmsSystemTray.Name = "ctmsSystemTray";
+            this.ctmsSystemTray.Size = new System.Drawing.Size(181, 48);
+            // 
+            // showHideWindowToolStripMenuItem
+            // 
+            this.showHideWindowToolStripMenuItem.Name = "showHideWindowToolStripMenuItem";
+            this.showHideWindowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showHideWindowToolStripMenuItem.Text = "Show/Hide Window";
+            this.showHideWindowToolStripMenuItem.Click += new System.EventHandler(this.showHideWindowToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // btnStart
             // 
             this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
@@ -469,6 +506,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nmrcHour)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            this.ctmsSystemTray.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -504,6 +542,10 @@
         private System.Windows.Forms.Timer tmCountdown;
         private System.Windows.Forms.Label lblUsage;
         private System.Windows.Forms.Label lblHelpContent;
+        private System.Windows.Forms.NotifyIcon ntfIcon;
+        private System.Windows.Forms.ContextMenuStrip ctmsSystemTray;
+        private System.Windows.Forms.ToolStripMenuItem showHideWindowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

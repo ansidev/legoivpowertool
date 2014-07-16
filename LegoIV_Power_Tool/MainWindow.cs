@@ -38,7 +38,11 @@ namespace LegoIV_Power_Tool
         int _ActionCode = 0;
         //Button
         Button[] ButtonArray = new Button[8];
-
+        private bool isHidden
+        {
+            get;
+            set;
+        }
         #region Other Functions
         private void EnableAllButton(MetroButton mtButton)
         {
@@ -126,8 +130,6 @@ namespace LegoIV_Power_Tool
             {
                 this.lblSettingsBox.Text += Prefix() + "No delay time";
             }
-            lblSettingsBox.Text += "\n=====================================\n";
-
         }
         #endregion
         public MainWindow()
@@ -548,6 +550,41 @@ namespace LegoIV_Power_Tool
             Point p = new Point(this.Location.X + this.Width / 2 - _frmAbout.Width / 2, this.Location.Y + this.Height / 2 - _frmAbout.Height / 2);
             _frmAbout.Location = p;
             _frmAbout.ShowDialog();
+        }
+
+        private void ntfIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.ctmsSystemTray.Show(Cursor.Position);
+        }
+
+        private void ntfIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                this.ctmsSystemTray.Show(Cursor.Position);
+            }
+        }
+
+        private void showHideWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!isHidden)
+            {
+                this.Hide();
+                this.ShowInTaskbar = false;
+                isHidden = true;
+            }
+            else
+            {
+                this.ShowInTaskbar = true;
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+                isHidden = false;
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

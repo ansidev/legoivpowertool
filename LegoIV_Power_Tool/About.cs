@@ -17,13 +17,16 @@ namespace LegoIV_Power_Tool
         private string Version = "1.1";
         private string Channel = "Stable";
         private string License = "GPLv3";
-        private string ProjectHomepage = "https://github.com/ansidev/legoivpowertool";
+        private string ProjectHomepage = "http://blog.ansidev.tk/products/legoiv-power-tool/";
 
         //About author
         private string Author = "ansidev";
         private string Email = "ansidev@gmail.com";
         private string AllProject = "https://github.com/ansidev";
         private string AuthorHomepage = "http://ansidev.tk/blog";
+
+        //Source code
+        private string SourceCode = "https://github.com/ansidev/legoivpowertool";
         
         public About()
         {
@@ -38,6 +41,8 @@ namespace LegoIV_Power_Tool
             this.lblEmail.Text = Email;
             this.lkblAllProjects.Text = AllProject;
             this.lkblHomepage.Text = AuthorHomepage;
+
+            this.lkblSourceCode.Text = SourceCode;
         }
 
         private void About_Load(object sender, EventArgs e)

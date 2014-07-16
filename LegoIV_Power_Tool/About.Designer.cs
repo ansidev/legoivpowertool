@@ -46,6 +46,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_License = new System.Windows.Forms.Label();
             this.lblLicense = new System.Windows.Forms.Label();
+            this.lblSourceCode = new System.Windows.Forms.Label();
+            this.lkblSourceCode = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // lbl_Author
@@ -143,10 +145,10 @@
             this.lkblProjectHomepage.AutoSize = true;
             this.lkblProjectHomepage.Location = new System.Drawing.Point(112, 78);
             this.lkblProjectHomepage.Name = "lkblProjectHomepage";
-            this.lkblProjectHomepage.Size = new System.Drawing.Size(216, 13);
+            this.lkblProjectHomepage.Size = new System.Drawing.Size(246, 13);
             this.lkblProjectHomepage.TabIndex = 2;
             this.lkblProjectHomepage.TabStop = true;
-            this.lkblProjectHomepage.Text = "https://github.com/ansidev/legoivpowertool";
+            this.lkblProjectHomepage.Text = "http://blog.ansidev.tk/products/legoiv-power-tool/";
             this.lkblProjectHomepage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lkblProjectHomepage_LinkClicked);
             // 
             // lkblAllProjects
@@ -174,10 +176,10 @@
             this.lkblHomepage.AutoSize = true;
             this.lkblHomepage.Location = new System.Drawing.Point(112, 180);
             this.lkblHomepage.Name = "lkblHomepage";
-            this.lkblHomepage.Size = new System.Drawing.Size(112, 13);
+            this.lkblHomepage.Size = new System.Drawing.Size(115, 13);
             this.lkblHomepage.TabIndex = 2;
             this.lkblHomepage.TabStop = true;
-            this.lkblHomepage.Text = "http://ansidev.tk/blog";
+            this.lkblHomepage.Text = "http://blog.ansidev.tk/";
             this.lkblHomepage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lkblHomepage_LinkClicked);
             // 
             // label1
@@ -208,14 +210,35 @@
             this.lblLicense.TabIndex = 1;
             this.lblLicense.Text = "GPLv3";
             // 
+            // lblSourceCode
+            // 
+            this.lblSourceCode.AutoSize = true;
+            this.lblSourceCode.Location = new System.Drawing.Point(34, 262);
+            this.lblSourceCode.Name = "lblSourceCode";
+            this.lblSourceCode.Size = new System.Drawing.Size(72, 13);
+            this.lblSourceCode.TabIndex = 0;
+            this.lblSourceCode.Text = "Source Code:";
+            // 
+            // lkblSourceCode
+            // 
+            this.lkblSourceCode.AutoSize = true;
+            this.lkblSourceCode.Location = new System.Drawing.Point(112, 262);
+            this.lkblSourceCode.Name = "lkblSourceCode";
+            this.lkblSourceCode.Size = new System.Drawing.Size(216, 13);
+            this.lkblSourceCode.TabIndex = 2;
+            this.lkblSourceCode.TabStop = true;
+            this.lkblSourceCode.Text = "https://github.com/ansidev/legoivpowertool";
+            this.lkblSourceCode.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lkblProjectHomepage_LinkClicked);
+            // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(329, 261);
+            this.ClientSize = new System.Drawing.Size(364, 298);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lkblHomepage);
             this.Controls.Add(this.lkblAllProjects);
+            this.Controls.Add(this.lkblSourceCode);
             this.Controls.Add(this.lkblProjectHomepage);
             this.Controls.Add(this.lblLicense);
             this.Controls.Add(this.lblAppName);
@@ -227,6 +250,7 @@
             this.Controls.Add(this.lbl_AppName);
             this.Controls.Add(this.lbl_Homepage);
             this.Controls.Add(this.lbl_AllProjects);
+            this.Controls.Add(this.lblSourceCode);
             this.Controls.Add(this.lbl_Email);
             this.Controls.Add(this.lblGithub);
             this.Controls.Add(this.lbl_Author);
@@ -259,5 +283,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_License;
         private System.Windows.Forms.Label lblLicense;
+        private System.Windows.Forms.Label lblSourceCode;
+        private System.Windows.Forms.LinkLabel lkblSourceCode;
     }
 }
