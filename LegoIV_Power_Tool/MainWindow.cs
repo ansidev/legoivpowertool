@@ -408,15 +408,84 @@ namespace LegoIV_Power_Tool
         {
             if (btnStart.Text == "START")
             {
+                this.btnArrow.Enabled = true;
                 PowerAction();
             }
-            else if(btnStart.Text == "PAUSE")
+            else if (btnStart.Text == "PAUSE")
+            {
+                this.tmCountdown.Stop();
+                btnStart.Text = "RESUME";
+                this.sttStatusBar.Text = "Paused!";
+            }
+            else if (btnStart.Text == "RESUME")
+            {
+                btnStart.Text = "PAUSE";
+                this.tmCountdown.Start();
+            }
+            else if (btnStart.Text == "STOP")
             {
                 this.tmCountdown.Stop();
                 btnStart.Text = "START";
-                this.sttStatusBar.Text = "Paused!";
+                this.sttStatusBar.Text = "Stopped!";
+                this.pgBar.Value = 0;
                 ChangeEnabledProperty(true);
             }
+        }
+        private void btnStart_TextChanged(object sender, EventArgs e)
+        {
+            if (this.btnStart.Text == "START")
+            {
+                this.startToolStripMenuItem.Text = this.btnStart.Text;
+                this.startToolStripMenuItem.Enabled = false;
+                this.pauseToolStripMenuItem.Enabled = true;
+                this.stopToolStripMenuItem.Enabled = true;
+            }
+            if (this.btnStart.Text == "PAUSE" || this.btnStart.Text == "RESUME")
+            {
+                this.startToolStripMenuItem.Enabled = false;
+                this.pauseToolStripMenuItem.Text = this.btnStart.Text;
+                this.stopToolStripMenuItem.Enabled = true;
+            }
+            else if (this.btnStart.Text == "STOP")
+            {
+                this.startToolStripMenuItem.Enabled = true;
+                this.pauseToolStripMenuItem.Enabled = false;
+                this.stopToolStripMenuItem.Text = this.btnStart.Text;
+                this.stopToolStripMenuItem.Enabled = false;
+            }
+        }
+        private void btnArrow_Click(object sender, EventArgs e)
+        {
+            //this.btnArrow.FlatAppearance.BorderSize = 0;
+            Point p = new Point(this.Location.X + this.btnArrow.Location.X + this.btnArrow.Size.Width + 8, this.Location.Y + this.btnArrow.Location.Y + this.btnArrow.Size.Height + 5);
+            this.ctmsChooseActionMenu.Show(p, ToolStripDropDownDirection.Default);
+        }
+        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.btnStart.Text = this.startToolStripMenuItem.Text;
+            PowerAction();
+        }
+        private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.pauseToolStripMenuItem.Text == "PAUSE")
+            {
+                this.tmCountdown.Stop();
+                this.btnStart.Text = "RESUME";
+                this.sttStatusBar.Text = "Paused!";
+            }
+            else if (this.pauseToolStripMenuItem.Text == "RESUME")
+            {
+                this.tmCountdown.Start();
+                this.btnStart.Text = "PAUSE";
+            }
+        }
+        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.tmCountdown.Stop();
+            this.btnStart.Text = this.stopToolStripMenuItem.Text;
+            this.sttStatusBar.Text = "Stopped!";
+            this.pgBar.Value = 0;
+            ChangeEnabledProperty(true);
         }
         #endregion
         
@@ -530,7 +599,7 @@ namespace LegoIV_Power_Tool
         {
             for (int i = 0; i < 1000; i++)
             {
-                this.pgBar.PerformStep();
+                this.pgBar.Value++;
             }
             this.sttStatusBar.Text = "\nStart in " + _DelayTime.ToString() + " seconds";
             _DelayTime--;
@@ -585,28 +654,6 @@ namespace LegoIV_Power_Tool
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void btnArrow_Click(object sender, EventArgs e)
-        {
-            //this.btnArrow.FlatAppearance.BorderSize = 0;
-            Point p = new Point(this.Location.X + this.btnArrow.Location.X + this.btnArrow.Size.Width + 8, this.Location.Y + this.btnArrow.Location.Y + this.btnArrow.Size.Height + 5);
-            this.ctmsChooseActionMenu.Show(p, ToolStripDropDownDirection.Default);
-        }
-
-        private void startToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.btnStart.Text = this.startToolStripMenuItem.Text;
-        }
-
-        private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.btnStart.Text = this.pauseToolStripMenuItem.Text;
-        }
-
-        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.btnStart.Text = this.stopToolStripMenuItem.Text;
         }
     }
 }

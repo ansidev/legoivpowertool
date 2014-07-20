@@ -330,33 +330,34 @@
             this.pauseToolStripMenuItem,
             this.stopToolStripMenuItem});
             this.ctmsChooseActionMenu.Name = "ctmsChooseActionMenu";
-            this.ctmsChooseActionMenu.Size = new System.Drawing.Size(153, 92);
+            this.ctmsChooseActionMenu.Size = new System.Drawing.Size(110, 70);
             // 
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.startToolStripMenuItem.Text = "START";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
             // pauseToolStripMenuItem
             // 
             this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
-            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.pauseToolStripMenuItem.Text = "PAUSE";
             this.pauseToolStripMenuItem.Click += new System.EventHandler(this.pauseToolStripMenuItem_Click);
             // 
             // stopToolStripMenuItem
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.stopToolStripMenuItem.Text = "STOP";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
             // 
             // btnArrow
             // 
-            this.btnArrow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
+            this.btnArrow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.btnArrow.BackgroundImage = global::LegoIV_Power_Tool.Properties.Resources.Arrows_Forward_icon_24x24;
+            this.btnArrow.Enabled = false;
             this.btnArrow.FlatAppearance.BorderSize = 0;
             this.btnArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnArrow.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -368,12 +369,12 @@
             this.btnArrow.Size = new System.Drawing.Size(24, 26);
             this.btnArrow.TabIndex = 10;
             this.btnArrow.Text = "Metro Button";
-            this.btnArrow.UseVisualStyleBackColor = true;
+            this.btnArrow.UseVisualStyleBackColor = false;
             this.btnArrow.Click += new System.EventHandler(this.btnArrow_Click);
             // 
             // btnStart
             // 
-            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
+            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.btnStart.FlatAppearance.BorderSize = 0;
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -384,7 +385,8 @@
             this.btnStart.Size = new System.Drawing.Size(281, 26);
             this.btnStart.TabIndex = 10;
             this.btnStart.Text = "START";
-            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.TextChanged += new System.EventHandler(this.btnStart_TextChanged);
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // btnMonitorOff
@@ -510,12 +512,14 @@
             // btnShutdown
             // 
             this.btnShutdown.BackColor = System.Drawing.Color.Red;
-            this.btnShutdown.FlatAppearance.BorderSize = 0;
+            this.btnShutdown.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnShutdown.FlatAppearance.BorderSize = 2;
             this.btnShutdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShutdown.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShutdown.ForeColor = System.Drawing.Color.White;
             this.btnShutdown.Location = new System.Drawing.Point(10, 33);
             this.btnShutdown.Name = "btnShutdown";
+            this.btnShutdown.Selected = true;
             this.btnShutdown.Size = new System.Drawing.Size(148, 32);
             this.btnShutdown.TabIndex = 1;
             this.btnShutdown.Text = "SHUT DOWN";
