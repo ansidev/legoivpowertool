@@ -23,7 +23,7 @@ namespace LegoIV_Power_Tool
         private string Author = "ansidev";
         private string Email = "ansidev@gmail.com";
         private string AllProject = "https://github.com/ansidev";
-        private string AuthorHomepage = "http://ansidev.tk/blog";
+        private string AuthorHomepage = "http://blog.ansidev.tk";
 
         //Source code
         private string SourceCode = "https://github.com/ansidev/legoivpowertool";

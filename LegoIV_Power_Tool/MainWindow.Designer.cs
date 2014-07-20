@@ -53,6 +53,11 @@
             this.ctmsSystemTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showHideWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctmsChooseActionMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnArrow = new LegoIV_Power_Tool.MetroButton();
             this.btnStart = new LegoIV_Power_Tool.MetroButton();
             this.btnMonitorOff = new LegoIV_Power_Tool.MetroButton();
             this.btnSwitch = new LegoIV_Power_Tool.MetroButton();
@@ -68,6 +73,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nmrcHour)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.ctmsSystemTray.SuspendLayout();
+            this.ctmsChooseActionMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // lnkAbout
@@ -98,9 +104,9 @@
             // 
             // pgBar
             // 
-            this.pgBar.Location = new System.Drawing.Point(10, 323);
+            this.pgBar.Location = new System.Drawing.Point(10, 318);
             this.pgBar.Name = "pgBar";
-            this.pgBar.Size = new System.Drawing.Size(305, 27);
+            this.pgBar.Size = new System.Drawing.Size(305, 24);
             this.pgBar.TabIndex = 11;
             // 
             // grpbxDelayTime
@@ -118,7 +124,7 @@
             this.grpbxDelayTime.ForeColor = System.Drawing.Color.Black;
             this.grpbxDelayTime.Location = new System.Drawing.Point(10, 190);
             this.grpbxDelayTime.Name = "grpbxDelayTime";
-            this.grpbxDelayTime.Size = new System.Drawing.Size(304, 95);
+            this.grpbxDelayTime.Size = new System.Drawing.Size(305, 95);
             this.grpbxDelayTime.TabIndex = 9;
             this.grpbxDelayTime.TabStop = false;
             this.grpbxDelayTime.Text = "Delay time";
@@ -317,15 +323,65 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // ctmsChooseActionMenu
+            // 
+            this.ctmsChooseActionMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startToolStripMenuItem,
+            this.pauseToolStripMenuItem,
+            this.stopToolStripMenuItem});
+            this.ctmsChooseActionMenu.Name = "ctmsChooseActionMenu";
+            this.ctmsChooseActionMenu.Size = new System.Drawing.Size(153, 92);
+            // 
+            // startToolStripMenuItem
+            // 
+            this.startToolStripMenuItem.Name = "startToolStripMenuItem";
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.startToolStripMenuItem.Text = "START";
+            this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
+            // 
+            // pauseToolStripMenuItem
+            // 
+            this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
+            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pauseToolStripMenuItem.Text = "PAUSE";
+            this.pauseToolStripMenuItem.Click += new System.EventHandler(this.pauseToolStripMenuItem_Click);
+            // 
+            // stopToolStripMenuItem
+            // 
+            this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stopToolStripMenuItem.Text = "STOP";
+            this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
+            // 
+            // btnArrow
+            // 
+            this.btnArrow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
+            this.btnArrow.BackgroundImage = global::LegoIV_Power_Tool.Properties.Resources.Arrows_Forward_icon_24x24;
+            this.btnArrow.FlatAppearance.BorderSize = 0;
+            this.btnArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnArrow.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnArrow.ForeColor = System.Drawing.Color.Black;
+            this.btnArrow.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnArrow.Location = new System.Drawing.Point(291, 291);
+            this.btnArrow.Name = "btnArrow";
+            this.btnArrow.Padding = new System.Windows.Forms.Padding(8);
+            this.btnArrow.Size = new System.Drawing.Size(24, 26);
+            this.btnArrow.TabIndex = 10;
+            this.btnArrow.Text = "Metro Button";
+            this.btnArrow.UseVisualStyleBackColor = true;
+            this.btnArrow.Click += new System.EventHandler(this.btnArrow_Click);
+            // 
             // btnStart
             // 
             this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
+            this.btnStart.FlatAppearance.BorderSize = 0;
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.ForeColor = System.Drawing.Color.White;
+            this.btnStart.ForeColor = System.Drawing.Color.Black;
             this.btnStart.Location = new System.Drawing.Point(9, 291);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(0);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(307, 32);
+            this.btnStart.Size = new System.Drawing.Size(281, 26);
             this.btnStart.TabIndex = 10;
             this.btnStart.Text = "START";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -477,6 +533,7 @@
             this.Controls.Add(this.lblHelpContent);
             this.Controls.Add(this.lblUsage);
             this.Controls.Add(this.lblSettingsBox);
+            this.Controls.Add(this.btnArrow);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.grpbxDelayTime);
             this.Controls.Add(this.pgBar);
@@ -507,6 +564,7 @@
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.ctmsSystemTray.ResumeLayout(false);
+            this.ctmsChooseActionMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -546,6 +604,11 @@
         private System.Windows.Forms.ContextMenuStrip ctmsSystemTray;
         private System.Windows.Forms.ToolStripMenuItem showHideWindowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private MetroButton btnArrow;
+        private System.Windows.Forms.ContextMenuStrip ctmsChooseActionMenu;
+        private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pauseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
     }
 }
 

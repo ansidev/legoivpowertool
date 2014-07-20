@@ -586,5 +586,27 @@ namespace LegoIV_Power_Tool
         {
             this.Close();
         }
+
+        private void btnArrow_Click(object sender, EventArgs e)
+        {
+            //this.btnArrow.FlatAppearance.BorderSize = 0;
+            Point p = new Point(this.Location.X + this.btnArrow.Location.X + this.btnArrow.Size.Width + 8, this.Location.Y + this.btnArrow.Location.Y + this.btnArrow.Size.Height + 5);
+            this.ctmsChooseActionMenu.Show(p, ToolStripDropDownDirection.Default);
+        }
+
+        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.btnStart.Text = this.startToolStripMenuItem.Text;
+        }
+
+        private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.btnStart.Text = this.pauseToolStripMenuItem.Text;
+        }
+
+        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.btnStart.Text = this.stopToolStripMenuItem.Text;
+        }
     }
 }
