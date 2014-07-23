@@ -673,5 +673,10 @@ namespace LegoIV_Power_Tool
         {
             this.Close();
         }
+
+        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.ntfIcon.Icon = null;
+        }
     }
 }

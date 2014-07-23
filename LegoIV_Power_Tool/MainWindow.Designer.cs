@@ -52,13 +52,22 @@
             this.ntfIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.ctmsSystemTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showHideWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.actionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shutdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sleepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hibernateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.signoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.switchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.monitoroffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ctmsChooseActionMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnArrow = new LegoIV_Power_Tool.MetroButton();
             this.btnStart = new LegoIV_Power_Tool.MetroButton();
             this.btnMonitorOff = new LegoIV_Power_Tool.MetroButton();
@@ -69,15 +78,6 @@
             this.btnRestart = new LegoIV_Power_Tool.MetroButton();
             this.btnHibernate = new LegoIV_Power_Tool.MetroButton();
             this.btnShutdown = new LegoIV_Power_Tool.MetroButton();
-            this.actionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.shutdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sleepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hibernateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.signoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.switchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.monitoroffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grpbxDelayTime.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrdSecond)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrdMinute)).BeginInit();
@@ -321,19 +321,92 @@
             this.exitToolStripMenuItem});
             this.ctmsSystemTray.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.ctmsSystemTray.Name = "ctmsSystemTray";
-            this.ctmsSystemTray.Size = new System.Drawing.Size(153, 104);
+            this.ctmsSystemTray.Size = new System.Drawing.Size(147, 82);
             // 
             // showHideWindowToolStripMenuItem
             // 
             this.showHideWindowToolStripMenuItem.Name = "showHideWindowToolStripMenuItem";
-            this.showHideWindowToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.showHideWindowToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.showHideWindowToolStripMenuItem.Text = "Hide Window";
             this.showHideWindowToolStripMenuItem.Click += new System.EventHandler(this.showHideWindowToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            // 
+            // actionToolStripMenuItem
+            // 
+            this.actionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.shutdownToolStripMenuItem,
+            this.restartToolStripMenuItem,
+            this.sleepToolStripMenuItem,
+            this.hibernateToolStripMenuItem,
+            this.signoutToolStripMenuItem,
+            this.lockToolStripMenuItem,
+            this.switchToolStripMenuItem,
+            this.monitoroffToolStripMenuItem});
+            this.actionToolStripMenuItem.Name = "actionToolStripMenuItem";
+            this.actionToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.actionToolStripMenuItem.Text = "Action";
+            // 
+            // shutdownToolStripMenuItem
+            // 
+            this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.shutdownToolStripMenuItem.Text = "Shutdown";
+            // 
+            // restartToolStripMenuItem
+            // 
+            this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.restartToolStripMenuItem.Text = "Restart";
+            // 
+            // sleepToolStripMenuItem
+            // 
+            this.sleepToolStripMenuItem.Name = "sleepToolStripMenuItem";
+            this.sleepToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.sleepToolStripMenuItem.Text = "Sleep";
+            // 
+            // hibernateToolStripMenuItem
+            // 
+            this.hibernateToolStripMenuItem.Name = "hibernateToolStripMenuItem";
+            this.hibernateToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.hibernateToolStripMenuItem.Text = "Hibernate";
+            // 
+            // signoutToolStripMenuItem
+            // 
+            this.signoutToolStripMenuItem.Name = "signoutToolStripMenuItem";
+            this.signoutToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.signoutToolStripMenuItem.Text = "Sign out";
+            // 
+            // lockToolStripMenuItem
+            // 
+            this.lockToolStripMenuItem.Name = "lockToolStripMenuItem";
+            this.lockToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.lockToolStripMenuItem.Text = "Lock";
+            // 
+            // switchToolStripMenuItem
+            // 
+            this.switchToolStripMenuItem.Name = "switchToolStripMenuItem";
+            this.switchToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.switchToolStripMenuItem.Text = "Switch";
+            // 
+            // monitoroffToolStripMenuItem
+            // 
+            this.monitoroffToolStripMenuItem.Name = "monitoroffToolStripMenuItem";
+            this.monitoroffToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.monitoroffToolStripMenuItem.Text = "Turn off monitor";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -366,16 +439,6 @@
             this.stopToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.stopToolStripMenuItem.Text = "STOP";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(160, 6);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(160, 6);
             // 
             // btnArrow
             // 
@@ -552,69 +615,6 @@
             this.btnShutdown.MouseLeave += new System.EventHandler(this.btnShutdown_MouseLeave);
             this.btnShutdown.MouseHover += new System.EventHandler(this.btnShutdown_MouseHover);
             // 
-            // actionToolStripMenuItem
-            // 
-            this.actionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.shutdownToolStripMenuItem,
-            this.restartToolStripMenuItem,
-            this.sleepToolStripMenuItem,
-            this.hibernateToolStripMenuItem,
-            this.signoutToolStripMenuItem,
-            this.lockToolStripMenuItem,
-            this.switchToolStripMenuItem,
-            this.monitoroffToolStripMenuItem});
-            this.actionToolStripMenuItem.Name = "actionToolStripMenuItem";
-            this.actionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.actionToolStripMenuItem.Text = "Action";
-            // 
-            // shutdownToolStripMenuItem
-            // 
-            this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.shutdownToolStripMenuItem.Text = "Shutdown";
-            // 
-            // restartToolStripMenuItem
-            // 
-            this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.restartToolStripMenuItem.Text = "Restart";
-            // 
-            // sleepToolStripMenuItem
-            // 
-            this.sleepToolStripMenuItem.Name = "sleepToolStripMenuItem";
-            this.sleepToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.sleepToolStripMenuItem.Text = "Sleep";
-            // 
-            // hibernateToolStripMenuItem
-            // 
-            this.hibernateToolStripMenuItem.Name = "hibernateToolStripMenuItem";
-            this.hibernateToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.hibernateToolStripMenuItem.Text = "Hibernate";
-            // 
-            // signoutToolStripMenuItem
-            // 
-            this.signoutToolStripMenuItem.Name = "signoutToolStripMenuItem";
-            this.signoutToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.signoutToolStripMenuItem.Text = "Sign out";
-            // 
-            // lockToolStripMenuItem
-            // 
-            this.lockToolStripMenuItem.Name = "lockToolStripMenuItem";
-            this.lockToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.lockToolStripMenuItem.Text = "Lock";
-            // 
-            // switchToolStripMenuItem
-            // 
-            this.switchToolStripMenuItem.Name = "switchToolStripMenuItem";
-            this.switchToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.switchToolStripMenuItem.Text = "Switch";
-            // 
-            // monitoroffToolStripMenuItem
-            // 
-            this.monitoroffToolStripMenuItem.Name = "monitoroffToolStripMenuItem";
-            this.monitoroffToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.monitoroffToolStripMenuItem.Text = "Turn off monitor";
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -646,6 +646,7 @@
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LegoIV Power Tool";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.grpbxDelayTime.ResumeLayout(false);
             this.grpbxDelayTime.PerformLayout();
