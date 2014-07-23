@@ -31,7 +31,7 @@ namespace LegoIV_Power_Tool
 
         const int WM_SYSCOMMAND = 0x0112;
         const int SC_MONITORPOWER = 0xF170;
-        int HWND_BROADCAST = 0xffff;
+        //int HWND_BROADCAST = 0xffff;
         const int WTS_CURRENT_SESSION = -1;
         static readonly IntPtr WTS_CURRENT_SERVER_HANDLE = IntPtr.Zero;
         int _DelayTime = 0;
@@ -88,7 +88,7 @@ namespace LegoIV_Power_Tool
         }
         private void UpdateSettings()
         {
-            _DelayTime = Int32.Parse(this.nmrcHour.Value.ToString()) * 3600 + Int32.Parse(this.nmrdMinute.Value.ToString()) * 60 + Int32.Parse(this.nmrdSecond.Value.ToString());
+            _DelayTime = (this.rdbtnNow.Checked == true) ? 0 : Int32.Parse(this.nmrcHour.Value.ToString()) * 3600 + Int32.Parse(this.nmrdMinute.Value.ToString()) * 60 + Int32.Parse(this.nmrdSecond.Value.ToString());
             this.pgBar.Maximum = _DelayTime * 1000 + 1000;
             this.pgBar.Step = 1;
             this.lblSettingsBox.Text = "";
@@ -322,7 +322,7 @@ namespace LegoIV_Power_Tool
         private void _MonitorOff()
         {
             // Turn off monitor
-            SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
+            SendMessage(this.Handle.ToInt32(), WM_SYSCOMMAND, SC_MONITORPOWER, 2);
         }
         #endregion
         private void ChangeEnabledProperty(bool b)
@@ -567,21 +567,34 @@ namespace LegoIV_Power_Tool
         #endregion
 
         #region Changed
+        private bool IsDelayTimeEqualToZero()
+        {
+            if(this.nmrcHour.Value == 0 && this.nmrdMinute.Value == 0 && this.nmrdSecond.Value == 0)
+            {
+                this.rdbtnNow.Checked = true;
+                return true;
+            }
+            else
+            {
+                this.rdbtnAfter.Checked = true;
+                return false;
+            }
+        }
         private void nmrcHour_ValueChanged(object sender, EventArgs e)
         {
-            rdbtnAfter.Checked = true;
+            IsDelayTimeEqualToZero();
             UpdateSettings();
         }
 
         private void nmrdMinute_ValueChanged(object sender, EventArgs e)
         {
-            rdbtnAfter.Checked = true;
+            IsDelayTimeEqualToZero();
             UpdateSettings();
         }
 
         private void nmrdSecond_ValueChanged(object sender, EventArgs e)
         {
-            rdbtnAfter.Checked = true;
+            IsDelayTimeEqualToZero();
             UpdateSettings();
         }
 
@@ -599,7 +612,10 @@ namespace LegoIV_Power_Tool
         {
             for (int i = 0; i < 1000; i++)
             {
-                this.pgBar.Value++;
+                if (_DelayTime != 0)
+                {
+                    this.pgBar.Value++;
+                }
             }
             this.sttStatusBar.Text = "\nStart in " + _DelayTime.ToString() + " seconds";
             _DelayTime--;
@@ -638,12 +654,14 @@ namespace LegoIV_Power_Tool
         {
             if (!isHidden)
             {
+                this.showHideWindowToolStripMenuItem.Text = "Show Window";
                 this.Hide();
                 this.ShowInTaskbar = false;
                 isHidden = true;
             }
             else
             {
+                this.showHideWindowToolStripMenuItem.Text = "Hide Window";
                 this.ShowInTaskbar = true;
                 this.Show();
                 this.WindowState = FormWindowState.Normal;
