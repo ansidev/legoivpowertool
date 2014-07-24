@@ -1,6 +1,6 @@
 LegoIV Power Tool (current Stable)
 ===============
-* Current version: 1.1 Stable.
+* Current version: 1.2.0.0 Stable, 1.2.0.1 Dev.
 * Description: Simple tool to shutdown, restart, sleep, hibernate, sign out, lock your computer and more.
 * License: GPLv3
 
