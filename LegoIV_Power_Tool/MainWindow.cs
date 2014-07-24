@@ -148,7 +148,43 @@ namespace LegoIV_Power_Tool
         }
         private void MainWindow_Load(object sender, EventArgs e)
         {
-
+            string[] args = Environment.GetCommandLineArgs();
+            if(args.Length != 0)
+            {
+                for (int i = 0; i < args.Length; i++)
+                {
+                    switch(args[i])
+                    {
+                        case "/p":
+                            _ShutdownComputer();
+                            break;
+                        case "/r":
+                            _RestartComputer();
+                            break;
+                        case "/s":
+                            _SleepComputer();
+                            break;
+                        case "/h":
+                            _HibernateComputer();
+                            break;
+                        case "/q":
+                            _SignoutComputer();
+                            break;
+                        case "/l":
+                            _LockComputer();
+                            break;
+                        case "/c":
+                            _SwitchUser();
+                            break;
+                        case "/m":
+                            _MonitorOff();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                this.Close();
+            }
         }
 
         #region Power Action Function
