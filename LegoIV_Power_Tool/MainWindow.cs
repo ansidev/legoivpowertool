@@ -363,7 +363,7 @@ namespace LegoIV_Power_Tool
             }
             this.Close();
         }
-        private void _ShutdownComputer()
+        public void _ShutdownComputer()
         {
             try
             {

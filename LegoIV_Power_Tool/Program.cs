@@ -14,13 +14,16 @@ namespace LegoIV_Power_Tool
         [STAThread]
         static void Main(string[] args)
         {
-            if(args.Length != 0)
+            if (args.Length == 0)
             {
-                System.Console.WriteLine("Hello World!");
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new MainWindow());
             }
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow());
+            else
+            {
+                System.Console.WriteLine("Hello World");
+            }
         }
     }
 }
