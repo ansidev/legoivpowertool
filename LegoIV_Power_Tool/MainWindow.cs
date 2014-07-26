@@ -146,42 +146,135 @@ namespace LegoIV_Power_Tool
             ButtonArray[6] = btnSwitch;
             ButtonArray[7] = btnMonitorOff;
         }
-        private void MainWindow_Load(object sender, EventArgs e)
+        public void MainWindow_Load(object sender, EventArgs e)
         {
             string[] args = Environment.GetCommandLineArgs();
-            if(args.Length != 0)
+            DateTime startTime = DateTime.Now;
+            DateTime endTime;
+            if (args.Length != 0)
             {
-                for (int i = 0; i < args.Length; i++)
+                _ActionCode = -1;
+                bool paramCheck = true;
+                for (int i = 1; i < args.Length; i++)
                 {
-                    switch(args[i])
+                    switch (args[i])
                     {
+                        case "/shutdown":
+                        case "/poweroff":
                         case "/p":
-                            _ShutdownComputer();
-                            break;
+                            {
+                                if (paramCheck)
+                                {
+                                    _ActionCode = 1;
+                                    paramCheck = false;
+                                }
+                                break;
+                            }
+                        case "/restart":
+                        case "/reboot":
                         case "/r":
-                            _RestartComputer();
-                            break;
+                            {
+                                if (paramCheck)
+                                {
+                                    _ActionCode = 2;
+                                    paramCheck = false;
+                                }
+                                break;
+                            }
+                        case "/sleep":
                         case "/s":
-                            _SleepComputer();
-                            break;
+                            {
+                                if (paramCheck)
+                                {
+                                    _ActionCode = 3;
+                                    paramCheck = false;
+                                }
+                                break;
+                            }
+                        case "/hibernate":
                         case "/h":
-                            _HibernateComputer();
-                            break;
+                            {
+                                if (paramCheck)
+                                {
+                                    _ActionCode = 4;
+                                    paramCheck = false;
+                                }
+                                break;
+                            }
+                        case "/signout":
+                        case "/quit":
                         case "/q":
-                            _SignoutComputer();
-                            break;
+                            {
+                                if (paramCheck)
+                                {
+                                    _ActionCode = 5;
+                                    paramCheck = false;
+                                }
+                                break;
+                            }
+                        case "/lock":
                         case "/l":
-                            _LockComputer();
-                            break;
+                            {
+                                if (paramCheck)
+                                {
+                                    _ActionCode = 6;
+                                    paramCheck = false;
+                                }
+                                break;
+                            }
+                        case "/switch":
+                        case "/changeacc":
                         case "/c":
-                            _SwitchUser();
-                            break;
+                            {
+                                if (paramCheck)
+                                {
+                                    _ActionCode = 7;
+                                    paramCheck = false;
+                                }
+                                break;
+                            }
+                        case "/monitoroff":
                         case "/m":
-                            _MonitorOff();
-                            break;
+                            {
+                                if (paramCheck)
+                                {
+                                    _ActionCode = 8;
+                                    paramCheck = false;
+                                }
+                                break;
+                            }
+                        case "/t":
+                            {
+                                try
+                                {
+                                    _DelayTime = Int16.Parse(args[i + 1]);
+                                }
+                                catch
+                                {
+                                    MessageBox.Show("Error: Invalid time format.");
+                                }
+                                i++;
+                                break;
+                            }
                         default:
+                            _ActionCode = -1;
                             break;
                     }
+                }
+                endTime = startTime.AddSeconds(_DelayTime);
+                while (DateTime.Now != endTime)
+                {
+                    if (DateTime.Now >= endTime)
+                    {
+                        PowerAction(_ActionCode);
+                        break;
+                    }
+                    else
+                        Thread.Sleep(1000);
+                }
+                if(DateTime.Now >= endTime)
+                {
+                    PowerAction(_ActionCode);
                 }
                 this.Close();
             }
