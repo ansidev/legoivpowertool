@@ -11,6 +11,9 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Management;
+using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Taskbar;
+using System.Reflection;
 namespace LegoIV_Power_Tool
 {
     public partial class MainWindow : Form
@@ -146,12 +149,46 @@ namespace LegoIV_Power_Tool
             ButtonArray[6] = btnSwitch;
             ButtonArray[7] = btnMonitorOff;
         }
+        private void MainWindow_Shown(object sender, EventArgs e)
+        {
+            string cmdPath = Assembly.GetEntryAssembly().Location;
+
+            // create a jump list
+            JumpList jumpList = JumpList.CreateJumpList();
+
+            JumpListCustomCategory category = new JumpListCustomCategory("Action");
+            category.AddJumpListItems(
+                new JumpListLink(cmdPath, "Shutdown") { Arguments = "/shutdown" },
+                new JumpListLink(cmdPath, "Restart") { Arguments = "/restart" },
+                new JumpListLink(cmdPath, "Sleep") { Arguments = "/sleep" },
+                new JumpListLink(cmdPath, "Hibernate") { Arguments = "/hibernate" },
+                new JumpListLink(cmdPath, "Sign out") { Arguments = "/signout" },
+                new JumpListLink(cmdPath, "Lock") { Arguments = "/lock" },
+                new JumpListLink(cmdPath, "Switch user") { Arguments = "/switch" },
+                new JumpListLink(cmdPath, "Turn off monitor") { Arguments = "/monitoroff" });
+            jumpList.AddCustomCategories(category);
+
+            jumpList.Refresh();
+        }
+
+//        private JumpListCustomCategory CreateCategory(string categoryName,
+//string searchPattern)
+//        {
+//            var category = new JumpListCustomCategory(categoryName);
+//            var vsmPath = Path.Combine(Environment.GetFolderPath(
+//        Environment.SpecialFolder.MyDocuments), "VSM");
+//            var items = from f in Directory.GetFiles(vsmPath, searchPattern)
+//                        select new JumpListItem(Path.Combine(vsmPath, f));
+//            category.AddJumpListItems(items.ToArray());
+
+//            return category;
+//        }
         public void MainWindow_Load(object sender, EventArgs e)
         {
             string[] args = Environment.GetCommandLineArgs();
             DateTime startTime = DateTime.Now;
             DateTime endTime;
-            if (args.Length != 0)
+            if (args.Length > 1)
             {
                 _ActionCode = -1;
                 bool paramCheck = true;
@@ -807,5 +844,7 @@ namespace LegoIV_Power_Tool
         {
             this.ntfIcon.Icon = null;
         }
+
+
     }
 }

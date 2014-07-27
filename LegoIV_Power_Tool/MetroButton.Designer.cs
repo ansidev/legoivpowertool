@@ -37,7 +37,7 @@
             this.Location = new System.Drawing.Point(13, 34);
             this.Size = new System.Drawing.Size(120, 32);
             this.TabIndex = 0;
-            this.Text = "Metro Button";
+            this.Text = "";
             this.UseVisualStyleBackColor = true;
         }
 
