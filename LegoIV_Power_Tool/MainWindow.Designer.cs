@@ -355,48 +355,56 @@
             this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
             this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.shutdownToolStripMenuItem.Text = "Shutdown";
+            this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
             // restartToolStripMenuItem
             // 
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
             this.restartToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.restartToolStripMenuItem.Text = "Restart";
+            this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
             // 
             // sleepToolStripMenuItem
             // 
             this.sleepToolStripMenuItem.Name = "sleepToolStripMenuItem";
             this.sleepToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.sleepToolStripMenuItem.Text = "Sleep";
+            this.sleepToolStripMenuItem.Click += new System.EventHandler(this.sleepToolStripMenuItem_Click);
             // 
             // hibernateToolStripMenuItem
             // 
             this.hibernateToolStripMenuItem.Name = "hibernateToolStripMenuItem";
             this.hibernateToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.hibernateToolStripMenuItem.Text = "Hibernate";
+            this.hibernateToolStripMenuItem.Click += new System.EventHandler(this.hibernateToolStripMenuItem_Click);
             // 
             // signoutToolStripMenuItem
             // 
             this.signoutToolStripMenuItem.Name = "signoutToolStripMenuItem";
             this.signoutToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.signoutToolStripMenuItem.Text = "Sign out";
+            this.signoutToolStripMenuItem.Click += new System.EventHandler(this.signoutToolStripMenuItem_Click);
             // 
             // lockToolStripMenuItem
             // 
             this.lockToolStripMenuItem.Name = "lockToolStripMenuItem";
             this.lockToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.lockToolStripMenuItem.Text = "Lock";
+            this.lockToolStripMenuItem.Click += new System.EventHandler(this.lockToolStripMenuItem_Click);
             // 
             // switchToolStripMenuItem
             // 
             this.switchToolStripMenuItem.Name = "switchToolStripMenuItem";
             this.switchToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.switchToolStripMenuItem.Text = "Switch";
+            this.switchToolStripMenuItem.Click += new System.EventHandler(this.switchToolStripMenuItem_Click);
             // 
             // monitoroffToolStripMenuItem
             // 
             this.monitoroffToolStripMenuItem.Name = "monitoroffToolStripMenuItem";
             this.monitoroffToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.monitoroffToolStripMenuItem.Text = "Turn off monitor";
+            this.monitoroffToolStripMenuItem.Click += new System.EventHandler(this.monitoroffToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -461,11 +469,12 @@
             // 
             // btnStart
             // 
-            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
+            this.btnStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnStart.FlatAppearance.BorderSize = 0;
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.ForeColor = System.Drawing.Color.Black;
+            this.btnStart.ForeColor = System.Drawing.Color.White;
             this.btnStart.Location = new System.Drawing.Point(9, 291);
             this.btnStart.Margin = new System.Windows.Forms.Padding(0);
             this.btnStart.Name = "btnStart";

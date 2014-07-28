@@ -845,6 +845,46 @@ namespace LegoIV_Power_Tool
             this.ntfIcon.Icon = null;
         }
 
+        private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PowerAction(1);
+        }
+
+        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PowerAction(2);
+        }
+
+        private void sleepToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PowerAction(3);
+        }
+
+        private void hibernateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PowerAction(4);
+        }
+
+        private void signoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PowerAction(5);
+        }
+
+        private void lockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PowerAction(6);
+        }
+
+        private void switchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PowerAction(7);
+        }
+
+        private void monitoroffToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PowerAction(8);
+        }
+
 
     }
 }
