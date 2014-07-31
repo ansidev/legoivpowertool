@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -8,9 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Threading;
-using System.Management;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Taskbar;
 using System.Reflection;
@@ -18,29 +15,9 @@ namespace LegoIV_Power_Tool
 {
     public partial class MainWindow : Form
     {
-        [DllImport("user32")]
-        public static extern void LockWorkStation();
-        [DllImport("user32")]
-        public static extern bool ExitWindowsEx(uint uFlags, uint dwReason);
-        [DllImport("user32.dll")]
-        private static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);
-        //[DllImport("user32.dll")]
-        //private static extern IntPtr GetDesktopWindow();
-        [DllImport("Powrprof.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
-        public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
-        [DllImport("wtsapi32.dll", SetLastError = true)]
-        static extern bool WTSDisconnectSession(IntPtr hServer, int sessionId, bool bWait);
-
-
-        const int WM_SYSCOMMAND = 0x0112;
-        const int SC_MONITORPOWER = 0xF170;
-        //int HWND_BROADCAST = 0xffff;
-        const int WTS_CURRENT_SESSION = -1;
-        static readonly IntPtr WTS_CURRENT_SERVER_HANDLE = IntPtr.Zero;
-        int _DelayTime = 0;
-        int _ActionCode = 0;
         //Button
         Button[] ButtonArray = new Button[8];
+        internal static int _Handle = 0;
         private bool isHidden
         {
             get;
@@ -56,33 +33,33 @@ namespace LegoIV_Power_Tool
         }
         private string DelayTime()
         {
-            string _DelayTime = "0";
+            string strDelayTime = "0";
             if (this.rdbtnNow.Checked == true)
             {
-                _DelayTime = "0";
+                strDelayTime = "0";
             }
             else if (this.rdbtnAfter.Checked == true)
             {
-                _DelayTime = "";
+                strDelayTime = "";
                 if (this.nmrcHour.Value != 0)
                 {
-                    _DelayTime += this.nmrcHour.Value.ToString() + " hour(s) ";
+                    strDelayTime += this.nmrcHour.Value.ToString() + " hour(s) ";
                 }
                 if (this.nmrdMinute.Value != 0)
                 {
-                    _DelayTime += this.nmrdMinute.Value.ToString() + " minute(s) ";
+                    strDelayTime += this.nmrdMinute.Value.ToString() + " minute(s) ";
                 }
                 if (this.nmrdSecond.Value != 0)
                 {
-                    _DelayTime += this.nmrdSecond.Value.ToString() + " second(s)";
+                    strDelayTime += this.nmrdSecond.Value.ToString() + " second(s)";
                 }
-                if (_DelayTime == "")
+                if (strDelayTime == "")
                 {
-                    _DelayTime = "0";
+                    strDelayTime = "0";
                 }
             }
                 
-            return _DelayTime;
+            return strDelayTime;
         }
         private string Prefix()
         {
@@ -91,8 +68,8 @@ namespace LegoIV_Power_Tool
         }
         private void UpdateSettings()
         {
-            _DelayTime = (this.rdbtnNow.Checked == true) ? 0 : Int32.Parse(this.nmrcHour.Value.ToString()) * 3600 + Int32.Parse(this.nmrdMinute.Value.ToString()) * 60 + Int32.Parse(this.nmrdSecond.Value.ToString());
-            this.pgBar.Maximum = _DelayTime * 1000 + 1000;
+            Functions._DelayTime = (this.rdbtnNow.Checked == true) ? 0 : Int32.Parse(this.nmrcHour.Value.ToString()) * 3600 + Int32.Parse(this.nmrdMinute.Value.ToString()) * 60 + Int32.Parse(this.nmrdSecond.Value.ToString());
+            this.pgBar.Maximum = Functions._DelayTime * 1000 + 1000;
             this.pgBar.Step = 1;
             this.lblSettingsBox.Text = "";
             if (this.btnShutdown.Selected == true)
@@ -170,170 +147,13 @@ namespace LegoIV_Power_Tool
 
             jumpList.Refresh();
         }
-
-//        private JumpListCustomCategory CreateCategory(string categoryName,
-//string searchPattern)
-//        {
-//            var category = new JumpListCustomCategory(categoryName);
-//            var vsmPath = Path.Combine(Environment.GetFolderPath(
-//        Environment.SpecialFolder.MyDocuments), "VSM");
-//            var items = from f in Directory.GetFiles(vsmPath, searchPattern)
-//                        select new JumpListItem(Path.Combine(vsmPath, f));
-//            category.AddJumpListItems(items.ToArray());
-
-//            return category;
-//        }
         public void MainWindow_Load(object sender, EventArgs e)
         {
-            string[] args = Environment.GetCommandLineArgs();
-            DateTime startTime = DateTime.Now;
-            DateTime endTime;
-            if (args.Length > 1)
-            {
-                _ActionCode = -1;
-                bool paramCheck = true;
-                for (int i = 1; i < args.Length; i++)
-                {
-                    switch (args[i])
-                    {
-                        case "/shutdown":
-                        case "/poweroff":
-                        case "/p":
-                            {
-                                if (paramCheck)
-                                {
-                                    _ActionCode = 1;
-                                    paramCheck = false;
-                                }
-                                break;
-                            }
-                        case "/restart":
-                        case "/reboot":
-                        case "/r":
-                            {
-                                if (paramCheck)
-                                {
-                                    _ActionCode = 2;
-                                    paramCheck = false;
-                                }
-                                break;
-                            }
-                        case "/sleep":
-                        case "/s":
-                            {
-                                if (paramCheck)
-                                {
-                                    _ActionCode = 3;
-                                    paramCheck = false;
-                                }
-                                break;
-                            }
-                        case "/hibernate":
-                        case "/h":
-                            {
-                                if (paramCheck)
-                                {
-                                    _ActionCode = 4;
-                                    paramCheck = false;
-                                }
-                                break;
-                            }
-                        case "/signout":
-                        case "/quit":
-                        case "/q":
-                            {
-                                if (paramCheck)
-                                {
-                                    _ActionCode = 5;
-                                    paramCheck = false;
-                                }
-                                break;
-                            }
-                        case "/lock":
-                        case "/l":
-                            {
-                                if (paramCheck)
-                                {
-                                    _ActionCode = 6;
-                                    paramCheck = false;
-                                }
-                                break;
-                            }
-                        case "/switch":
-                        case "/changeacc":
-                        case "/c":
-                            {
-                                if (paramCheck)
-                                {
-                                    _ActionCode = 7;
-                                    paramCheck = false;
-                                }
-                                break;
-                            }
-                        case "/monitoroff":
-                        case "/m":
-                            {
-                                if (paramCheck)
-                                {
-                                    _ActionCode = 8;
-                                    paramCheck = false;
-                                }
-                                break;
-                            }
-                        case "/t":
-                            {
-                                try
-                                {
-                                    _DelayTime = Int16.Parse(args[i + 1]);
-                                }
-                                catch
-                                {
-                                    MessageBox.Show("Error: Invalid time format.");
-                                }
-                                i++;
-                                break;
-                            }
-                        default:
-                            _ActionCode = -1;
-                            break;
-                    }
-                }
-                endTime = startTime.AddSeconds(_DelayTime);
-                while (DateTime.Now != endTime)
-                {
-                    if (DateTime.Now >= endTime)
-                    {
-                        PowerAction(_ActionCode);
-                        break;
-                    }
-                    else
-                        Thread.Sleep(1000);
-                }
-                if(DateTime.Now >= endTime)
-                {
-                    PowerAction(_ActionCode);
-                }
-                this.Close();
-            }
+            Functions._HWND = this.Handle.ToInt32();
         }
 
         #region Power Action Function
-        private void ExitWin(int _flag, int _reversed)
-        {
-            ManagementBaseObject mboShutdown = null;
-            ManagementClass mcWin32 = new ManagementClass("Win32_OperatingSystem");
-            mcWin32.Get();
-            // You can't shutdown without security privileges
-            mcWin32.Scope.Options.EnablePrivileges = true;
-            ManagementBaseObject mboShutdownParams = mcWin32.GetMethodParameters("Win32Shutdown");
-            // Flag 1 means we want to shut down the system
-            mboShutdownParams["Flags"] = _flag.ToString();
-            mboShutdownParams["Reserved"] = _reversed.ToString();
-            foreach (ManagementObject manObj in mcWin32.GetInstances())
-            {
-                mboShutdown = manObj.InvokeMethod("Win32Shutdown", mboShutdownParams, null);
-            }
-        }
+
         private void PowerAction()
         {
             String warning = "";
@@ -341,7 +161,7 @@ namespace LegoIV_Power_Tool
             bool ok = false;
             foreach (MetroButton mtButton in ButtonArray)
             {
-                _ActionCode++;
+                Functions._ActionCode++;
                 if (mtButton.Selected == true)
                 {
                     warning = "";
@@ -363,132 +183,8 @@ namespace LegoIV_Power_Tool
             {
                 warning += "You must choose an action!";
                 MessageBox.Show(warning, "Warning!");
-                _ActionCode = -1;
+                Functions._ActionCode = -1;
             }
-        }
-        private void PowerAction(int _Action)
-        {
-            this.Hide();
-            switch (_Action)
-            {
-                case 1:
-                    _ShutdownComputer();
-                    break;
-                case 2:
-                    _RestartComputer();
-                    break;
-                case 3:
-                    _SleepComputer();
-                    break;
-                case 4:
-                    _HibernateComputer();
-                    break;
-                case 5:
-                    _SignoutComputer();
-                    break;
-                case 6:
-                    _LockComputer();
-                    break;
-                case 7:
-                    _SwitchUser();
-                    break;
-                case 8:
-                    _MonitorOff();
-                    break;
-                default:
-                    break;
-            }
-            this.Close();
-        }
-        public void _ShutdownComputer()
-        {
-            try
-            {
-                ExitWin(8, 0);
-            }
-            catch
-            {
-                try
-                {
-                    ExitWin(1, 0);
-                }
-                catch
-                {
-                    try
-                    {
-                        ExitWin(5, 0);
-                    }
-                    catch
-                    {
-                        throw new Win32Exception();
-                    }
-                }
-            }
-            _MonitorOff();
-        }
-
-        private void _RestartComputer()
-        {
-            try
-            {
-                ExitWin(2, 0);
-            }
-            catch
-            {
-                try
-                {
-                    ExitWin(6, 0);
-                }
-                catch
-                {
-                    throw new Win32Exception();
-                }
-            }
-            _MonitorOff();
-        }
-
-        private void _SleepComputer()
-        {
-            SetSuspendState(false, false, false);
-            _MonitorOff();
-        }
-        private void _HibernateComputer()
-        {
-            Application.SetSuspendState(PowerState.Hibernate, false, false );
-            _MonitorOff();
-        }
-        private void _SignoutComputer()
-        {
-            try
-            {
-                ExitWindowsEx(0, 0);
-            }
-            catch
-            {
-                try
-                {
-                    ExitWindowsEx(4, 0);
-                }
-                catch
-                {
-                    throw new Win32Exception();
-                }
-            }
-            _MonitorOff();
-        }
-        private void _LockComputer()
-        {
-            LockWorkStation();
-            _MonitorOff();
-        }
-        private void _SwitchUser()
-        {
-            WTSDisconnectSession(WTS_CURRENT_SERVER_HANDLE, WTS_CURRENT_SESSION, false);
-        }
-        private void _MonitorOff()
-        {
-            // Turn off monitor
-            SendMessage(this.Handle.ToInt32(), WM_SYSCOMMAND, SC_MONITORPOWER, 2);
         }
         #endregion
         private void ChangeEnabledProperty(bool b)
@@ -778,20 +474,21 @@ namespace LegoIV_Power_Tool
         {
             for (int i = 0; i < 1000; i++)
             {
-                if (_DelayTime != 0)
+                if (Functions._DelayTime != 0)
                 {
                     this.pgBar.Value++;
                 }
             }
-            this.sttStatusBar.Text = "\nStart in " + _DelayTime.ToString() + " seconds";
-            _DelayTime--;
-            if (_DelayTime == -1)
+            this.sttStatusBar.Text = "\nStart in " + Functions._DelayTime.ToString() + " seconds";
+            Functions._DelayTime--;
+            if (Functions._DelayTime == -1)
             {
-                _DelayTime = 0;
+                Functions._DelayTime = 0;
                 this.tmCountdown.Stop();
                 this.Hide();
-                PowerAction(_ActionCode);
+                Functions.PowerAction(Functions._ActionCode);
                 this.Close();
+                Application.Exit();
             }
         }
 
@@ -837,7 +534,7 @@ namespace LegoIV_Power_Tool
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -847,42 +544,56 @@ namespace LegoIV_Power_Tool
 
         private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerAction(1);
+            Functions.PowerAction(1);
         }
 
         private void restartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerAction(2);
+            this.Hide();
+            Functions.PowerAction(2);
+            Application.Exit();
         }
 
         private void sleepToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerAction(3);
+            this.Hide();
+            Functions.PowerAction(3);
+            Application.Exit();
         }
 
         private void hibernateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerAction(4);
+            this.Hide();
+            Functions.PowerAction(4);
+            Application.Exit();
         }
 
         private void signoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerAction(5);
+            this.Hide();
+            Functions.PowerAction(5);
+            Application.Exit();
         }
 
         private void lockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerAction(6);
+            this.Hide();
+            Functions.PowerAction(6);
+            Application.Exit();
         }
 
         private void switchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerAction(7);
+            this.Hide();
+            Functions.PowerAction(7);
+            Application.Exit();
         }
 
         private void monitoroffToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerAction(8);
+            this.Hide();
+            Functions.PowerAction(8);
+            Application.Exit();
         }
 
 
