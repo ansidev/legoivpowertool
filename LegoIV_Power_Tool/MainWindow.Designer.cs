@@ -68,6 +68,7 @@
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lnkCheckForUpdate = new System.Windows.Forms.LinkLabel();
             this.btnArrow = new LegoIV_Power_Tool.MetroButton();
             this.btnStart = new LegoIV_Power_Tool.MetroButton();
             this.btnMonitorOff = new LegoIV_Power_Tool.MetroButton();
@@ -78,7 +79,6 @@
             this.btnRestart = new LegoIV_Power_Tool.MetroButton();
             this.btnHibernate = new LegoIV_Power_Tool.MetroButton();
             this.btnShutdown = new LegoIV_Power_Tool.MetroButton();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.grpbxDelayTime.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrdSecond)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrdMinute)).BeginInit();
@@ -450,6 +450,18 @@
             this.stopToolStripMenuItem.Text = "STOP";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
             // 
+            // lnkCheckForUpdate
+            // 
+            this.lnkCheckForUpdate.AutoSize = true;
+            this.lnkCheckForUpdate.Location = new System.Drawing.Point(488, 375);
+            this.lnkCheckForUpdate.Name = "lnkCheckForUpdate";
+            this.lnkCheckForUpdate.Size = new System.Drawing.Size(103, 15);
+            this.lnkCheckForUpdate.TabIndex = 18;
+            this.lnkCheckForUpdate.TabStop = true;
+            this.lnkCheckForUpdate.Text = "Check for updates";
+            this.lnkCheckForUpdate.VisitedLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkCheckForUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCheckForUpdate_LinkClicked);
+            // 
             // btnArrow
             // 
             this.btnArrow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -611,7 +623,6 @@
             // 
             this.btnShutdown.BackColor = System.Drawing.Color.Red;
             this.btnShutdown.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnShutdown.FlatAppearance.BorderSize = 1;
             this.btnShutdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShutdown.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShutdown.ForeColor = System.Drawing.Color.White;
@@ -626,24 +637,13 @@
             this.btnShutdown.MouseLeave += new System.EventHandler(this.btnShutdown_MouseLeave);
             this.btnShutdown.MouseHover += new System.EventHandler(this.btnShutdown_MouseHover);
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(488, 375);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(103, 15);
-            this.linkLabel1.TabIndex = 18;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Check for updates";
-            this.linkLabel1.VisitedLinkColor = System.Drawing.Color.RoyalBlue;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(655, 393);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.lnkCheckForUpdate);
             this.Controls.Add(this.lblHelpContent);
             this.Controls.Add(this.lblUsage);
             this.Controls.Add(this.lblSettingsBox);
@@ -736,7 +736,7 @@
         private System.Windows.Forms.ToolStripMenuItem lockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem switchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem monitoroffToolStripMenuItem;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel lnkCheckForUpdate;
     }
 }
 

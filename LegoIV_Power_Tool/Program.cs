@@ -14,23 +14,27 @@ namespace LegoIV_Power_Tool
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        [DllImport("user32.dll")]
-        private static extern int GetDesktopWindow();
+        //[DllImport("user32.dll")]
+        //private static extern int GetDesktopWindow();
 
         [DllImport("kernel32.dll")]
         private static extern bool AttachConsole(int dwProcessID);
         private const int ATTACH_PARENT_PROCESS = -1;
+        //private static extern bool AllocConsole();
         static void Main(string[] args)
         {
             if (args.Length > 0)
             {
                 AttachConsole(ATTACH_PARENT_PROCESS);
+                //AllocConsole();
+                System.Threading.Thread.Sleep(1000);
                 System.Console.WriteLine("Running in console mode...");
+                //System.Console.ReadLine();
                 DateTime startTime = DateTime.Now;
                 DateTime endTime;
                 Functions._ActionCode = -1;
                 //Functions._HWND = (0xFFFF > System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle.ToInt32()) ? 0xFFFF : System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle.ToInt32();
-                Functions._HWND = (0xFFFF < GetDesktopWindow()) ? 0xFFFF : GetDesktopWindow();
+                //Functions._HWND = (0xFFFF < GetDesktopWindow()) ? 0xFFFF : GetDesktopWindow();
                 bool paramCheck = true;
                 for (int i = 0; i < args.Length; i++)
                 {
@@ -157,7 +161,7 @@ namespace LegoIV_Power_Tool
                 {
                     Functions.PowerAction(Functions._ActionCode);
                 }
-                Environment.Exit(1);
+                Console.ReadKey();
             }
             else
             {

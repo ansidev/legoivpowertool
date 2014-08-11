@@ -151,12 +151,12 @@ namespace LegoIV_Power_Tool
         {
             // Turn off monitor
             Console.WriteLine("Turning off your monitor...");
-            SendMessage(_HWND, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
+            SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
         }
         internal static void MonitorOn()
         {
             // Turn on monitor
-            SendMessage(_HWND, WM_SYSCOMMAND, SC_MONITORPOWER, 1);
+            SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 1);
         }
 
         internal static void PowerAction(int _Action)

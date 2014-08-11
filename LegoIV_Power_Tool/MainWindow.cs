@@ -11,6 +11,8 @@ using System.Threading;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Taskbar;
 using System.Reflection;
+using System.Net;
+using System.IO;
 namespace LegoIV_Power_Tool
 {
     public partial class MainWindow : Form
@@ -598,6 +600,44 @@ namespace LegoIV_Power_Tool
             this.Hide();
             Functions.PowerAction(8);
             Application.Exit();
+        }
+
+        public bool AcceptAllCertifications(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certification, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+        {
+            return true;
+        }
+        private void lnkCheckForUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string UpdateURL = "https://api.github.com/repos/ansidev/legoivpowertool/releases";
+            string UserAgent = "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36";
+            WebClient client = new WebClient();
+            client.Headers.Add("user-agent", UserAgent);
+            string rawdata = client.DownloadString(UpdateURL);
+            MessageBox.Show(rawdata);
+            #region Comment 
+            //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(UpdateURL);
+            //request.Method = "GET";
+            //request.ServicePoint.Expect100Continue = false;
+            //request.UserAgent = UserAgent;
+            //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            //if (response.StatusCode == HttpStatusCode.OK)
+            //{
+            //    Stream stream = response.GetResponseStream();
+            //    StreamReader reader = null;
+            //    if (response.CharacterSet == null)
+            //    {
+            //        reader = new StreamReader(stream);
+            //    }
+            //    else
+            //    {
+            //        reader = new StreamReader(stream, Encoding.GetEncoding(response.CharacterSet));
+            //    }
+            //    string data = reader.ReadToEnd();
+            //    MessageBox.Show(data);
+            //    reader.Close();
+            //    response.Close();
+            //}
+            #endregion
         }
 
 
