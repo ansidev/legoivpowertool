@@ -28,17 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-
+            this.SuspendLayout();
+            // 
+            // MetroButton
+            // 
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
             this.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
-            this.BackColor = System.Drawing.Color.FromArgb(0, 120, 224);
             this.Location = new System.Drawing.Point(13, 34);
             this.Size = new System.Drawing.Size(120, 32);
-            this.TabIndex = 0;
-            this.Text = "";
             this.UseVisualStyleBackColor = true;
+            this.ResumeLayout(false);
+
         }
 
         #endregion

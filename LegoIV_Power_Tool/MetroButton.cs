@@ -34,7 +34,6 @@ namespace LegoIV_Power_Tool
             EventHandler handler = SelectedChanged; 
             if (handler != null)
             {
-                MessageBox.Show("Hello world!");
                 handler(this, e);
             }
         }
@@ -47,6 +46,21 @@ namespace LegoIV_Power_Tool
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
+        }
+
+        protected override void OnGotFocus(EventArgs e)
+        {
+            base.OnGotFocus(e);
+            //if (this.Selected == true) this.FlatAppearance.BorderSize = 1;
+        }
+
+        protected override void OnLostFocus(EventArgs e)
+        {
+            base.OnLostFocus(e);
+            if (this.Selected == true)
+            {
+                this.FlatAppearance.BorderSize++;
+            }
         }
     }
 }

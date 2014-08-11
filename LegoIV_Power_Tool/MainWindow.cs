@@ -200,7 +200,7 @@ namespace LegoIV_Power_Tool
             _mtButton.Selected = (_mtButton.Selected == false) ? true : false;
             if (_mtButton.Selected == true)
             {
-                _mtButton.FlatAppearance.BorderSize = 2;
+                _mtButton.FlatAppearance.BorderSize = 1;
                 _mtButton.FlatAppearance.BorderColor = Color.Black;
             }
             else
@@ -468,6 +468,10 @@ namespace LegoIV_Power_Tool
         private void rdbtnAfter_CheckedChanged(object sender, EventArgs e)
         {
             UpdateSettings();
+            if(Functions._DelayTime == 0)
+            {
+                rdbtnNow.Checked = true;
+            }
         }
         #endregion
         private void tmCountdown_Tick(object sender, EventArgs e)

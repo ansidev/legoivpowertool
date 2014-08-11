@@ -20,8 +20,6 @@ namespace LegoIV_Power_Tool
         public static extern bool ExitWindowsEx(uint uFlags, uint dwReason);
         [DllImport("user32.dll")]
         private static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);
-        //[DllImport("user32.dll")]
-        //private static extern int GetDesktopWindow();
         [DllImport("Powrprof.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
         [DllImport("wtsapi32.dll", SetLastError = true)]
@@ -145,7 +143,7 @@ namespace LegoIV_Power_Tool
         internal static void MonitorOff()
         {
             // Turn off monitor
-            SendMessage(System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle.ToInt32(), WM_SYSCOMMAND, SC_MONITORPOWER, 2);
+            SendMessage(_HWND, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
         }
         internal static void MonitorOn()
         {

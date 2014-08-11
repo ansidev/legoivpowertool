@@ -611,7 +611,7 @@
             // 
             this.btnShutdown.BackColor = System.Drawing.Color.Red;
             this.btnShutdown.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnShutdown.FlatAppearance.BorderSize = 2;
+            this.btnShutdown.FlatAppearance.BorderSize = 1;
             this.btnShutdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShutdown.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShutdown.ForeColor = System.Drawing.Color.White;

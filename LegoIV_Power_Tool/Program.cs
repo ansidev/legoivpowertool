@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace LegoIV_Power_Tool
 {
+
     static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
+        [DllImport("user32.dll")]
+        private static extern int GetDesktopWindow();
         static void Main(string[] args)
         {
             if (args.Length > 0)
@@ -20,7 +24,8 @@ namespace LegoIV_Power_Tool
                 DateTime startTime = DateTime.Now;
                 DateTime endTime;
                 Functions._ActionCode = -1;
-                Functions._HWND = (0xFFFF > System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle.ToInt32()) ? 0xFFFF : System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle.ToInt32();
+                //Functions._HWND = (0xFFFF > System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle.ToInt32()) ? 0xFFFF : System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle.ToInt32();
+                Functions._HWND = (0xFFFF < GetDesktopWindow()) ? 0xFFFF : GetDesktopWindow();
                 bool paramCheck = true;
                 for (int i = 0; i < args.Length; i++)
                 {
@@ -134,7 +139,10 @@ namespace LegoIV_Power_Tool
                 {
                     if (DateTime.Now >= endTime)
                     {
+                        //System.Threading.Thread.Sleep(2000);
                         Functions.PowerAction(Functions._ActionCode);
+                        //System.Threading.Thread.Sleep(500);
+                        Environment.Exit(1);
                         break;
                     }
                     else
