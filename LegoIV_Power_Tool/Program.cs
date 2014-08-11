@@ -16,11 +16,16 @@ namespace LegoIV_Power_Tool
         [STAThread]
         [DllImport("user32.dll")]
         private static extern int GetDesktopWindow();
+
+        [DllImport("kernel32.dll")]
+        private static extern bool AttachConsole(int dwProcessID);
+        private const int ATTACH_PARENT_PROCESS = -1;
         static void Main(string[] args)
         {
             if (args.Length > 0)
             {
-                System.Console.WriteLine("Hello World");
+                AttachConsole(ATTACH_PARENT_PROCESS);
+                System.Console.WriteLine("Running in console mode...");
                 DateTime startTime = DateTime.Now;
                 DateTime endTime;
                 Functions._ActionCode = -1;

@@ -50,6 +50,7 @@ namespace LegoIV_Power_Tool
         }
         internal static void ShutdownComputer()
         {
+            Console.WriteLine("Shutting down your computer...");
             try
             {
                 ExitWin(8, 0);
@@ -77,6 +78,7 @@ namespace LegoIV_Power_Tool
 
         internal static void RestartComputer()
         {
+            Console.WriteLine("Restarting your computer...");
             try
             {
                 ExitWin(2, 0);
@@ -97,16 +99,19 @@ namespace LegoIV_Power_Tool
 
         internal static void SleepComputer()
         {
+            Console.WriteLine("Sleeping your computer...");
             SetSuspendState(false, false, false);
             MonitorOff();
         }
         internal static void HibernateComputer()
         {
+            Console.WriteLine("Hibernating your computer...");
             Application.SetSuspendState(PowerState.Hibernate, false, false);
             MonitorOff();
         }
         internal static void SignoutComputer()
         {
+            Console.WriteLine("Signing out your account...");
             try
             {
                 ExitWindowsEx(0, 0);
@@ -126,6 +131,7 @@ namespace LegoIV_Power_Tool
         }
         internal static void LockComputer()
         {
+            Console.WriteLine("Locking your computer...");
             MonitorOff();
             LockWorkStation();
             MonitorOn();
@@ -133,6 +139,7 @@ namespace LegoIV_Power_Tool
         }
         internal static void SwitchUser()
         {
+            Console.WriteLine("Switching between your computer account...");
             WTSDisconnectSession(WTS_CURRENT_SERVER_HANDLE, WTS_CURRENT_SESSION, false);
         }
         //internal static void MonitorOff(Form _FRM)
@@ -143,6 +150,7 @@ namespace LegoIV_Power_Tool
         internal static void MonitorOff()
         {
             // Turn off monitor
+            Console.WriteLine("Turning off your monitor...");
             SendMessage(_HWND, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
         }
         internal static void MonitorOn()
