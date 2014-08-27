@@ -69,6 +69,8 @@
             this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lnkCheckForUpdate = new System.Windows.Forms.LinkLabel();
+            this.lblReleaseInfo = new System.Windows.Forms.Label();
+            this.lblRelease = new System.Windows.Forms.Label();
             this.btnArrow = new LegoIV_Power_Tool.MetroButton();
             this.btnStart = new LegoIV_Power_Tool.MetroButton();
             this.btnMonitorOff = new LegoIV_Power_Tool.MetroButton();
@@ -265,7 +267,7 @@
             this.lblSettings.AutoSize = true;
             this.lblSettings.BackColor = System.Drawing.Color.White;
             this.lblSettings.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSettings.Location = new System.Drawing.Point(318, 12);
+            this.lblSettings.Location = new System.Drawing.Point(325, 12);
             this.lblSettings.Name = "lblSettings";
             this.lblSettings.Size = new System.Drawing.Size(79, 15);
             this.lblSettings.TabIndex = 12;
@@ -278,7 +280,7 @@
             this.lblSettingsBox.ForeColor = System.Drawing.Color.Black;
             this.lblSettingsBox.Location = new System.Drawing.Point(322, 33);
             this.lblSettingsBox.Name = "lblSettingsBox";
-            this.lblSettingsBox.Size = new System.Drawing.Size(321, 71);
+            this.lblSettingsBox.Size = new System.Drawing.Size(321, 41);
             this.lblSettingsBox.TabIndex = 13;
             // 
             // tmCountdown
@@ -289,7 +291,7 @@
             // lblUsage
             // 
             this.lblUsage.AutoSize = true;
-            this.lblUsage.Location = new System.Drawing.Point(322, 111);
+            this.lblUsage.Location = new System.Drawing.Point(325, 78);
             this.lblUsage.Name = "lblUsage";
             this.lblUsage.Size = new System.Drawing.Size(42, 15);
             this.lblUsage.TabIndex = 16;
@@ -298,9 +300,9 @@
             // lblHelpContent
             // 
             this.lblHelpContent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblHelpContent.Location = new System.Drawing.Point(325, 130);
+            this.lblHelpContent.Location = new System.Drawing.Point(322, 97);
             this.lblHelpContent.Name = "lblHelpContent";
-            this.lblHelpContent.Size = new System.Drawing.Size(318, 220);
+            this.lblHelpContent.Size = new System.Drawing.Size(321, 125);
             this.lblHelpContent.TabIndex = 17;
             this.lblHelpContent.Text = resources.GetString("lblHelpContent.Text");
             // 
@@ -461,6 +463,23 @@
             this.lnkCheckForUpdate.Text = "Check for updates";
             this.lnkCheckForUpdate.VisitedLinkColor = System.Drawing.Color.RoyalBlue;
             this.lnkCheckForUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCheckForUpdate_LinkClicked);
+            // 
+            // lblReleaseInfo
+            // 
+            this.lblReleaseInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblReleaseInfo.Location = new System.Drawing.Point(322, 245);
+            this.lblReleaseInfo.Name = "lblReleaseInfo";
+            this.lblReleaseInfo.Size = new System.Drawing.Size(321, 125);
+            this.lblReleaseInfo.TabIndex = 20;
+            // 
+            // lblRelease
+            // 
+            this.lblRelease.AutoSize = true;
+            this.lblRelease.Location = new System.Drawing.Point(325, 226);
+            this.lblRelease.Name = "lblRelease";
+            this.lblRelease.Size = new System.Drawing.Size(83, 15);
+            this.lblRelease.TabIndex = 19;
+            this.lblRelease.Text = "Latest Release:";
             // 
             // btnArrow
             // 
@@ -643,6 +662,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(655, 393);
+            this.Controls.Add(this.lblReleaseInfo);
+            this.Controls.Add(this.lblRelease);
             this.Controls.Add(this.lnkCheckForUpdate);
             this.Controls.Add(this.lblHelpContent);
             this.Controls.Add(this.lblUsage);
@@ -737,6 +758,8 @@
         private System.Windows.Forms.ToolStripMenuItem switchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem monitoroffToolStripMenuItem;
         private System.Windows.Forms.LinkLabel lnkCheckForUpdate;
+        private System.Windows.Forms.Label lblReleaseInfo;
+        private System.Windows.Forms.Label lblRelease;
     }
 }
 

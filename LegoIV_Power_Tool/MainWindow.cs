@@ -13,6 +13,10 @@ using Microsoft.WindowsAPICodePack.Taskbar;
 using System.Reflection;
 using System.Net;
 using System.IO;
+using System.Xml;
+using Newtonsoft.Json;
+
+
 namespace LegoIV_Power_Tool
 {
     public partial class MainWindow : Form
@@ -494,7 +498,7 @@ namespace LegoIV_Power_Tool
                 this.Hide();
                 Functions.PowerAction(Functions._ActionCode);
                 this.Close();
-                Application.Exit();
+                System.Windows.Forms.Application.Exit();
             }
         }
 
@@ -540,7 +544,7 @@ namespace LegoIV_Power_Tool
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -557,49 +561,49 @@ namespace LegoIV_Power_Tool
         {
             this.Hide();
             Functions.PowerAction(2);
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void sleepToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
             Functions.PowerAction(3);
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void hibernateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
             Functions.PowerAction(4);
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void signoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
             Functions.PowerAction(5);
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void lockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
             Functions.PowerAction(6);
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void switchToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
             Functions.PowerAction(7);
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void monitoroffToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
             Functions.PowerAction(8);
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         public bool AcceptAllCertifications(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certification, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
@@ -608,12 +612,22 @@ namespace LegoIV_Power_Tool
         }
         private void lnkCheckForUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            sttStatusBar.Text = "Checking for new release...";
             string UpdateURL = "https://api.github.com/repos/ansidev/legoivpowertool/releases";
             string UserAgent = "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36";
             WebClient client = new WebClient();
             client.Headers.Add("user-agent", UserAgent);
+            //string beforeData = "{\r\n'?xml': {\r\n'@version': '1.0',\r\n'@encoding': 'UTF-8'\r\n},\r\n'root': {\r\n'release': ";
+            //string afterData = @"}\r\n}";
+            //string rawdata = beforeData + client.DownloadString(UpdateURL) + afterData;
             string rawdata = client.DownloadString(UpdateURL);
-            MessageBox.Show(rawdata);
+            //MessageBox.Show(rawdata);
+            //XmlDocument doc = (XmlDocument)JsonConvert.DeserializeXmlNode(rawdata);
+            List<GitHubRelease> releases = new List<GitHubRelease>();
+            releases = JsonConvert.DeserializeObject<List<GitHubRelease>>(rawdata);
+            GitHubAPI GHAPI = new GitHubAPI();
+            lblReleaseInfo.Text = GHAPI.DisplayReleaseInfo(releases[0]);
+
             #region Comment 
             //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(UpdateURL);
             //request.Method = "GET";
