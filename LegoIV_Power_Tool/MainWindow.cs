@@ -617,6 +617,7 @@ namespace LegoIV_Power_Tool
         private void lnkCheckForUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             sttStatusBar.Text = "Checking for new release...";
+            System.Threading.Thread.Sleep(1000);
             string UpdateURL = "https://api.github.com/repos/ansidev/legoivpowertool/releases";
             string UserAgent = "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36";
             WebClient client = new WebClient();
@@ -629,8 +630,24 @@ namespace LegoIV_Power_Tool
             //XmlDocument doc = (XmlDocument)JsonConvert.DeserializeXmlNode(rawdata);
             List<GitHubRelease> releases = new List<GitHubRelease>();
             releases = JsonConvert.DeserializeObject<List<GitHubRelease>>(rawdata);
-            GitHubAPI GHAPI = new GitHubAPI();
-            lblReleaseInfo.Text = GHAPI.DisplayReleaseInfo(releases[0]);
+            lblReleaseInfo.Text = releases[0].DisplayReleaseInfo();
+            string latestVersion = releases[0].GetReleaseVersion().Replace('.'.ToString(), String.Empty);
+            string localVersion = About.Version.Replace('.'.ToString(), String.Empty);
+            if(Int16.Parse(latestVersion) >= Int16.Parse(localVersion))
+            {
+                client = new WebClient();
+                client.Headers.Add("user-agent", UserAgent);
+                rawdata = client.DownloadString(releases[0].assets_url);
+                List<GitHubReleaseAsset> assets = new List<GitHubReleaseAsset>();
+                assets = JsonConvert.DeserializeObject<List<GitHubReleaseAsset>>(rawdata);
+                GitHubAPI GHAPI = new GitHubAPI();
+                lblReleaseInfo.Text += GHAPI.DownloadURL(assets);
+            }
+            else
+            {
+                MessageBox.Show("You are running latest version!");
+            }
+            sttStatusBar.Text = "Checked";
 
             #region Comment 
             //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(UpdateURL);
