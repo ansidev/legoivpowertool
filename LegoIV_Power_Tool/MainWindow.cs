@@ -141,7 +141,7 @@ namespace LegoIV_Power_Tool
 
             JumpListCustomCategory category = new JumpListCustomCategory("Action");
             category.AddJumpListItems(
-                new JumpListLink(cmdPath, "Shutdown") { Arguments = "/p" },
+                new JumpListLink(cmdPath, "Shut down") { Arguments = "/p" },
                 new JumpListLink(cmdPath, "Restart") { Arguments = "/r" },
                 new JumpListLink(cmdPath, "Sleep") { Arguments = "/s" },
                 new JumpListLink(cmdPath, "Hibernate") { Arguments = "/h" },
@@ -658,11 +658,9 @@ namespace LegoIV_Power_Tool
             #endregion
         }
 
-        private void metroButton1_Click(object sender, EventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(1);
         }
-
-
     }
 }

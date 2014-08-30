@@ -19,8 +19,8 @@ namespace LegoIV_Power_Tool
         [DllImport("user32")]
         public static extern bool ExitWindowsEx(uint uFlags, uint dwReason);
         [DllImport("user32.dll")]
-        private static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);
-        //private static extern int PostMessage(int hWnd, int hMsg, int wParam, int lParam);
+        //private static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);
+        private static extern int PostMessage(int hWnd, int hMsg, int wParam, int lParam);
         [DllImport("Powrprof.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
         [DllImport("wtsapi32.dll", SetLastError = true)]
@@ -152,13 +152,13 @@ namespace LegoIV_Power_Tool
         {
             // Turn off monitor
             //System.Threading.Thread.Sleep(2000);
-            SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
-            Application.Exit();
+            PostMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
+            //Application.Exit();
         }
         internal static void MonitorOn()
         {
             // Turn on monitor
-            SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 1);
+            PostMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 1);
         }
 
         internal static void PowerAction(int _Action)

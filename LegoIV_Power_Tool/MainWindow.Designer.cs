@@ -71,7 +71,7 @@
             this.lnkCheckForUpdate = new System.Windows.Forms.LinkLabel();
             this.lblReleaseInfo = new System.Windows.Forms.Label();
             this.lblRelease = new System.Windows.Forms.Label();
-            this.metroButton1 = new LegoIV_Power_Tool.MetroButton();
+            this.btnExit = new LegoIV_Power_Tool.MetroButton();
             this.btnArrow = new LegoIV_Power_Tool.MetroButton();
             this.btnStart = new LegoIV_Power_Tool.MetroButton();
             this.btnMonitorOff = new LegoIV_Power_Tool.MetroButton();
@@ -482,19 +482,19 @@
             this.lblRelease.TabIndex = 19;
             this.lblRelease.Text = "Latest Release:";
             // 
-            // metroButton1
+            // btnExit
             // 
-            this.metroButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
-            this.metroButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.metroButton1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroButton1.ForeColor = System.Drawing.Color.White;
-            this.metroButton1.Location = new System.Drawing.Point(255, 346);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(60, 26);
-            this.metroButton1.TabIndex = 21;
-            this.metroButton1.Text = "Exit";
-            this.metroButton1.UseVisualStyleBackColor = true;
-            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
+            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Location = new System.Drawing.Point(255, 346);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(60, 26);
+            this.btnExit.TabIndex = 21;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnArrow
             // 
@@ -677,7 +677,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(655, 393);
-            this.Controls.Add(this.metroButton1);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.lblReleaseInfo);
             this.Controls.Add(this.lblRelease);
             this.Controls.Add(this.lnkCheckForUpdate);
@@ -776,7 +776,7 @@
         private System.Windows.Forms.LinkLabel lnkCheckForUpdate;
         private System.Windows.Forms.Label lblReleaseInfo;
         private System.Windows.Forms.Label lblRelease;
-        private MetroButton metroButton1;
+        private MetroButton btnExit;
     }
 }
 
