@@ -141,14 +141,14 @@ namespace LegoIV_Power_Tool
 
             JumpListCustomCategory category = new JumpListCustomCategory("Action");
             category.AddJumpListItems(
-                new JumpListLink(cmdPath, "Shutdown") { Arguments = "/shutdown" },
-                new JumpListLink(cmdPath, "Restart") { Arguments = "/restart" },
-                new JumpListLink(cmdPath, "Sleep") { Arguments = "/sleep" },
-                new JumpListLink(cmdPath, "Hibernate") { Arguments = "/hibernate" },
-                new JumpListLink(cmdPath, "Sign out") { Arguments = "/signout" },
-                new JumpListLink(cmdPath, "Lock") { Arguments = "/lock" },
-                new JumpListLink(cmdPath, "Switch user") { Arguments = "/switch" },
-                new JumpListLink(cmdPath, "Turn off monitor") { Arguments = "/monitoroff" });
+                new JumpListLink(cmdPath, "Shutdown") { Arguments = "/p" },
+                new JumpListLink(cmdPath, "Restart") { Arguments = "/r" },
+                new JumpListLink(cmdPath, "Sleep") { Arguments = "/s" },
+                new JumpListLink(cmdPath, "Hibernate") { Arguments = "/h" },
+                new JumpListLink(cmdPath, "Sign out") { Arguments = "/q" },
+                new JumpListLink(cmdPath, "Lock") { Arguments = "/l" },
+                new JumpListLink(cmdPath, "Switch user") { Arguments = "/c" },
+                new JumpListLink(cmdPath, "Turn off monitor") { Arguments = "/m" });
             jumpList.AddCustomCategories(category);
 
             jumpList.Refresh();
@@ -497,6 +497,9 @@ namespace LegoIV_Power_Tool
                 this.tmCountdown.Stop();
                 this.Hide();
                 Functions.PowerAction(Functions._ActionCode);
+                this.ntfIcon.Icon = null;
+                this.ntfIcon.Visible = false;
+                //System.Threading.Thread.Sleep(2000);
                 this.Close();
                 System.Windows.Forms.Application.Exit();
             }
@@ -550,6 +553,7 @@ namespace LegoIV_Power_Tool
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.ntfIcon.Icon = null;
+            Application.Exit();
         }
 
         private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
@@ -652,6 +656,11 @@ namespace LegoIV_Power_Tool
             //    response.Close();
             //}
             #endregion
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(1);
         }
 
 

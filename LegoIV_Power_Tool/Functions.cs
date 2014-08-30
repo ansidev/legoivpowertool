@@ -20,6 +20,7 @@ namespace LegoIV_Power_Tool
         public static extern bool ExitWindowsEx(uint uFlags, uint dwReason);
         [DllImport("user32.dll")]
         private static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);
+        //private static extern int PostMessage(int hWnd, int hMsg, int wParam, int lParam);
         [DllImport("Powrprof.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
         [DllImport("wtsapi32.dll", SetLastError = true)]
@@ -99,19 +100,19 @@ namespace LegoIV_Power_Tool
 
         internal static void SleepComputer()
         {
-            Console.WriteLine("Sleeping your computer...");
+            //Console.WriteLine("Sleeping your computer...");
             SetSuspendState(false, false, false);
             MonitorOff();
         }
         internal static void HibernateComputer()
         {
-            Console.WriteLine("Hibernating your computer...");
+            //Console.WriteLine("Hibernating your computer...");
             Application.SetSuspendState(PowerState.Hibernate, false, false);
             MonitorOff();
         }
         internal static void SignoutComputer()
         {
-            Console.WriteLine("Signing out your account...");
+            //Console.WriteLine("Signing out your account...");
             try
             {
                 ExitWindowsEx(0, 0);
@@ -131,7 +132,7 @@ namespace LegoIV_Power_Tool
         }
         internal static void LockComputer()
         {
-            Console.WriteLine("Locking your computer...");
+            //Console.WriteLine("Locking your computer...");
             MonitorOff();
             LockWorkStation();
             MonitorOn();
@@ -139,7 +140,7 @@ namespace LegoIV_Power_Tool
         }
         internal static void SwitchUser()
         {
-            Console.WriteLine("Switching between your computer account...");
+            //Console.WriteLine("Switching between your computer account...");
             WTSDisconnectSession(WTS_CURRENT_SERVER_HANDLE, WTS_CURRENT_SESSION, false);
         }
         //internal static void MonitorOff(Form _FRM)
@@ -150,8 +151,9 @@ namespace LegoIV_Power_Tool
         internal static void MonitorOff()
         {
             // Turn off monitor
-            Console.WriteLine("Turning off your monitor...");
+            //System.Threading.Thread.Sleep(2000);
             SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
+            Application.Exit();
         }
         internal static void MonitorOn()
         {

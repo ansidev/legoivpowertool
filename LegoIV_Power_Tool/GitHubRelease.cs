@@ -21,9 +21,16 @@ namespace LegoIV_Power_Tool
         public bool prerelease { get; set; }
         public DateTime created_at { get; set; }
         public DateTime published_at { get; set; }
-        public List<GitHubReleaseAsset> asset { get; set; }
+        public GitHubReleaseAsset[] asset { get; set; }
         public string tarbal_url { get; set; }
         public string zipball_url { get; set; }
         public string body { get; set; }
+
+        //Method
+        //public GitHubRelease()
+        //{
+        //    author = new GitHubAuthor();
+        //    asset = new List<GitHubReleaseAsset>();
+        //}
     }
 }
