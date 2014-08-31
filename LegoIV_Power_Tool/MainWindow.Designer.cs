@@ -762,11 +762,7 @@
         private System.Windows.Forms.Label lblRelease;
         private System.Windows.Forms.Label lblReleaseInfo;
         private MetroButton btnCloseUpdate;
-        private MetroButton btnBrowse;
-        private MetroButton btnDownloadx86;
-        private MetroButton btnDownloadx64;
-
-
+        private MetroButton btnDownload;
     }
 }
 

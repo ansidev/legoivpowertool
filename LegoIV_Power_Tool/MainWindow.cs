@@ -26,6 +26,7 @@ namespace LegoIV_Power_Tool
         internal static int _Handle = 0;
         private bool isHidden { get; set; }
         List<GitHubRelease> releases = new List<GitHubRelease>();
+        WindowsAPI WAPI = new WindowsAPI();
         #region Other Functions
         private void EnableAllButton(MetroButton mtButton)
         {
@@ -657,42 +658,23 @@ namespace LegoIV_Power_Tool
             string localVersion = About.Version.Replace('.'.ToString(), String.Empty);
             if (Int16.Parse(latestVersion) >= Int16.Parse(localVersion))
             {
-                this.btnDownloadx86 = new LegoIV_Power_Tool.MetroButton();
-                this.btnDownloadx64 = new LegoIV_Power_Tool.MetroButton();
-                this.btnBrowse = new LegoIV_Power_Tool.MetroButton();
+                this.btnDownload = new LegoIV_Power_Tool.MetroButton();
+                // 
+                // btnDownload
+                // 
+                btnDownload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
+                btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                btnDownload.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                btnDownload.ForeColor = System.Drawing.Color.White;
+                btnDownload.Location = new System.Drawing.Point(321, 339);
+                btnDownload.Name = "btnDownload";
+                btnDownload.Size = new System.Drawing.Size(100, 26);
+                btnDownload.TabIndex = 22;
+                btnDownload.Text = "Download " + WAPI.Arch();
+                btnDownload.UseVisualStyleBackColor = true;
+                btnDownload.Click += new EventHandler(btnDownload_Click);
+                this.Controls.Add(btnDownload);
                 this.SuspendLayout();
-
-                // 
-                // btnDownloadx86
-                // 
-                btnDownloadx86.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
-                btnDownloadx86.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                btnDownloadx86.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                btnDownloadx86.ForeColor = System.Drawing.Color.White;
-                btnDownloadx86.Location = new System.Drawing.Point(321, 339);
-                btnDownloadx86.Name = "btnDownloadx86";
-                btnDownloadx86.Size = new System.Drawing.Size(60, 26);
-                btnDownloadx86.TabIndex = 22;
-                btnDownloadx86.Text = "x86";
-                btnDownloadx86.UseVisualStyleBackColor = true;
-                btnDownloadx86.Click += new EventHandler(btnDownloadx86_Click);
-                // 
-                // btnDownloadx64
-                // 
-                btnDownloadx64.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
-                btnDownloadx64.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                btnDownloadx64.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                btnDownloadx64.ForeColor = System.Drawing.Color.White;
-                btnDownloadx64.Location = new System.Drawing.Point(385, 339);
-                btnDownloadx64.Name = "btnDownloadx64";
-                btnDownloadx64.Size = new System.Drawing.Size(60, 26);
-                btnDownloadx64.TabIndex = 23;
-                btnDownloadx64.Text = "x64";
-                btnDownloadx64.UseVisualStyleBackColor = true;
-                btnDownloadx64.Click += new EventHandler(btnDownloadx64_Click);
-
-                this.Controls.Add(btnDownloadx86);
-                this.Controls.Add(btnDownloadx64);
             }
             else
             {
@@ -726,22 +708,13 @@ namespace LegoIV_Power_Tool
             #endregion
         }
 
-        private void btnDownloadx64_Click(object sender, EventArgs e)
+        private void btnDownload_Click(object sender, EventArgs e)
         {
             string UserAgent = "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.102 Safari/537.36";
             WebClient client = new WebClient();
             client.Headers.Add("user-agent", UserAgent);
             GitHubAPI GHAPI = new GitHubAPI();
-            GitHubReleaseAsset _asset = GHAPI.ReleaseAsset(releases, "x64");
-            client.DownloadFile(_asset.browser_download_url, _asset.name);
-        }
-        private void btnDownloadx86_Click(object sender, EventArgs e)
-        {
-            string UserAgent = "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.102 Safari/537.36";
-            WebClient client = new WebClient();
-            client.Headers.Add("user-agent", UserAgent);
-            GitHubAPI GHAPI = new GitHubAPI();
-            GitHubReleaseAsset _asset = GHAPI.ReleaseAsset(releases, "x86");
+            GitHubReleaseAsset _asset = GHAPI.ReleaseAsset(releases, WAPI.Arch());
             client.DownloadFile(_asset.browser_download_url, _asset.name);
         }
         private void btnCloseUpdate_Click(object sender, EventArgs e)
@@ -758,13 +731,9 @@ namespace LegoIV_Power_Tool
             {
                 this.Controls.Remove(btnCloseUpdate);
             }
-            if (this.Controls.Contains(btnDownloadx86))
+            if (this.Controls.Contains(btnDownload))
             {
-                this.Controls.Remove(btnDownloadx86);
-            }
-            if (this.Controls.Contains(btnDownloadx64))
-            {
-                this.Controls.Remove(btnDownloadx64);
+                this.Controls.Remove(btnDownload);
             }
             this.SuspendLayout();
         }
