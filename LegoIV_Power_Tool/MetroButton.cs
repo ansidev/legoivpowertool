@@ -57,10 +57,10 @@ namespace LegoIV_Power_Tool
         protected override void OnLostFocus(EventArgs e)
         {
             base.OnLostFocus(e);
-            if (this.Selected == true)
-            {
-                this.FlatAppearance.BorderSize++;
-            }
+            //if (this.Selected == true)
+            //{
+            //    this.FlatAppearance.BorderSize++;
+            //}
         }
     }
 }

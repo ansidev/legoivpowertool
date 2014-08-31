@@ -69,8 +69,6 @@
             this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lnkCheckForUpdate = new System.Windows.Forms.LinkLabel();
-            this.lblReleaseInfo = new System.Windows.Forms.Label();
-            this.lblRelease = new System.Windows.Forms.Label();
             this.btnExit = new LegoIV_Power_Tool.MetroButton();
             this.btnArrow = new LegoIV_Power_Tool.MetroButton();
             this.btnStart = new LegoIV_Power_Tool.MetroButton();
@@ -104,6 +102,8 @@
             this.lnkAbout.Text = "About";
             this.lnkAbout.VisitedLinkColor = System.Drawing.Color.RoyalBlue;
             this.lnkAbout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkAbout_LinkClicked);
+            this.lnkAbout.MouseLeave += new System.EventHandler(this.item_MouseLeave);
+            this.lnkAbout.MouseHover += new System.EventHandler(this.lnkAbout_MouseHover);
             // 
             // lblAction
             // 
@@ -464,23 +464,8 @@
             this.lnkCheckForUpdate.Text = "Check for updates";
             this.lnkCheckForUpdate.VisitedLinkColor = System.Drawing.Color.RoyalBlue;
             this.lnkCheckForUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCheckForUpdate_LinkClicked);
-            // 
-            // lblReleaseInfo
-            // 
-            this.lblReleaseInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblReleaseInfo.Location = new System.Drawing.Point(322, 245);
-            this.lblReleaseInfo.Name = "lblReleaseInfo";
-            this.lblReleaseInfo.Size = new System.Drawing.Size(321, 125);
-            this.lblReleaseInfo.TabIndex = 20;
-            // 
-            // lblRelease
-            // 
-            this.lblRelease.AutoSize = true;
-            this.lblRelease.Location = new System.Drawing.Point(325, 226);
-            this.lblRelease.Name = "lblRelease";
-            this.lblRelease.Size = new System.Drawing.Size(83, 15);
-            this.lblRelease.TabIndex = 19;
-            this.lblRelease.Text = "Latest Release:";
+            this.lnkCheckForUpdate.MouseLeave += new System.EventHandler(this.item_MouseLeave);
+            this.lnkCheckForUpdate.MouseHover += new System.EventHandler(this.lnkCheckForUpdate_MouseHover);
             // 
             // btnExit
             // 
@@ -548,7 +533,7 @@
             this.btnMonitorOff.Text = "TURN OFF MONITOR";
             this.btnMonitorOff.UseVisualStyleBackColor = false;
             this.btnMonitorOff.Click += new System.EventHandler(this.btnMonitorOff_Click);
-            this.btnMonitorOff.MouseLeave += new System.EventHandler(this.btnMonitorOff_MouseLeave);
+            this.btnMonitorOff.MouseLeave += new System.EventHandler(this.item_MouseLeave);
             this.btnMonitorOff.MouseHover += new System.EventHandler(this.btnMonitorOff_MouseHover);
             // 
             // btnSwitch
@@ -565,7 +550,7 @@
             this.btnSwitch.Text = "SWITCH USER";
             this.btnSwitch.UseVisualStyleBackColor = false;
             this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
-            this.btnSwitch.MouseLeave += new System.EventHandler(this.btnSwitch_MouseLeave);
+            this.btnSwitch.MouseLeave += new System.EventHandler(this.item_MouseLeave);
             this.btnSwitch.MouseHover += new System.EventHandler(this.btnSwitch_MouseHover);
             // 
             // btnSignout
@@ -582,7 +567,7 @@
             this.btnSignout.Text = "SIGN OUT";
             this.btnSignout.UseVisualStyleBackColor = false;
             this.btnSignout.Click += new System.EventHandler(this.btnSignout_Click);
-            this.btnSignout.MouseLeave += new System.EventHandler(this.btnSignout_MouseLeave);
+            this.btnSignout.MouseLeave += new System.EventHandler(this.item_MouseLeave);
             this.btnSignout.MouseHover += new System.EventHandler(this.btnSignout_MouseHover);
             // 
             // btnLock
@@ -599,7 +584,7 @@
             this.btnLock.Text = "LOCK SCREEN";
             this.btnLock.UseVisualStyleBackColor = false;
             this.btnLock.Click += new System.EventHandler(this.btnLock_Click);
-            this.btnLock.MouseLeave += new System.EventHandler(this.btnLock_MouseLeave);
+            this.btnLock.MouseLeave += new System.EventHandler(this.item_MouseLeave);
             this.btnLock.MouseHover += new System.EventHandler(this.btnLock_MouseHover);
             // 
             // btnSleep
@@ -616,7 +601,7 @@
             this.btnSleep.Text = "SLEEP";
             this.btnSleep.UseVisualStyleBackColor = false;
             this.btnSleep.Click += new System.EventHandler(this.btnSleep_Click);
-            this.btnSleep.MouseLeave += new System.EventHandler(this.btnSleep_MouseLeave);
+            this.btnSleep.MouseLeave += new System.EventHandler(this.item_MouseLeave);
             this.btnSleep.MouseHover += new System.EventHandler(this.btnSleep_MouseHover);
             // 
             // btnRestart
@@ -633,7 +618,7 @@
             this.btnRestart.Text = "RESTART";
             this.btnRestart.UseVisualStyleBackColor = false;
             this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
-            this.btnRestart.MouseLeave += new System.EventHandler(this.btnRestart_MouseLeave);
+            this.btnRestart.MouseLeave += new System.EventHandler(this.item_MouseLeave);
             this.btnRestart.MouseHover += new System.EventHandler(this.btnRestart_MouseHover);
             // 
             // btnHibernate
@@ -650,7 +635,7 @@
             this.btnHibernate.Text = "HIBERNATE";
             this.btnHibernate.UseVisualStyleBackColor = false;
             this.btnHibernate.Click += new System.EventHandler(this.btnHibernate_Click);
-            this.btnHibernate.MouseLeave += new System.EventHandler(this.btnHibernate_MouseLeave);
+            this.btnHibernate.MouseLeave += new System.EventHandler(this.item_MouseLeave);
             this.btnHibernate.MouseHover += new System.EventHandler(this.btnHibernate_MouseHover);
             // 
             // btnShutdown
@@ -668,7 +653,7 @@
             this.btnShutdown.Text = "SHUT DOWN";
             this.btnShutdown.UseVisualStyleBackColor = false;
             this.btnShutdown.Click += new System.EventHandler(this.btnShutdown_Click);
-            this.btnShutdown.MouseLeave += new System.EventHandler(this.btnShutdown_MouseLeave);
+            this.btnShutdown.MouseLeave += new System.EventHandler(this.item_MouseLeave);
             this.btnShutdown.MouseHover += new System.EventHandler(this.btnShutdown_MouseHover);
             // 
             // MainWindow
@@ -678,8 +663,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(655, 393);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.lblReleaseInfo);
-            this.Controls.Add(this.lblRelease);
             this.Controls.Add(this.lnkCheckForUpdate);
             this.Controls.Add(this.lblHelpContent);
             this.Controls.Add(this.lblUsage);
@@ -703,6 +686,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LegoIV Power Tool";
@@ -774,9 +758,15 @@
         private System.Windows.Forms.ToolStripMenuItem switchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem monitoroffToolStripMenuItem;
         private System.Windows.Forms.LinkLabel lnkCheckForUpdate;
-        private System.Windows.Forms.Label lblReleaseInfo;
-        private System.Windows.Forms.Label lblRelease;
         private MetroButton btnExit;
+        private System.Windows.Forms.Label lblRelease;
+        private System.Windows.Forms.Label lblReleaseInfo;
+        private MetroButton btnCloseUpdate;
+        private MetroButton btnBrowse;
+        private MetroButton btnDownloadx86;
+        private MetroButton btnDownloadx64;
+
+
     }
 }
 

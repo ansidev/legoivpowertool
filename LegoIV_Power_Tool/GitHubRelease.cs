@@ -35,7 +35,7 @@ namespace LegoIV_Power_Tool
         public DateTime created_at { get; set; }
         [JsonProperty("published_at")]
         public DateTime published_at { get; set; }
-        [JsonProperty("asset")]
+        [JsonProperty("assets")]
         public List<GitHubReleaseAsset> assets { get; set; }
         [JsonProperty("tarball_url")]
         public string tarball_url { get; set; }

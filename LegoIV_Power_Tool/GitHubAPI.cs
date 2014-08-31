@@ -8,16 +8,18 @@ namespace LegoIV_Power_Tool
 {
     class GitHubAPI
     {
-        public string DownloadURL(List<GitHubReleaseAsset> assets)
+        public GitHubReleaseAsset ReleaseAsset(List<GitHubRelease> releases, string _arch )
         {
-            string[] download_link = new string[2];
-            int i = 0;
-            foreach (GitHubReleaseAsset asset in assets)
+            GitHubReleaseAsset _asset = new GitHubReleaseAsset();
+            foreach (GitHubReleaseAsset asset in releases[0].assets)
             {
-                download_link[i] = asset.browser_download_url;
-                i++;
+                if(asset.name.Contains(_arch))
+                {
+                    _asset = asset;
+                    break;
+                }
             }
-            return String.Join(Environment.NewLine, download_link);
+            return _asset;
         }
     }
 }

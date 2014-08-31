@@ -24,40 +24,37 @@ namespace LegoIV_Power_Tool
         //Button
         Button[] ButtonArray = new Button[8];
         internal static int _Handle = 0;
-        private bool isHidden
-        {
-            get;
-            set;
-        }
+        private bool isHidden { get; set; }
+        List<GitHubRelease> releases = new List<GitHubRelease>();
         #region Other Functions
         private void EnableAllButton(MetroButton mtButton)
         {
             if (mtButton.Selected == false)
             {
-                this.btnShutdown.Enabled = this.btnRestart.Enabled = this.btnSleep.Enabled = this.btnHibernate.Enabled = this.btnSignout.Enabled = this.btnLock.Enabled = this.btnSwitch.Enabled = this.btnMonitorOff.Enabled = true;
+                btnShutdown.Enabled = btnRestart.Enabled = btnSleep.Enabled = btnHibernate.Enabled = btnSignout.Enabled = btnLock.Enabled = btnSwitch.Enabled = btnMonitorOff.Enabled = true;
             }
         }
         private string DelayTime()
         {
             string strDelayTime = "0";
-            if (this.rdbtnNow.Checked == true)
+            if (rdbtnNow.Checked == true)
             {
                 strDelayTime = "0";
             }
-            else if (this.rdbtnAfter.Checked == true)
+            else if (rdbtnAfter.Checked == true)
             {
                 strDelayTime = "";
-                if (this.nmrcHour.Value != 0)
+                if (nmrcHour.Value != 0)
                 {
-                    strDelayTime += this.nmrcHour.Value.ToString() + " hour(s) ";
+                    strDelayTime += nmrcHour.Value.ToString() + " hour(s) ";
                 }
-                if (this.nmrdMinute.Value != 0)
+                if (nmrdMinute.Value != 0)
                 {
-                    strDelayTime += this.nmrdMinute.Value.ToString() + " minute(s) ";
+                    strDelayTime += nmrdMinute.Value.ToString() + " minute(s) ";
                 }
-                if (this.nmrdSecond.Value != 0)
+                if (nmrdSecond.Value != 0)
                 {
-                    strDelayTime += this.nmrdSecond.Value.ToString() + " second(s)";
+                    strDelayTime += nmrdSecond.Value.ToString() + " second(s)";
                 }
                 if (strDelayTime == "")
                 {
@@ -69,52 +66,52 @@ namespace LegoIV_Power_Tool
         }
         private string Prefix()
         {
-            string _prefix = (this.lblSettingsBox.Text == "") ? "" : "\n";
+            string _prefix = (lblSettingsBox.Text == "") ? "" : "\n";
             return _prefix;
         }
         private void UpdateSettings()
         {
-            Functions._DelayTime = (this.rdbtnNow.Checked == true) ? 0 : Int32.Parse(this.nmrcHour.Value.ToString()) * 3600 + Int32.Parse(this.nmrdMinute.Value.ToString()) * 60 + Int32.Parse(this.nmrdSecond.Value.ToString());
-            this.pgBar.Maximum = Functions._DelayTime * 1000 + 1000;
-            this.pgBar.Step = 1;
-            this.lblSettingsBox.Text = "";
-            if (this.btnShutdown.Selected == true)
+            Functions._DelayTime = (rdbtnNow.Checked == true) ? 0 : Int32.Parse(nmrcHour.Value.ToString()) * 3600 + Int32.Parse(nmrdMinute.Value.ToString()) * 60 + Int32.Parse(nmrdSecond.Value.ToString());
+            pgBar.Maximum = Functions._DelayTime * 1000 + 1000;
+            pgBar.Step = 1;
+            lblSettingsBox.Text = "";
+            if (btnShutdown.Selected == true)
             {
-                this.lblSettingsBox.Text += "Shutdown = " + this.btnShutdown.Selected.ToString();
+                lblSettingsBox.Text += "Shutdown = " + btnShutdown.Selected.ToString();
             }
-            if (this.btnRestart.Selected == true)
+            if (btnRestart.Selected == true)
             {
-                this.lblSettingsBox.Text += Prefix() + "Restart = " + this.btnRestart.Selected.ToString();
+                lblSettingsBox.Text += Prefix() + "Restart = " + btnRestart.Selected.ToString();
             }
-            if (this.btnSleep.Selected == true)
+            if (btnSleep.Selected == true)
             {
-                this.lblSettingsBox.Text += Prefix() + "Sleep = " + this.btnSleep.Selected.ToString();
+                lblSettingsBox.Text += Prefix() + "Sleep = " + btnSleep.Selected.ToString();
             }
-            if (this.btnHibernate.Selected == true)
+            if (btnHibernate.Selected == true)
             {
-                this.lblSettingsBox.Text += Prefix() + "Hibernate = " + this.btnHibernate.Selected.ToString();
+                lblSettingsBox.Text += Prefix() + "Hibernate = " + btnHibernate.Selected.ToString();
             }
-            if (this.btnSignout.Selected == true)
+            if (btnSignout.Selected == true)
             {
-                this.lblSettingsBox.Text += Prefix() + "Signout = " + this.btnSignout.Selected.ToString();
+                lblSettingsBox.Text += Prefix() + "Signout = " + btnSignout.Selected.ToString();
             }
-            if (this.btnLock.Selected == true)
+            if (btnLock.Selected == true)
             {
-                this.lblSettingsBox.Text += Prefix() + "Lock = " + this.btnLock.Selected.ToString();
+                lblSettingsBox.Text += Prefix() + "Lock = " + btnLock.Selected.ToString();
             }
-            if (this.btnSwitch.Selected == true)
+            if (btnSwitch.Selected == true)
             {
-                this.lblSettingsBox.Text += Prefix() + "Switch = " + this.btnSwitch.Selected.ToString();
+                lblSettingsBox.Text += Prefix() + "Switch = " + btnSwitch.Selected.ToString();
             }
-            if (this.btnMonitorOff.Selected == true)
-                this.lblSettingsBox.Text += Prefix() + "Monitor off = " + this.btnMonitorOff.Selected.ToString();
+            if (btnMonitorOff.Selected == true)
+                lblSettingsBox.Text += Prefix() + "Monitor off = " + btnMonitorOff.Selected.ToString();
             if (DelayTime() != "0")
             {
-                this.lblSettingsBox.Text += Prefix() + "Delay time = " + DelayTime();
+                lblSettingsBox.Text += Prefix() + "Delay time = " + DelayTime();
             }
             else
             {
-                this.lblSettingsBox.Text += Prefix() + "No delay time";
+                lblSettingsBox.Text += Prefix() + "No delay time";
             }
         }
         #endregion
@@ -155,7 +152,7 @@ namespace LegoIV_Power_Tool
         }
         public void MainWindow_Load(object sender, EventArgs e)
         {
-            Functions._HWND = this.Handle.ToInt32();
+            Functions._HWND = Handle.ToInt32();
         }
 
         #region Power Action Function
@@ -175,7 +172,7 @@ namespace LegoIV_Power_Tool
                     break;
                 }
             }
-            if(this.rdbtnAfter.Checked == true)
+            if(rdbtnAfter.Checked == true)
             {
                 delay = (Int32.Parse(nmrcHour.Value.ToString()) * 3600 + Int32.Parse(nmrdMinute.Value.ToString()) * 60 + Int32.Parse(nmrdSecond.Value.ToString()));
             }
@@ -183,7 +180,7 @@ namespace LegoIV_Power_Tool
             {
                 btnStart.Text = "PAUSE";
                 ChangeEnabledProperty(false);
-                this.tmCountdown.Start();
+                tmCountdown.Start();
             }
             else
             {
@@ -206,7 +203,7 @@ namespace LegoIV_Power_Tool
             _mtButton.Selected = (_mtButton.Selected == false) ? true : false;
             if (_mtButton.Selected == true)
             {
-                _mtButton.FlatAppearance.BorderSize = 1;
+                _mtButton.FlatAppearance.BorderSize = 2;
                 _mtButton.FlatAppearance.BorderColor = Color.Black;
             }
             else
@@ -238,121 +235,126 @@ namespace LegoIV_Power_Tool
         }
         private void btnShutdown_Click(object sender, EventArgs e)
         {
-            this.OnClick(this.btnShutdown);
+            OnClick(btnShutdown);
         }
 
         private void btnRestart_Click(object sender, EventArgs e)
         {
-            this.OnClick(this.btnRestart);
+            OnClick(btnRestart);
         }
 
         private void btnSleep_Click(object sender, EventArgs e)
         {
-            this.OnClick(this.btnSleep);
+            OnClick(btnSleep);
         }
 
         private void btnHibernate_Click(object sender, EventArgs e)
         {
-            this.OnClick(this.btnHibernate);
+            OnClick(btnHibernate);
         }
 
         private void btnSignout_Click(object sender, EventArgs e)
         {
-            this.OnClick(this.btnSignout);
+            OnClick(btnSignout);
         }
         private void btnLock_Click(object sender, EventArgs e)
         {
-            this.OnClick(this.btnLock);
+            OnClick(btnLock);
         }
         private void btnSwitch_Click(object sender, EventArgs e)
         {
-            this.OnClick(this.btnSwitch);
+            OnClick(btnSwitch);
         }
         private void btnMonitorOff_Click(object sender, EventArgs e)
         {
-            this.OnClick(this.btnMonitorOff);
+            OnClick(btnMonitorOff);
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
             if (btnStart.Text == "START")
             {
-                this.btnArrow.Enabled = true;
+                btnArrow.Enabled = true;
                 PowerAction();
             }
             else if (btnStart.Text == "PAUSE")
             {
-                this.tmCountdown.Stop();
+                tmCountdown.Stop();
                 btnStart.Text = "RESUME";
-                this.sttStatusBar.Text = "Paused!";
+                sttStatusBar.Text = "Paused!";
             }
             else if (btnStart.Text == "RESUME")
             {
                 btnStart.Text = "PAUSE";
-                this.tmCountdown.Start();
+                tmCountdown.Start();
             }
             else if (btnStart.Text == "STOP")
             {
-                this.tmCountdown.Stop();
+                tmCountdown.Stop();
                 btnStart.Text = "START";
-                this.sttStatusBar.Text = "Stopped!";
-                this.pgBar.Value = 0;
+                sttStatusBar.Text = "Stopped!";
+                pgBar.Value = 0;
                 ChangeEnabledProperty(true);
             }
         }
         private void btnStart_TextChanged(object sender, EventArgs e)
         {
-            if (this.btnStart.Text == "START")
+            if (btnStart.Text == "START")
             {
-                this.startToolStripMenuItem.Text = this.btnStart.Text;
-                this.startToolStripMenuItem.Enabled = false;
-                this.pauseToolStripMenuItem.Enabled = true;
-                this.stopToolStripMenuItem.Enabled = true;
+                startToolStripMenuItem.Text = btnStart.Text;
+                startToolStripMenuItem.Enabled = false;
+                pauseToolStripMenuItem.Enabled = true;
+                stopToolStripMenuItem.Enabled = true;
             }
-            if (this.btnStart.Text == "PAUSE" || this.btnStart.Text == "RESUME")
+            if (btnStart.Text == "PAUSE" || btnStart.Text == "RESUME")
             {
-                this.startToolStripMenuItem.Enabled = false;
-                this.pauseToolStripMenuItem.Text = this.btnStart.Text;
-                this.stopToolStripMenuItem.Enabled = true;
+                startToolStripMenuItem.Enabled = false;
+                pauseToolStripMenuItem.Text = btnStart.Text;
+                stopToolStripMenuItem.Enabled = true;
             }
-            else if (this.btnStart.Text == "STOP")
+            else if (btnStart.Text == "STOP")
             {
-                this.startToolStripMenuItem.Enabled = true;
-                this.pauseToolStripMenuItem.Enabled = false;
-                this.stopToolStripMenuItem.Text = this.btnStart.Text;
-                this.stopToolStripMenuItem.Enabled = false;
+                startToolStripMenuItem.Enabled = true;
+                pauseToolStripMenuItem.Enabled = false;
+                stopToolStripMenuItem.Text = btnStart.Text;
+                stopToolStripMenuItem.Enabled = false;
             }
         }
         private void btnArrow_Click(object sender, EventArgs e)
         {
-            //this.btnArrow.FlatAppearance.BorderSize = 0;
-            Point p = new Point(this.Location.X + this.btnArrow.Location.X + this.btnArrow.Size.Width + 8, this.Location.Y + this.btnArrow.Location.Y + this.btnArrow.Size.Height + 5);
-            this.ctmsChooseActionMenu.Show(p, ToolStripDropDownDirection.Default);
+            //btnArrow.FlatAppearance.BorderSize = 0;
+            Point p = new Point(Location.X + btnArrow.Location.X + btnArrow.Size.Width + 8, Location.Y + btnArrow.Location.Y + btnArrow.Size.Height + 5);
+            ctmsChooseActionMenu.Show(p, ToolStripDropDownDirection.Default);
         }
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(1);
+        }
+
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.btnStart.Text = this.startToolStripMenuItem.Text;
+            btnStart.Text = startToolStripMenuItem.Text;
             PowerAction();
         }
         private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.pauseToolStripMenuItem.Text == "PAUSE")
+            if (pauseToolStripMenuItem.Text == "PAUSE")
             {
-                this.tmCountdown.Stop();
-                this.btnStart.Text = "RESUME";
-                this.sttStatusBar.Text = "Paused!";
+                tmCountdown.Stop();
+                btnStart.Text = "RESUME";
+                sttStatusBar.Text = "Paused!";
             }
-            else if (this.pauseToolStripMenuItem.Text == "RESUME")
+            else if (pauseToolStripMenuItem.Text == "RESUME")
             {
-                this.tmCountdown.Start();
-                this.btnStart.Text = "PAUSE";
+                tmCountdown.Start();
+                btnStart.Text = "PAUSE";
             }
         }
         private void stopToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.tmCountdown.Stop();
-            this.btnStart.Text = this.stopToolStripMenuItem.Text;
-            this.sttStatusBar.Text = "Stopped!";
-            this.pgBar.Value = 0;
+            tmCountdown.Stop();
+            btnStart.Text = stopToolStripMenuItem.Text;
+            sttStatusBar.Text = "Stopped!";
+            pgBar.Value = 0;
             ChangeEnabledProperty(true);
         }
         #endregion
@@ -360,91 +362,71 @@ namespace LegoIV_Power_Tool
         #region Button Mouse Hover Events
         private void btnShutdown_MouseHover(object sender, EventArgs e)
         {
-            this.sttStatusBar.Text = "Shut down your computer!";
+            sttStatusBar.Text = "Shut down your computer!";
         }
 
         private void btnRestart_MouseHover(object sender, EventArgs e)
         {
-            this.sttStatusBar.Text = "Restart your computer!";
+            sttStatusBar.Text = "Restart your computer!";
         }
 
         private void btnSleep_MouseHover(object sender, EventArgs e)
         {
-            this.sttStatusBar.Text = "Sleep your computer!";
+            sttStatusBar.Text = "Sleep your computer!";
         }
 
         private void btnHibernate_MouseHover(object sender, EventArgs e)
         {
-            this.sttStatusBar.Text = "Hibernate your computer!";
+            sttStatusBar.Text = "Hibernate your computer!";
         }
 
         private void btnSignout_MouseHover(object sender, EventArgs e)
         {
-            this.sttStatusBar.Text = "Close all application and sign out your computer!";
+            sttStatusBar.Text = "Close all application and sign out your computer!";
         }
 
         private void btnLock_MouseHover(object sender, EventArgs e)
         {
-            this.sttStatusBar.Text = "Lock your computer screen!";
+            sttStatusBar.Text = "Lock your computer screen!";
         }
 
         private void btnSwitch_MouseHover(object sender, EventArgs e)
         {
-            this.sttStatusBar.Text = "Switch between users on your computer!";
+            sttStatusBar.Text = "Switch between users on your computer!";
         }
 
         private void btnMonitorOff_MouseHover(object sender, EventArgs e)
         {
-            this.sttStatusBar.Text = "Turn off your computer screen!";
+            sttStatusBar.Text = "Turn off your computer screen!";
+        }
+        private void lnkCheckForUpdate_MouseHover(object sender, EventArgs e)
+        {
+            sttStatusBar.Text = "Check for new release";
+        }
+        private void lnkAbout_MouseHover(object sender, EventArgs e)
+        {
+            sttStatusBar.Text = "About LegoIV Power Tool";
         }
         #endregion
         
         #region Mouse Leave Events
-        private void btnShutdown_MouseLeave(object sender, EventArgs e)
+        private void item_MouseLeave(object sender, EventArgs e)
         {
-            this.sttStatusBar.Text = "";
-        }
-        private void btnRestart_MouseLeave(object sender, EventArgs e)
-        {
-            this.sttStatusBar.Text = "";
-        }
-        private void btnSleep_MouseLeave(object sender, EventArgs e)
-        {
-            this.sttStatusBar.Text = "";
-        }
-        private void btnHibernate_MouseLeave(object sender, EventArgs e)
-        {
-            this.sttStatusBar.Text = "";
-        }
-        private void btnSignout_MouseLeave(object sender, EventArgs e)
-        {
-            this.sttStatusBar.Text = "";
-        }
-        private void btnLock_MouseLeave(object sender, EventArgs e)
-        {
-            this.sttStatusBar.Text = "";
-        }
-        private void btnSwitch_MouseLeave(object sender, EventArgs e)
-        {
-            this.sttStatusBar.Text = "";
-        }
-        private void btnMonitorOff_MouseLeave(object sender, EventArgs e)
-        {
-            this.sttStatusBar.Text = "";
+            sttStatusBar.Text = String.Empty;
         }
         #endregion
 
         #region Changed
         private bool IsDelayTimeEqualToZero()
         {
-            if(this.nmrcHour.Value == 0 && this.nmrdMinute.Value == 0 && this.nmrdSecond.Value == 0)
+            if(nmrcHour.Value == 0 && nmrdMinute.Value == 0 && nmrdSecond.Value == 0)
             {
-                this.rdbtnNow.Checked = true;
+                rdbtnNow.Checked = true;
                 return true;
             }
             else
             {
-                this.rdbtnAfter.Checked = true;
+                rdbtnAfter.Checked = true;
                 return false;
             }
         }
@@ -453,24 +435,20 @@ namespace LegoIV_Power_Tool
             IsDelayTimeEqualToZero();
             UpdateSettings();
         }
-
         private void nmrdMinute_ValueChanged(object sender, EventArgs e)
         {
             IsDelayTimeEqualToZero();
             UpdateSettings();
         }
-
         private void nmrdSecond_ValueChanged(object sender, EventArgs e)
         {
             IsDelayTimeEqualToZero();
             UpdateSettings();
         }
-
         private void rdbtnNow_CheckedChanged(object sender, EventArgs e)
         {
             UpdateSettings();
         }
-
         private void rdbtnAfter_CheckedChanged(object sender, EventArgs e)
         {
             UpdateSettings();
@@ -486,21 +464,21 @@ namespace LegoIV_Power_Tool
             {
                 if (Functions._DelayTime != 0)
                 {
-                    this.pgBar.Value++;
+                    pgBar.Value++;
                 }
             }
-            this.sttStatusBar.Text = "\nStart in " + Functions._DelayTime.ToString() + " seconds";
+            sttStatusBar.Text = "\nStart in " + Functions._DelayTime.ToString() + " seconds";
             Functions._DelayTime--;
             if (Functions._DelayTime == -1)
             {
                 Functions._DelayTime = 0;
-                this.tmCountdown.Stop();
-                this.Hide();
+                tmCountdown.Stop();
+                Hide();
                 Functions.PowerAction(Functions._ActionCode);
-                this.ntfIcon.Icon = null;
-                this.ntfIcon.Visible = false;
+                ntfIcon.Icon = null;
+                ntfIcon.Visible = false;
                 //System.Threading.Thread.Sleep(2000);
-                this.Close();
+                Close();
                 System.Windows.Forms.Application.Exit();
             }
         }
@@ -508,21 +486,21 @@ namespace LegoIV_Power_Tool
         private void lnkAbout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Form _frmAbout = new About();
-            Point p = new Point(this.Location.X + this.Width / 2 - _frmAbout.Width / 2, this.Location.Y + this.Height / 2 - _frmAbout.Height / 2);
+            Point p = new Point(Location.X + Width / 2 - _frmAbout.Width / 2, Location.Y + Height / 2 - _frmAbout.Height / 2);
             _frmAbout.Location = p;
             _frmAbout.ShowDialog();
         }
 
         private void ntfIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.ctmsSystemTray.Show(Cursor.Position);
+            ctmsSystemTray.Show(Cursor.Position);
         }
 
         private void ntfIcon_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-                this.ctmsSystemTray.Show(Cursor.Position);
+                ctmsSystemTray.Show(Cursor.Position);
             }
         }
 
@@ -530,17 +508,17 @@ namespace LegoIV_Power_Tool
         {
             if (!isHidden)
             {
-                this.showHideWindowToolStripMenuItem.Text = "Show Window";
-                this.Hide();
-                this.ShowInTaskbar = false;
+                showHideWindowToolStripMenuItem.Text = "Show Window";
+                Hide();
+                ShowInTaskbar = false;
                 isHidden = true;
             }
             else
             {
-                this.showHideWindowToolStripMenuItem.Text = "Hide Window";
-                this.ShowInTaskbar = true;
-                this.Show();
-                this.WindowState = FormWindowState.Normal;
+                showHideWindowToolStripMenuItem.Text = "Hide Window";
+                ShowInTaskbar = true;
+                Show();
+                WindowState = FormWindowState.Normal;
                 isHidden = false;
             }
         }
@@ -552,7 +530,7 @@ namespace LegoIV_Power_Tool
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.ntfIcon.Icon = null;
+            ntfIcon.Icon = null;
             Application.Exit();
         }
 
@@ -563,49 +541,49 @@ namespace LegoIV_Power_Tool
 
         private void restartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             Functions.PowerAction(2);
             System.Windows.Forms.Application.Exit();
         }
 
         private void sleepToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             Functions.PowerAction(3);
             System.Windows.Forms.Application.Exit();
         }
 
         private void hibernateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             Functions.PowerAction(4);
             System.Windows.Forms.Application.Exit();
         }
 
         private void signoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             Functions.PowerAction(5);
             System.Windows.Forms.Application.Exit();
         }
 
         private void lockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             Functions.PowerAction(6);
             System.Windows.Forms.Application.Exit();
         }
 
         private void switchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             Functions.PowerAction(7);
             System.Windows.Forms.Application.Exit();
         }
 
         private void monitoroffToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             Functions.PowerAction(8);
             System.Windows.Forms.Application.Exit();
         }
@@ -617,38 +595,111 @@ namespace LegoIV_Power_Tool
         private void lnkCheckForUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             sttStatusBar.Text = "Checking for new release...";
-            System.Threading.Thread.Sleep(1000);
+            //System.Threading.Thread.Sleep(1000);
             string UpdateURL = "https://api.github.com/repos/ansidev/legoivpowertool/releases";
-            string UserAgent = "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36";
+            string _client_id = "bad2abc91b66b4a2b0da";
+            string _client_secret = "2038c9100f0aca9f4f6b01ca8d59376eaeb3b74e";
+            string UserAgent = "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.102 Safari/537.36";
             WebClient client = new WebClient();
             client.Headers.Add("user-agent", UserAgent);
             //string beforeData = "{\r\n'?xml': {\r\n'@version': '1.0',\r\n'@encoding': 'UTF-8'\r\n},\r\n'root': {\r\n'release': ";
             //string afterData = @"}\r\n}";
             //string rawdata = beforeData + client.DownloadString(UpdateURL) + afterData;
-            string rawdata = client.DownloadString(UpdateURL);
+            string rawdata = client.DownloadString(UpdateURL + "?client_id=" + _client_id + "&client_secret=" + _client_secret);
             //MessageBox.Show(rawdata);
             //XmlDocument doc = (XmlDocument)JsonConvert.DeserializeXmlNode(rawdata);
-            List<GitHubRelease> releases = new List<GitHubRelease>();
             releases = JsonConvert.DeserializeObject<List<GitHubRelease>>(rawdata);
+            if (!this.Controls.Contains(lblRelease) || !this.Controls.Contains(lblReleaseInfo) || !this.Controls.Contains(btnCloseUpdate))
+            {
+                this.lblRelease = new System.Windows.Forms.Label();
+                this.lblReleaseInfo = new System.Windows.Forms.Label();
+                this.btnCloseUpdate = new LegoIV_Power_Tool.MetroButton();
+                //this.SuspendLayout();
+
+                // 
+                // lblRelease
+                // 
+                lblRelease.AutoSize = true;
+                lblRelease.Location = new System.Drawing.Point(325, 226);
+                lblRelease.Name = "lblRelease";
+                lblRelease.Size = new System.Drawing.Size(83, 15);
+                lblRelease.TabIndex = 19;
+                lblRelease.Text = "Latest Release:";
+                // 
+                // lblReleaseInfo
+                // 
+                lblReleaseInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                lblReleaseInfo.Location = new System.Drawing.Point(322, 245);
+                lblReleaseInfo.Name = "lblReleaseInfo";
+                lblReleaseInfo.Size = new System.Drawing.Size(321, 90);
+                lblReleaseInfo.TabIndex = 20;
+                // 
+                // btnCloseUpdate
+                // 
+                btnCloseUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
+                btnCloseUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                btnCloseUpdate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                btnCloseUpdate.ForeColor = System.Drawing.Color.White;
+                btnCloseUpdate.Location = new System.Drawing.Point(584, 339);
+                btnCloseUpdate.Name = "btnCloseUpdate";
+                btnCloseUpdate.Size = new System.Drawing.Size(60, 26);
+                btnCloseUpdate.TabIndex = 24;
+                btnCloseUpdate.Text = "Close";
+                btnCloseUpdate.UseVisualStyleBackColor = true;
+                btnCloseUpdate.Click += new System.EventHandler(btnCloseUpdate_Click);
+
+                this.Controls.Add(btnCloseUpdate);
+                this.Controls.Add(lblRelease);
+                this.Controls.Add(lblReleaseInfo);
+            }
             lblReleaseInfo.Text = releases[0].DisplayReleaseInfo();
             string latestVersion = releases[0].GetReleaseVersion().Replace('.'.ToString(), String.Empty);
             string localVersion = About.Version.Replace('.'.ToString(), String.Empty);
-            if(Int16.Parse(latestVersion) >= Int16.Parse(localVersion))
+            if (Int16.Parse(latestVersion) >= Int16.Parse(localVersion))
             {
-                client = new WebClient();
-                client.Headers.Add("user-agent", UserAgent);
-                rawdata = client.DownloadString(releases[0].assets_url);
-                List<GitHubReleaseAsset> assets = new List<GitHubReleaseAsset>();
-                assets = JsonConvert.DeserializeObject<List<GitHubReleaseAsset>>(rawdata);
-                GitHubAPI GHAPI = new GitHubAPI();
-                lblReleaseInfo.Text += GHAPI.DownloadURL(assets);
+                this.btnDownloadx86 = new LegoIV_Power_Tool.MetroButton();
+                this.btnDownloadx64 = new LegoIV_Power_Tool.MetroButton();
+                this.btnBrowse = new LegoIV_Power_Tool.MetroButton();
+                this.SuspendLayout();
+
+                // 
+                // btnDownloadx86
+                // 
+                btnDownloadx86.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
+                btnDownloadx86.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                btnDownloadx86.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                btnDownloadx86.ForeColor = System.Drawing.Color.White;
+                btnDownloadx86.Location = new System.Drawing.Point(321, 339);
+                btnDownloadx86.Name = "btnDownloadx86";
+                btnDownloadx86.Size = new System.Drawing.Size(60, 26);
+                btnDownloadx86.TabIndex = 22;
+                btnDownloadx86.Text = "x86";
+                btnDownloadx86.UseVisualStyleBackColor = true;
+                btnDownloadx86.Click += new EventHandler(btnDownloadx86_Click);
+                // 
+                // btnDownloadx64
+                // 
+                btnDownloadx64.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(224)))));
+                btnDownloadx64.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                btnDownloadx64.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                btnDownloadx64.ForeColor = System.Drawing.Color.White;
+                btnDownloadx64.Location = new System.Drawing.Point(385, 339);
+                btnDownloadx64.Name = "btnDownloadx64";
+                btnDownloadx64.Size = new System.Drawing.Size(60, 26);
+                btnDownloadx64.TabIndex = 23;
+                btnDownloadx64.Text = "x64";
+                btnDownloadx64.UseVisualStyleBackColor = true;
+                btnDownloadx64.Click += new EventHandler(btnDownloadx64_Click);
+
+                this.Controls.Add(btnDownloadx86);
+                this.Controls.Add(btnDownloadx64);
             }
             else
             {
-                MessageBox.Show("You are running latest version!");
+                this.SuspendLayout();
+                MessageBox.Show("You are running latest version!", "Congratulation");
             }
-            sttStatusBar.Text = "Checked";
-
+            sttStatusBar.Text = "Finished";
             #region Comment 
             //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(UpdateURL);
             //request.Method = "GET";
@@ -675,9 +726,47 @@ namespace LegoIV_Power_Tool
             #endregion
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void btnDownloadx64_Click(object sender, EventArgs e)
         {
-            Environment.Exit(1);
+            string UserAgent = "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.102 Safari/537.36";
+            WebClient client = new WebClient();
+            client.Headers.Add("user-agent", UserAgent);
+            GitHubAPI GHAPI = new GitHubAPI();
+            GitHubReleaseAsset _asset = GHAPI.ReleaseAsset(releases, "x64");
+            client.DownloadFile(_asset.browser_download_url, _asset.name);
+        }
+        private void btnDownloadx86_Click(object sender, EventArgs e)
+        {
+            string UserAgent = "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.102 Safari/537.36";
+            WebClient client = new WebClient();
+            client.Headers.Add("user-agent", UserAgent);
+            GitHubAPI GHAPI = new GitHubAPI();
+            GitHubReleaseAsset _asset = GHAPI.ReleaseAsset(releases, "x86");
+            client.DownloadFile(_asset.browser_download_url, _asset.name);
+        }
+        private void btnCloseUpdate_Click(object sender, EventArgs e)
+        {
+            if (this.Controls.Contains(lblRelease))
+            {
+                this.Controls.Remove(lblRelease);
+            }
+            if (this.Controls.Contains(lblReleaseInfo))
+            {
+                this.Controls.Remove(lblReleaseInfo);
+            }
+            if (this.Controls.Contains(btnCloseUpdate))
+            {
+                this.Controls.Remove(btnCloseUpdate);
+            }
+            if (this.Controls.Contains(btnDownloadx86))
+            {
+                this.Controls.Remove(btnDownloadx86);
+            }
+            if (this.Controls.Contains(btnDownloadx64))
+            {
+                this.Controls.Remove(btnDownloadx64);
+            }
+            this.SuspendLayout();
         }
     }
 }
