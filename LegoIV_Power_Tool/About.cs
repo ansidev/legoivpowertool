@@ -14,7 +14,7 @@ namespace LegoIV_Power_Tool
     {
         //About app
         private static string AppName = "LegoIV Power Tool";
-        public static  string Version = "1.3.0.0";
+        public static  string Version = "1.4.14.0901";
         private static string Channel = "Stable";
         private static string License = "GPLv3";
         private static string ProjectHomepage = "http://blog.ansidev.tk/products/legoiv-power-tool/";
