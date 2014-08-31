@@ -27,7 +27,7 @@ LegoIV Power Tool
 ####Version 1.4.14.0901
 * Added changelog to README.MD.
 * Change version name format.
-    * Now format is <major>.<minor>.<release year>.<release month><release date>
+    * Now format is {major}.{minor}.{release year}.{release month}.{release date}
 * Support check for new release and download update.
     * Program will detect your OS is 32 or 64 bit to download the correct version.
     * File will be saved in folder that contain your program.
