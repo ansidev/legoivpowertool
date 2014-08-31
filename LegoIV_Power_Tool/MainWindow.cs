@@ -656,8 +656,9 @@ namespace LegoIV_Power_Tool
             lblReleaseInfo.Text = releases[0].DisplayReleaseInfo();
             string latestVersion = releases[0].GetReleaseVersion().Replace('.'.ToString(), String.Empty);
             string localVersion = About.Version.Replace('.'.ToString(), String.Empty);
-            if (Int16.Parse(latestVersion) >= Int16.Parse(localVersion))
+            if (Int16.Parse(latestVersion) > Int16.Parse(localVersion))
             {
+                MessageBox.Show("You are running out of date version!", "Update Notification");
                 this.btnDownload = new LegoIV_Power_Tool.MetroButton();
                 // 
                 // btnDownload
