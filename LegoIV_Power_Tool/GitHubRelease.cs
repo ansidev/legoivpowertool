@@ -60,9 +60,25 @@ namespace LegoIV_Power_Tool
             //result += "Download URL: " + GhRelease.asset[1].browser_download_url + Environment.NewLine;
             return result;
         }
-        public int GetReleaseVersion()
+        //public string GetReleaseVersion()
+        //{
+        //    return tag_name;
+        //}
+
+        public bool IsNeedUpdate()
         {
-            return Int16.Parse(tag_name.Split('.')[0] + tag_name.Split('.')[1]);
+            bool b = false;
+            string[] latestVersion = tag_name.Split('.');
+            string[] localVersion = About.Version.Split('.');
+            for (int i = 0; i < latestVersion.Length; i++)
+            {
+                if(Int16.Parse(localVersion[i]) < Int16.Parse(latestVersion[i]))
+                {
+                    b = true;
+                    break;
+                }
+            }
+            return b;
         }
     }
 }
