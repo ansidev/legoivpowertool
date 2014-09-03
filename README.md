@@ -1,7 +1,7 @@
 LegoIV Power Tool
 ===============
-> * Current stable version: [1.4.14.0901 Stable](https://github.com/ansidev/legoivpowertool/releases/tag/1.4.14.0901 "1.4.14.0901 Stable").
-> * Release date: 1st September 2014.
+> * Current stable version: [1.4.14.0903 Stable](https://github.com/ansidev/legoivpowertool/releases/tag/1.4.14.0903 "1.4.14.0903 Stable").
+> * Release date: 3rd September 2014.
 > * Description: Simple tool to shutdown, restart, sleep, hibernate, sign out, lock your computer and more.
 > * License: [GPLv3](http://www.gnu.org/licenses/gpl-3.0.html "GNU General Public License Version 3")
 
@@ -24,8 +24,8 @@ LegoIV Power Tool
 4. Check for new release version from GitHub and download correct version based on your OS architecture.
 
 ###CHANGELOG
-####Version 1.4.14.0901
-* Added changelog to README.MD.
+####[Version 1.4.14.0901 Stable](https://github.com/ansidev/legoivpowertool/releases/tag/1.4.14.0901 "1.4.14.0901 Stable")
+* Added changelog to [**README.MD**](https://github.com/ansidev/legoivpowertool/blob/master/README.md "README.MD").
 * Change version name format.
     * Now format is {major}.{minor}.{release year}.{release month}.{release date}
 * Support check for new release and download update.
@@ -35,3 +35,6 @@ LegoIV Power Tool
 * Write my own GitHub API.
 * Using JSON.NET to process data from official GitHub API.
 
+####[Version 1.4.14.0903 Stable](https://github.com/ansidev/legoivpowertool/releases/tag/1.4.14.0903 "1.4.14.0903 Stable")
+* Use new icon for software and all dialogs.
+* Fix small bug: When click **STOP** item on arrow menu, button text must be **START**.
