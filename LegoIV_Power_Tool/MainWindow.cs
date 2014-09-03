@@ -353,7 +353,7 @@ namespace LegoIV_Power_Tool
         private void stopToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tmCountdown.Stop();
-            btnStart.Text = stopToolStripMenuItem.Text;
+            btnStart.Text = "START";
             sttStatusBar.Text = "Stopped!";
             pgBar.Value = 0;
             ChangeEnabledProperty(true);

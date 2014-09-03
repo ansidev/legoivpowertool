@@ -136,9 +136,9 @@
             this.lblVersion.AutoSize = true;
             this.lblVersion.Location = new System.Drawing.Point(111, 32);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(55, 13);
+            this.lblVersion.Size = new System.Drawing.Size(97, 13);
             this.lblVersion.TabIndex = 1;
-            this.lblVersion.Text = "1.1 Stable";
+            this.lblVersion.Text = "1.4.14.0903 Stable";
             // 
             // lkblProjectHomepage
             // 
