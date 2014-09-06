@@ -4,6 +4,13 @@ LegoIV Power Tool
 > * Release date: 3rd September 2014.
 > * Description: Simple tool to shutdown, restart, sleep, hibernate, sign out, lock your computer and more.
 > * License: [GPLv3](http://www.gnu.org/licenses/gpl-3.0.html "GNU General Public License Version 3")
+###System Requirements
+* Windows 7/8/8.1.
+* .NET Framework 4.5.
+
+###Recommended System Requirements
+* Windows 8/8.1.
+* .NET Framework 4.5.
 
 ###List of current features:
 
@@ -22,6 +29,12 @@ LegoIV Power Tool
 2. Quick access via Jump List menu, system tray menu.
 3. Support command line mode.
 4. Check for new release version from GitHub and download correct version based on your OS architecture.
+
+####Future features
+1. Improve **Check for update** feature.
+2. Support do the action at **specified time**.
+3. Support **many actions**, not only one action.
+4. Support **multi languages**.
 
 ###CHANGELOG
 ####[Version 1.4.14.0901 Stable](https://github.com/ansidev/legoivpowertool/releases/tag/1.4.14.0901 "1.4.14.0901 Stable")
