@@ -32,10 +32,15 @@ LegoIV Power Tool
 4. Check for new release version from GitHub and download correct version based on your OS architecture.
 
 ####Future features
-1. Improve **Check for update** feature.
-2. Support do the action at **specified time**.
-3. Support **many actions**, not only one action.
-4. Support **multi languages**.
+1. Support Hybrid Shutdown
+2. Improve **Check for update** feature.
+3. Support do the action at **specified time**.
+4. Support **many actions**, not only one action.
+5. Support **multi languages**.
+6. Save settings to settings.xml.
+7. Add last action into Jump List menu.
+8. View progress on taskbar.
+ 
 
 ###CHANGELOG
 ####[Version 1.4.14.0901 Stable](https://github.com/ansidev/legoivpowertool/releases/tag/1.4.14.0901 "1.4.14.0901 Stable")

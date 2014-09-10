@@ -13,11 +13,11 @@ namespace LegoIV_Power_Tool
     public partial class About : Form
     {
         //About app
-        private static string AppName = "LegoIV Power Tool";
-        public static string Version = "1.4.14.0903";
-        private static string Channel = "Stable";
-        private static string License = "GPLv3";
-        private static string ProjectHomepage = "http://blog.ansidev.tk/products/legoiv-power-tool/";
+        internal protected static string AppName = "LegoIV Power Tool";
+        internal protected static string Version = "1.4.14.0903";
+        internal protected static string Channel = "Stable";
+        internal protected static string License = "GPLv3";
+        internal protected static string ProjectHomepage = "http://blog.ansidev.tk/products/legoiv-power-tool/";
 
         //About author
         private static string Author = "ansidev";

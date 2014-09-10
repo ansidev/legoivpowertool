@@ -27,6 +27,7 @@ namespace LegoIV_Power_Tool
         private bool isHidden { get; set; }
         List<GitHubRelease> releases = new List<GitHubRelease>();
         WindowsAPI WAPI = new WindowsAPI();
+        Settings settings = new Settings();
         #region Other Functions
         private void EnableAllButton(MetroButton mtButton)
         {
@@ -119,6 +120,7 @@ namespace LegoIV_Power_Tool
         public MainWindow()
         {
             InitializeComponent();
+            settings.InitSettings();
             UpdateSettings();
             //Get Button
             ButtonArray[0] = btnShutdown;
