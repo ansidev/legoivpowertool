@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LegoIV_Power_Tool
@@ -14,16 +7,16 @@ namespace LegoIV_Power_Tool
     {
         //About app
         private static string AppName = "LegoIV Power Tool";
-        public static  string Version = "1.4.14.0901";
+        public static  string Version = "1.4.19.0207";
         private static string Channel = "Stable";
         private static string License = "GPLv3";
-        private static string ProjectHomepage = "http://blog.ansidev.tk/products/legoiv-power-tool/";
+        private static string ProjectHomepage = "https://ansidev.xyz/legoiv-power-tool/";
 
         //About author
         private static string Author = "ansidev";
         private static string Email = "ansidev@gmail.com";
         private static string AllProject = "https://github.com/ansidev";
-        private static string AuthorHomepage = "http://blog.ansidev.tk";
+        private static string AuthorHomepage = "https://ansidev.xyz";
 
         //Source code
         private string SourceCode = "https://github.com/ansidev/legoivpowertool";
