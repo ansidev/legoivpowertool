@@ -1,8 +1,11 @@
 LegoIV Power Tool
 ===============
 > Current stable version: [1.4.19.0207 Stable](https://github.com/ansidev/legoivpowertool/releases/tag/1.4.14.0903 "1.4.14.0903 Stable").
+
 > Release date: 7th February 2019.
+
 > Description: Simple tool to shutdown, restart, sleep, hibernate, sign out, lock your computer and more.
+
 > License: [GPLv3](http://www.gnu.org/licenses/gpl-3.0.html "GNU General Public License Version 3")
 
 
