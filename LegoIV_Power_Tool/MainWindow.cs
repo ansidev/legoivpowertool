@@ -606,6 +606,7 @@ namespace LegoIV_Power_Tool
             //string beforeData = "{\r\n'?xml': {\r\n'@version': '1.0',\r\n'@encoding': 'UTF-8'\r\n},\r\n'root': {\r\n'release': ";
             //string afterData = @"}\r\n}";
             //string rawdata = beforeData + client.DownloadString(UpdateURL) + afterData;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             string rawdata = client.DownloadString(UpdateURL + "?client_id=" + _client_id + "&client_secret=" + _client_secret);
             //MessageBox.Show(rawdata);
             //XmlDocument doc = (XmlDocument)JsonConvert.DeserializeXmlNode(rawdata);
